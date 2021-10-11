@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">손글씨검사기</string>
+    <string name="noText">NoText</string>
+
+    <string name="permission_granted">권한 허용됨</string>
+    <string name="permission_denied">권한 거부됨</string>
+
+    <string name="main_btn_takePhoto">손글씨 촬영하기</string>
+    <string name="main_btn_bookmark">책갈피</string>
+    <string name="information">앱 정보</string>
+
+    <string name="bookmark_title">나의 맞춤법 책갈피</string>
+    <string name="bookmark_btn_logout">로그아웃</string>
+
+    <string name="bookmark2_btn_unlock">책갈피\n해제하기</string>
+    <string name="bookmark2_text1">내가 적은 글</string>
+    <string name="bookmark2_text2">바르게 수정된 글</string>
+</resources>

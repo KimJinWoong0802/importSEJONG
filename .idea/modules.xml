@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/importSEJONG.iml" filepath="$PROJECT_DIR$/.idea/importSEJONG.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/손글씨검사기.iml" filepath="$PROJECT_DIR$/.idea/modules/손글씨검사기.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/손글씨검사기.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/손글씨검사기.app.iml" />
     </modules>
   </component>
 </project>
