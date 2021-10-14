@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "258344996113",
+    "firebase_url": "https://capstone-f37bb-default-rtdb.firebaseio.com",
+    "project_id": "capstone-f37bb",
+    "storage_bucket": "capstone-f37bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258344996113:android:d51de8e400895c1a3010b0",
+        "android_client_info": {
+          "package_name": "com.importsejong.korwriting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258344996113-kmkgg1uo8giblfokga4a270nuj525ptp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMFkrlWi5UpHjWKTqMu7kEga3jOS4J7M8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258344996113-kmkgg1uo8giblfokga4a270nuj525ptp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
