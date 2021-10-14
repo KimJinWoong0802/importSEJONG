@@ -1,36 +1,62 @@
 package com.importsejong.korwriting
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.MenuItem
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.importsejong.korwriting.databinding.ActivityMainBinding
+import com.importsejong.korwriting.fragment.FourFragment
+import com.importsejong.korwriting.fragment.OneFragment
+import com.importsejong.korwriting.fragment.ThreeFragment
+import com.importsejong.korwriting.fragment.TwoFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+    private var mBinding: ActivityMainBinding? = null
+    private val binging get() = mBinding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binging.root)
 
-        //setTitle
-        val title = findViewById<TextView>(R.id.title)
-        title.text = resources.getString(R.string.app_name)
+        binging.navigation.selectedItemId = R.id.action_3
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frame, ThreeFragment())
+        transaction.commit()
+
+        binging.navigation.setOnNavigationItemSelectedListener(this)
     }
 
-    fun onClick(v: View) {
-        when(v.id) {
-            R.id.btn_takePhoto -> {
-                val intent = Intent(this, PhotoActivity::class.java)
-                startActivity(intent)
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        when(p0.itemId){
+            R.id.action_1 ->{
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frame, OneFragment())
+                transaction.commit()
+                return true
             }
-            R.id.btn_bookmark -> {
-                val intent = Intent(this, BookmarkActivity::class.java)
-                startActivity(intent)
+
+            R.id.action_2 ->{
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frame, TwoFragment())
+                transaction.commit()
+                return true
             }
-            R.id.btn_information -> {
-                val intent = Intent(this, InformationActivity::class.java)
-                startActivity(intent)
+
+            R.id.action_3 ->{
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frame, ThreeFragment())
+                transaction.commit()
+                return true
+            }
+
+            R.id.action_4 ->{
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frame, FourFragment())
+                transaction.commit()
+                return true
             }
         }
+        return false
     }
 }

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/손글씨검사기.iml" filepath="$PROJECT_DIR$/.idea/modules/손글씨검사기.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/손글씨검사기.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/손글씨검사기.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/바른글씨.iml" filepath="$PROJECT_DIR$/.idea/modules/바른글씨.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/바른글씨.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/바른글씨.app.iml" />
     </modules>
   </component>
 </project>

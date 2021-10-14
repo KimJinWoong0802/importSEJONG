@@ -1,18 +1,18 @@
 <resources>
-    <string name="app_name">손글씨검사기</string>
+    <string name="app_name">바른글씨</string>
     <string name="noText">NoText</string>
 
-    <string name="permission_granted">권한 허용됨</string>
-    <string name="permission_denied">권한 거부됨</string>
+    <string name="menu_1">맞춤법 검사</string>
+    <string name="title_1">손글씨를 촬영해 주세요</string>
 
-    <string name="main_btn_takePhoto">손글씨 촬영하기</string>
-    <string name="main_btn_bookmark">책갈피</string>
-    <string name="information">앱 정보</string>
+    <string name="menu_2">글씨교정</string>
+    <string name="title_2_1">글씨를 교정해 볼까요?</string>
+    <string name="title_2_2">글자에 맞추어 글씨를 적어주세요</string>
+    <string name="title_2_3">교정 결과</string>
 
-    <string name="bookmark_title">나의 맞춤법 책갈피</string>
-    <string name="bookmark_btn_logout">로그아웃</string>
+    <string name="menu_3">마이페이지</string>
 
-    <string name="bookmark2_btn_unlock">책갈피\n해제하기</string>
-    <string name="bookmark2_text1">내가 적은 글</string>
-    <string name="bookmark2_text2">바르게 수정된 글</string>
+    <string name="menu_4">앱 설정</string>
+    <string name="title_4_2">앱 정보</string>
+
 </resources>
