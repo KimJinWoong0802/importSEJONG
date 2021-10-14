@@ -2,6 +2,10 @@
     <string name="app_name">바른글씨</string>
     <string name="noText">NoText</string>
 
+    <string name="login_permission1">권한이 거절됨(추가입력)</string>
+    <string name="login_permission2">권한이 다시묻지않기 설정됨(추가입력)</string>
+    <string name="login_kakaologin">카카오 로그인 성공(임시)</string>
+
     <string name="menu_1">맞춤법 검사</string>
     <string name="title_1">손글씨를 촬영해 주세요</string>
 
