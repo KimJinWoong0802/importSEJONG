@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.importsejong.korwriting.databinding.ActivityMainBinding
-import com.importsejong.korwriting.fragment.FourFragment
-import com.importsejong.korwriting.fragment.OneFragment
-import com.importsejong.korwriting.fragment.ThreeFragment
-import com.importsejong.korwriting.fragment.TwoFragment
+import com.importsejong.korwriting.fragment.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var mBinding: ActivityMainBinding? = null
@@ -58,5 +55,15 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
         }
         return false
+    }
+
+    //앱정보 프래그먼트 안에서 움직임
+    fun openFourFragment(int: Int){
+        val transaction = supportFragmentManager.beginTransaction()
+        when(int) {
+            1 -> transaction.replace(R.id.frame, FourTwoFragment())
+            2 -> transaction.replace(R.id.frame, FourFragment())
+        }
+        transaction.commit()
     }
 }

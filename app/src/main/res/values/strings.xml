@@ -18,5 +18,15 @@
 
     <string name="menu_4">앱 설정</string>
     <string name="title_4_2">앱 정보</string>
+    <string name="four_btn_logout">로그아웃</string>
+    <string name="four_textSize">글씨 크기</string>
+    <string name="four_textExample">다람쥐의 쳇바퀴는 어째서 헐었나</string>
+    <string name="four_seekbar_left">작게</string>
+    <string name="four_seekbar_right">크게</string>
+    <string name="four_theme_name">앱 테마</string>
+    <string name="four_theme_contents">앱의 테마를 설정합니다.</string>
+    <string name="four_anima_name">화면 전환 효과</string>
+    <string name="four_anime_contents">전환 애니메이션을 켜고 끕니다.</string>
+    <string name="four_btn">앱 정보 보기</string>
 
 </resources>
