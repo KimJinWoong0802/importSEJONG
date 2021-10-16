@@ -22,8 +22,8 @@ class LoginActivity : AppCompatActivity() {
     private var kakaoLogin = false
 
     private val requiredPermissions = arrayListOf(
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE)
+            Manifest.permission.CAMERA
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
