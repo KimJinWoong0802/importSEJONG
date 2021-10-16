@@ -33,6 +33,9 @@
     <string name="title_2_3">교정 결과</string>
 
     <string name="menu_3">마이페이지</string>
+    <string name="three_bookmark_unbookmark">책갈피\n해제하기</string>
+    <string name="three_bookmark_text1">내가 적은 글</string>
+    <string name="three_bookmark_text2">바르게 수정된 글</string>
 
     <string name="menu_4">앱 설정</string>
     <string name="title_4_2">앱 정보</string>
@@ -46,5 +49,7 @@
     <string name="four_anima_name">화면 전환 효과</string>
     <string name="four_anime_contents">전환 애니메이션을 켜고 끕니다.</string>
     <string name="four_btn">앱 정보 보기</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

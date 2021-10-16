@@ -66,4 +66,21 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
         transaction.commit()
     }
+
+    //마이페이지 프개르먼트 안에서 움직임
+    fun openThreeFragment(int: Int, data: Int) {
+        val transaction = supportFragmentManager.beginTransaction()
+        when(int) {
+            1 -> {
+                var fragment = ThreeTwoFragment()
+                var bundle = Bundle()
+                bundle.putInt("data",data)
+                fragment.arguments = bundle
+
+                transaction.replace(R.id.frame, fragment)
+            }
+            2 -> transaction.replace(R.id.frame, ThreeFragment())
+        }
+        transaction.commit()
+    }
 }
