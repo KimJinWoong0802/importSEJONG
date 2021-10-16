@@ -39,7 +39,6 @@ class LoginActivity : AppCompatActivity() {
         when(v.id) {
             R.id.button -> {
                 kakaoLogin = true
-                Toast.makeText(this, resources.getString(R.string.login_kakaologin), Toast.LENGTH_SHORT).show()
                 startMainActivity(permissionGrant, kakaoLogin)
             }
         }
@@ -47,6 +46,9 @@ class LoginActivity : AppCompatActivity() {
 
     //카카오 로그인과 권한이 승인되면 액티비티 자동이동
     private fun startMainActivity(permissionGrant:Boolean, kakaoLogin:Boolean) {
+        val toastText = "카메라권한:"+permissionGrant.toString()+"\n카카오로그인(임시):"+kakaoLogin.toString()
+        Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show()
+
         if(permissionGrant && kakaoLogin) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
