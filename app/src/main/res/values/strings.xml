@@ -8,6 +8,24 @@
 
     <string name="menu_1">맞춤법 검사</string>
     <string name="title_1">손글씨를 촬영해 주세요</string>
+    <string name="one_folderName">picture</string>
+    <string name="one_fileName">imageFile.jpg</string>
+
+    <string name="one_popupOCR_main">인식 결과</string>
+    <string name="one_popupOCR_content">이렇게 적으신 것이 맞나요?</string>
+    <string name="one_popupOCR_yes">맞아요</string>
+    <string name="one_popupOCR_no">아니에요</string>
+
+    <string name="one_popupOCR_main2">글씨 수정</string>
+    <string name="one_popupOCR_content2">적은 대로 글을 수정해 주세요.</string>
+    <string name="one_popupOCR_yes2">확인</string>
+    <string name="one_popupOCR_no2">취소</string>
+
+    <string name="one_popupResult_main">맞춤법 검사 결과</string>
+    <string name="one_popupResult_before">내가 적은 글</string>
+    <string name="one_popupResult_after">바르게 고쳐진 글</string>
+    <string name="one_popupResult_ok">확인</string>
+    <string name="one_popupResult_bookmark">책갈피에 넣기</string>
 
     <string name="menu_2">글씨교정</string>
     <string name="title_2_1">글씨를 교정해 볼까요?</string>
