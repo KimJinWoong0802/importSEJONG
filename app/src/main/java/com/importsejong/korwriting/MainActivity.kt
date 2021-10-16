@@ -28,7 +28,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         when(p0.itemId){
             R.id.action_1 ->{
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frame, OneFragment())
+                val fragment = OneFragment()
+                val bundle = Bundle()
+                bundle.putInt("dataInt", 1)
+                bundle.putString("dataString", "")
+                fragment.arguments = bundle
+
+                transaction.replace(R.id.frame, fragment)
                 transaction.commit()
                 return true
             }
@@ -57,6 +63,34 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return false
     }
 
+    //글씨교정 프래그먼트 안에서 움직임
+    fun openTwoFragment(int: Int, string: String?) {
+        val transaction = supportFragmentManager.beginTransaction()
+        when(int) {
+            2 -> {
+                val fragment = OneFragment()
+                val bundle = Bundle()
+                bundle.putInt("dataInt", 2)
+                bundle.putString("dataString", string)
+                fragment.arguments = bundle
+
+                transaction.replace(R.id.frame, fragment)
+            }
+            3 -> {
+                val fragment = TwoTwoFragment()
+                val bundle = Bundle()
+                bundle.putString("dataString", string)
+                fragment.arguments = bundle
+
+                transaction.replace(R.id.frame, fragment)
+            }
+            4 -> {
+                transaction.replace(R.id.frame, TwoFragment())
+            }
+        }
+        transaction.commit()
+    }
+
     //앱정보 프래그먼트 안에서 움직임
     fun openFourFragment(int: Int){
         val transaction = supportFragmentManager.beginTransaction()
@@ -72,8 +106,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         val transaction = supportFragmentManager.beginTransaction()
         when(int) {
             1 -> {
-                var fragment = ThreeTwoFragment()
-                var bundle = Bundle()
+                val fragment = ThreeTwoFragment()
+                val bundle = Bundle()
                 bundle.putInt("data",data)
                 fragment.arguments = bundle
 

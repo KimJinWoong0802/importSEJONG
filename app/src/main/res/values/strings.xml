@@ -31,6 +31,17 @@
     <string name="title_2_1">글씨를 교정해 볼까요?</string>
     <string name="title_2_2">글자에 맞추어 글씨를 적어주세요</string>
     <string name="title_2_3">교정 결과</string>
+    <string name="two_explain_1_1">교정 받을 글씨를</string>
+    <string name="two_explain_1_2">밑칸에 입력해주세요.</string>
+    <string name="two_explain_2_1">입력된 글씨가</string>
+    <string name="two_explain_2_2">화면에 이미지로 나타납니다.</string>
+    <string name="two_explain_3_1">이미지에 맞추어</string>
+    <string name="two_explain_3_2">손글씨를 적고 촬영해 주세요.</string>
+    <string name="two_explain_btn">교정 시작하기</string>
+    <string name="two_result_main">기준으로 사용한 글</string>
+    <string name="two_result_main2">교정 결과</string>
+    <string name="two_result_rating">나쁘지 않아요!\n계속 예쁜 손글씨를 위해 노력해보세요!</string>
+    <string name="two_result_btn">돌아가기</string>
 
     <string name="menu_3">마이페이지</string>
     <string name="three_bookmark_unbookmark">책갈피\n해제하기</string>

@@ -1,9 +1,8 @@
 package com.importsejong.korwriting.fragment
 
 import android.app.AlertDialog
-import android.net.Uri
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.DialogPopupOcr2Binding
 import com.importsejong.korwriting.databinding.DialogPopupOcrBinding
@@ -40,6 +40,8 @@ class OneFragment : Fragment() {
     private var param2: String? = null
     private var mBinding: FragmentOneBinding? = null
     private val binging get() = mBinding!!
+    private var mainActivity: MainActivity? = null
+
     private var popupResultBinding : DialogPopupResultBinding? = null
     private var popupOcrBinding : DialogPopupOcrBinding? = null
     private var popupOcr2Binding : DialogPopupOcr2Binding? = null
@@ -57,6 +59,14 @@ class OneFragment : Fragment() {
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
 
+    var getIntData :Int? = null
+    var getStringData :String? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainActivity = context as MainActivity
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -71,27 +81,38 @@ class OneFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentOneBinding.inflate(inflater, container, false)
-        binging.toolbar.title.text = resources.getString(R.string.title_1)
 
         //팝업 설정
         popupResultBinding = DialogPopupResultBinding.inflate(inflater, container, false)
         popupOcrBinding = DialogPopupOcrBinding.inflate(inflater, container, false)
         popupOcr2Binding = DialogPopupOcr2Binding.inflate(inflater, container, false)
-        builder1 = AlertDialog.Builder(requireContext()).setView(popupOcrBinding!!.root)
-        builder2 = AlertDialog.Builder(requireContext()).setView(popupOcr2Binding!!.root)
-        builder3 = AlertDialog.Builder(requireContext()).setView(popupResultBinding!!.root)
+        builder1 = AlertDialog.Builder(requireContext()).setView(popupOcrBinding!!.root).setCancelable(false)
+        builder2 = AlertDialog.Builder(requireContext()).setView(popupOcr2Binding!!.root).setCancelable(false)
+        builder3 = AlertDialog.Builder(requireContext()).setView(popupResultBinding!!.root).setCancelable(false)
         popupView1 = builder1!!.create()
         popupView2 = builder2!!.create()
         popupView3 = builder3!!.create()
-        builder1!!.setCancelable(false)
-        builder2!!.setCancelable(false)
-        builder3!!.setCancelable(false)
+
+        getIntData = arguments?.getInt("dataInt")
+        getStringData = arguments?.getString("dataString")
 
         //카메라 화면 설정
         startCamera()
+        binging.txtPractice.text = getStringData
 
-        //버튼 이벤트
-        setButton()
+        //맞춤법검사? 글씨교정?
+        when(getIntData) {
+            //맞춤법 검사 버튼 이벤트
+            1 -> {
+                binging.toolbar.title.text = resources.getString(R.string.title_1)
+                setButtonOne()
+            }
+            //글씨 교정 버튼 이벤트
+            2 -> {
+                binging.toolbar.title.text = resources.getString(R.string.title_2_2)
+                setButtonTwo()
+            }
+        }
 
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -120,8 +141,8 @@ class OneFragment : Fragment() {
             }
     }
 
-    //버튼 이벤트
-    private fun setButton() {
+    //맞춤법 검사 버튼 이벤트
+    private fun setButtonOne() {
         //사진찍기
         binging.imageButton.setOnClickListener{
             takePhoto()
@@ -132,7 +153,6 @@ class OneFragment : Fragment() {
         //인식결과 맞아요
         popupOcrBinding!!.btnOcrYes.setOnClickListener {
             popupResultBinding!!.txtResultBefore.text = popupOcrBinding!!.txtOcrBefore.text
-            popupOcrBinding!!.txtOcrBefore.text = resources.getString(R.string.noText)
 
             popupView1!!.dismiss()
             popupView3!!.show()
@@ -140,7 +160,6 @@ class OneFragment : Fragment() {
         //인식결과 아니에요
         popupOcrBinding!!.btnOcrNo.setOnClickListener{
             popupOcr2Binding!!.txtOcr2Before.setText(popupOcrBinding!!.txtOcrBefore.text)
-            popupOcrBinding!!.txtOcrBefore.text = resources.getString(R.string.noText)
 
             popupView1!!.dismiss()
             popupView2!!.show()
@@ -150,29 +169,29 @@ class OneFragment : Fragment() {
         //글씨수정 확인
         popupOcr2Binding!!.btnOcr2Yes.setOnClickListener {
             popupResultBinding!!.txtResultBefore.text = popupOcr2Binding!!.txtOcr2Before.text
-            popupOcr2Binding!!.txtOcr2Before.setText(resources.getString(R.string.noText))
 
             popupView2!!.dismiss()
             popupView3!!.show()
         }
         //글씨수정 취소
         popupOcr2Binding!!.btnOcr2No.setOnClickListener {
-            popupOcr2Binding!!.txtOcr2Before.setText(resources.getString(R.string.noText))
-
             popupView2!!.dismiss()
         }
 
         //popupResult 팝업 버튼
         //맞춤법결과 확인
         popupResultBinding!!.btnResultOk.setOnClickListener {
-            popupResultBinding!!.txtResultBefore.text = resources.getString(R.string.noText)
-
             popupView3!!.dismiss()
         }
         //맞춤법결과 책갈피에넣기
         popupResultBinding!!.btnResultBookmark.setOnClickListener {
             Toast.makeText(requireContext(), "미구현", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun setButtonTwo() {
+        //사진찍기
+        binging.imageButton.setOnClickListener { takePhoto() }
     }
 
     private fun takePhoto() {
@@ -186,14 +205,10 @@ class OneFragment : Fragment() {
             outputOptions,
             ContextCompat.getMainExecutor(requireContext()),
             object : ImageCapture.OnImageSavedCallback {
-                override fun onError(exc: ImageCaptureException) {
-                    Log.d("CameraX-Debug", "Photo capture failed: ${exc.message}", exc)
-                }
+                override fun onError(exc: ImageCaptureException) { }
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val savedUri = Uri.fromFile(photoFile)
-                    val msg = "Photo capture succeeded: $savedUri"
-                    Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
-                    Log.d("CameraX-Debug", msg)
+                    Toast.makeText(requireContext(), "캡처성공", Toast.LENGTH_SHORT).show()
+                    if(getIntData == 2) mainActivity!!.openTwoFragment(3, getStringData)
                 }
             })
     }
@@ -218,9 +233,7 @@ class OneFragment : Fragment() {
                     cameraSelector,
                     preview,
                     imageCapture)
-            } catch(exc: Exception) {
-                Log.d("CameraX-Debug", "Use case binding failed", exc)
-            }
+            } catch(exc: Exception) { }
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
