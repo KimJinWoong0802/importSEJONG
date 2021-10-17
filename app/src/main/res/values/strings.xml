@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">바른글씨</string>
     <string name="noText">NoText</string>
+    <string name="kakao_api_key">ba9b634a31af67fc0892b3f9adfe653a</string>
 
     <string name="login_permission1">권한이 거절됨(추가입력)</string>
     <string name="login_permission2">권한이 다시묻지않기 설정됨(추가입력)</string>
