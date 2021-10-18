@@ -5,24 +5,24 @@
         android:id="@+id/action_1"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="@string/menu_1" />
+        android:title="@string/grammertest_menu" />
 
     <item
         android:id="@+id/action_2"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_help"
-        android:title="@string/menu_2" />
+        android:title="@string/writingtest_menu" />
 
     <item
         android:id="@+id/action_3"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_gallery"
-        android:title="@string/menu_3" />
+        android:title="@string/mypage_menu" />
 
     <item
         android:id="@+id/action_4"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_delete"
-        android:title="@string/menu_4" />
+        android:title="@string/setting_menu" />
 
 </menu>

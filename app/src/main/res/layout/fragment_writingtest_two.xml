@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.TwoTwoFragment">
+    tools:context=".fragment.WritingtestTwoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/two_result_main"
+                    android:text="@string/writingtest_result_main"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 
@@ -89,7 +89,7 @@
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/two_result_main2"
+                    android:text="@string/writingtest_result_main2"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 
@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/two_result_rating"
+                    android:text="@string/writingtest_result_rating"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -115,7 +115,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="@android:color/holo_green_dark"
-                android:text="@string/two_result_btn"
+                android:text="@string/writingtest_result_btn"
                 android:textColor="@color/black" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

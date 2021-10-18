@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.LoginActivity
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
-import com.importsejong.korwriting.databinding.FragmentFourBinding
+import com.importsejong.korwriting.databinding.FragmentSettingBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,14 +22,14 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [FourFragment.newInstance] factory method to
+ * Use the [SettingFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FourFragment : Fragment() {
+class SettingFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var mBinding: FragmentFourBinding? = null
+    private var mBinding: FragmentSettingBinding? = null
     private val binging get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
@@ -51,13 +51,13 @@ class FourFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        mBinding = FragmentFourBinding.inflate(inflater, container, false)
-        binging.toolbar.title.text = resources.getString(R.string.menu_4)
+        mBinding = FragmentSettingBinding.inflate(inflater, container, false)
+        binging.toolbar.title.text = resources.getString(R.string.setting_menu)
 
         setButton()
 
         return binging.root
-        //return inflater.inflate(R.layout.fragment_two, container, false)
+        //return inflater.inflate(R.layout.fragment_setting, container, false)
     }
 
     companion object {
@@ -67,12 +67,12 @@ class FourFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment FourFragment.
+         * @return A new instance of fragment SettingFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            FourFragment().apply {
+            SettingFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -109,7 +109,7 @@ class FourFragment : Fragment() {
 
         //앱정보보기 버튼
         binging.txtInfo.setOnClickListener {
-                mainActivity!!.openFourFragment(1)
+                mainActivity!!.openSettingFragment(1)
         }
     }
 }

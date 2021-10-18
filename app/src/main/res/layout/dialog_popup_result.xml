@@ -15,7 +15,7 @@
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center_vertical"
-        android:text="@string/one_popupResult_main"
+        android:text="@string/grammertest_popupResult_main"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
@@ -23,7 +23,7 @@
         android:id="@+id/txt_result_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/one_popupResult_before"
+        android:text="@string/grammertest_popupResult_before"
         android:textColor="@color/white"
         android:textSize="20sp" />
 
@@ -49,7 +49,7 @@
         android:id="@+id/textView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/one_popupResult_after"
+        android:text="@string/grammertest_popupResult_after"
         android:textColor="@color/white"
         android:textSize="20sp" />
 
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            android:text="@string/one_popupResult_ok"
+            android:text="@string/grammertest_popupResult_ok"
             android:textColor="@color/black" />
 
         <Space
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            android:text="@string/one_popupResult_bookmark"
+            android:text="@string/grammertest_popupResult_bookmark"
             android:textColor="@color/black" />
 
     </LinearLayout>

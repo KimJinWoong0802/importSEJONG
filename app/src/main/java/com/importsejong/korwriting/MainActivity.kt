@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         binging.navigation.selectedItemId = R.id.action_3
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.frame, ThreeFragment())
+        transaction.replace(R.id.frame, MypageFragment())
         transaction.commit()
 
         binging.navigation.setOnNavigationItemSelectedListener(this)
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         when(p0.itemId){
             R.id.action_1 ->{
                 val transaction = supportFragmentManager.beginTransaction()
-                val fragment = OneFragment()
+                val fragment = GrammertestFragment()
                 val bundle = Bundle()
                 bundle.putInt("dataInt", 1)
                 bundle.putString("dataString", "")
@@ -41,21 +41,21 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
             R.id.action_2 ->{
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frame, TwoFragment())
+                transaction.replace(R.id.frame, WritingtestFragment())
                 transaction.commit()
                 return true
             }
 
             R.id.action_3 ->{
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frame, ThreeFragment())
+                transaction.replace(R.id.frame, MypageFragment())
                 transaction.commit()
                 return true
             }
 
             R.id.action_4 ->{
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frame, FourFragment())
+                transaction.replace(R.id.frame, SettingFragment())
                 transaction.commit()
                 return true
             }
@@ -64,11 +64,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     //글씨교정 프래그먼트 안에서 움직임
-    fun openTwoFragment(int: Int, string: String?) {
+    fun openWritingtestFragment(int: Int, string: String?) {
         val transaction = supportFragmentManager.beginTransaction()
         when(int) {
             2 -> {
-                val fragment = OneFragment()
+                val fragment = GrammertestFragment()
                 val bundle = Bundle()
                 bundle.putInt("dataInt", 2)
                 bundle.putString("dataString", string)
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 transaction.replace(R.id.frame, fragment)
             }
             3 -> {
-                val fragment = TwoTwoFragment()
+                val fragment = WritingtestTwoFragment()
                 val bundle = Bundle()
                 bundle.putString("dataString", string)
                 fragment.arguments = bundle
@@ -85,35 +85,35 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 transaction.replace(R.id.frame, fragment)
             }
             4 -> {
-                transaction.replace(R.id.frame, TwoFragment())
+                transaction.replace(R.id.frame, WritingtestFragment())
             }
         }
         transaction.commit()
     }
 
     //앱정보 프래그먼트 안에서 움직임
-    fun openFourFragment(int: Int){
+    fun openSettingFragment(int: Int){
         val transaction = supportFragmentManager.beginTransaction()
         when(int) {
-            1 -> transaction.replace(R.id.frame, FourTwoFragment())
-            2 -> transaction.replace(R.id.frame, FourFragment())
+            1 -> transaction.replace(R.id.frame, SettingTwoFragment())
+            2 -> transaction.replace(R.id.frame, SettingFragment())
         }
         transaction.commit()
     }
 
     //마이페이지 프개르먼트 안에서 움직임
-    fun openThreeFragment(int: Int, data: Int) {
+    fun openMypageFragment(int: Int, data: Int) {
         val transaction = supportFragmentManager.beginTransaction()
         when(int) {
             1 -> {
-                val fragment = ThreeTwoFragment()
+                val fragment = MypageTwoFragment()
                 val bundle = Bundle()
                 bundle.putInt("data",data)
                 fragment.arguments = bundle
 
                 transaction.replace(R.id.frame, fragment)
             }
-            2 -> transaction.replace(R.id.frame, ThreeFragment())
+            2 -> transaction.replace(R.id.frame, MypageFragment())
         }
         transaction.commit()
     }

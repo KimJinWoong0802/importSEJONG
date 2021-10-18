@@ -2,13 +2,14 @@ package com.importsejong.korwriting.fragment
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.MainActivity
-import com.importsejong.korwriting.R
-import com.importsejong.korwriting.databinding.FragmentTwoBinding
+import com.importsejong.korwriting.databinding.FragmentMypageBinding
+import com.importsejong.korwriting.databinding.FragmentMypageTwoBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,14 +18,14 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [TwoFragment.newInstance] factory method to
+ * Use the [MypageTwoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TwoFragment : Fragment() {
+class MypageTwoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var mBinding: FragmentTwoBinding? = null
+    private var mBinding: FragmentMypageTwoBinding? = null
     private val binging get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
@@ -44,15 +45,20 @@ class TwoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
-        mBinding = FragmentTwoBinding.inflate(inflater, container, false)
-        binging.toolbar.title.text = resources.getString(R.string.title_2_1)
+        mBinding = FragmentMypageTwoBinding.inflate(inflater, container, false)
+        val getData = arguments?.getInt("data")
 
+        val title = "${getData.toString()}번째 뷰"
+        binging.toolbar.title.text = title
+
+
+        //버튼 이벤트
         setButton()
 
         return binging.root
-        //return inflater.inflate(R.layout.fragment_two, container, false)
+        //return inflater.inflate(R.layout.fragment_mypage_two, container, false)
     }
 
     companion object {
@@ -62,12 +68,12 @@ class TwoFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment TwoFragment.
+         * @return A new instance of fragment MypageTwoFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            TwoFragment().apply {
+            MypageTwoFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -75,10 +81,10 @@ class TwoFragment : Fragment() {
             }
     }
 
+    //버튼 이벤트
     private fun setButton() {
-        binging.btnTwoMove.setOnClickListener {
-            val sendText = binging.edittxtTwo.text.toString()
-            mainActivity!!.openTwoFragment(2, sendText)
+        binging.toolbar.btnBack.setOnClickListener {
+            mainActivity!!.openMypageFragment(2, -1)
         }
     }
 }

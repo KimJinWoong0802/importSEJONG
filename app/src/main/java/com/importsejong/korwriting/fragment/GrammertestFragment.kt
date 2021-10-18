@@ -16,10 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
-import com.importsejong.korwriting.databinding.DialogPopupOcr2Binding
-import com.importsejong.korwriting.databinding.DialogPopupOcrBinding
-import com.importsejong.korwriting.databinding.DialogPopupResultBinding
-import com.importsejong.korwriting.databinding.FragmentOneBinding
+import com.importsejong.korwriting.databinding.*
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -31,14 +28,14 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [OneFragment.newInstance] factory method to
+ * Use the [GrammertestFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class OneFragment : Fragment() {
+class GrammertestFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var mBinding: FragmentOneBinding? = null
+    private var mBinding: FragmentGrammertestBinding? = null
     private val binging get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
@@ -80,7 +77,7 @@ class OneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        mBinding = FragmentOneBinding.inflate(inflater, container, false)
+        mBinding = FragmentGrammertestBinding.inflate(inflater, container, false)
 
         //팝업 설정
         popupResultBinding = DialogPopupResultBinding.inflate(inflater, container, false)
@@ -104,13 +101,13 @@ class OneFragment : Fragment() {
         when(getIntData) {
             //맞춤법 검사 버튼 이벤트
             1 -> {
-                binging.toolbar.title.text = resources.getString(R.string.title_1)
-                setButtonOne()
+                binging.toolbar.title.text = resources.getString(R.string.grammertest_title)
+                setButtonGrammertest()
             }
             //글씨 교정 버튼 이벤트
             2 -> {
-                binging.toolbar.title.text = resources.getString(R.string.title_2_2)
-                setButtonTwo()
+                binging.toolbar.title.text = resources.getString(R.string.writingtest_title_two)
+                setButtonWritingtest()
             }
         }
 
@@ -118,7 +115,7 @@ class OneFragment : Fragment() {
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         return binging.root
-        //return inflater.inflate(R.layout.fragment_one, container, false)
+        //return inflater.inflate(R.layout.fragment_grammertest, container, false)
     }
 
     companion object {
@@ -128,12 +125,12 @@ class OneFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment OneFragment.
+         * @return A new instance of fragment GrammertestFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            OneFragment().apply {
+            GrammertestFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -142,7 +139,7 @@ class OneFragment : Fragment() {
     }
 
     //맞춤법 검사 버튼 이벤트
-    private fun setButtonOne() {
+    private fun setButtonGrammertest() {
         //사진찍기
         binging.imageButton.setOnClickListener{
             takePhoto()
@@ -189,7 +186,7 @@ class OneFragment : Fragment() {
         }
     }
 
-    private fun setButtonTwo() {
+    private fun setButtonWritingtest() {
         //사진찍기
         binging.imageButton.setOnClickListener { takePhoto() }
     }
@@ -198,7 +195,7 @@ class OneFragment : Fragment() {
         val imageCapture = imageCapture ?: return
         val photoFile = File(
             outputDirectory,
-            resources.getString(R.string.one_fileName))
+            resources.getString(R.string.grammertest_fileName))
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
         imageCapture.takePicture(
@@ -208,7 +205,7 @@ class OneFragment : Fragment() {
                 override fun onError(exc: ImageCaptureException) { }
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     Toast.makeText(requireContext(), "캡처성공", Toast.LENGTH_SHORT).show()
-                    if(getIntData == 2) mainActivity!!.openTwoFragment(3, getStringData)
+                    if(getIntData == 2) mainActivity!!.openWritingtestFragment(3, getStringData)
                 }
             })
     }
@@ -239,7 +236,7 @@ class OneFragment : Fragment() {
 
     private fun getOutputDirectory(): File {
         val mediaDir = requireContext().externalMediaDirs.firstOrNull()?.let {
-            File(it, resources.getString(R.string.one_folderName)).apply {
+            File(it, resources.getString(R.string.grammertest_folderName)).apply {
                 mkdirs()
             }
         }

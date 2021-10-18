@@ -1,16 +1,14 @@
 package com.importsejong.korwriting.fragment
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
-import com.importsejong.korwriting.databinding.FragmentTwoTwoBinding
-import java.io.File
+import com.importsejong.korwriting.databinding.FragmentSettingTwoBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,23 +17,16 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [TwoTwoFragment.newInstance] factory method to
+ * Use the [SettingTwoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TwoTwoFragment : Fragment() {
+class SettingTwoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var mBinding: FragmentTwoTwoBinding? = null
+    private var mBinding: FragmentSettingTwoBinding? = null
     private val binging get() = mBinding!!
-    private var mainActivity: MainActivity? = null
-
-    private lateinit var outputDirectory: File
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mainActivity = context as MainActivity
-    }
+    var mainActivity: MainActivity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,22 +36,22 @@ class TwoTwoFragment : Fragment() {
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainActivity = context as MainActivity
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
-        mBinding = FragmentTwoTwoBinding.inflate(inflater, container, false)
-        outputDirectory = getOutputDirectory()
-        val getStringData = arguments?.getString("dataString")
-        binging.textView18.text = getStringData
-        binging.textView17.text = getStringData
+        mBinding = FragmentSettingTwoBinding.inflate(inflater, container, false)
+        binging.toolbar.title.text = resources.getString(R.string.setting_title_2)
 
         setButton()
-        setImage()
 
         return binging.root
-        //return inflater.inflate(R.layout.fragment_one, container, false)
     }
 
     companion object {
@@ -70,12 +61,12 @@ class TwoTwoFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment TwoTwoFragment.
+         * @return A new instance of fragment SettingTwoFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            TwoTwoFragment().apply {
+            SettingTwoFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -83,27 +74,11 @@ class TwoTwoFragment : Fragment() {
             }
     }
 
-    private fun getOutputDirectory(): File {
-        val mediaDir = requireContext().externalMediaDirs.firstOrNull()?.let {
-            File(it, resources.getString(R.string.one_folderName)).apply {
-                mkdirs()
-            }
-        }
-        return if (mediaDir != null && mediaDir.exists()) mediaDir
-        else requireContext().filesDir
-    }
-
-    private fun setImage() {
-        val photoFile = File(
-            outputDirectory,
-            resources.getString(R.string.one_fileName))
-        val savedUri = Uri.fromFile(photoFile)
-        binging.imageView5.setImageURI(savedUri)
-    }
-
+    //버튼이벤트
     private fun setButton() {
-        binging.button2.setOnClickListener {
-            mainActivity!!.openTwoFragment(4, null)
+        //앱정보보기 버튼
+        binging.toolbar.btnBack.setOnClickListener {
+            mainActivity!!.openSettingFragment(2)
         }
     }
 }

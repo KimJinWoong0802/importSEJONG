@@ -15,7 +15,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center_vertical"
-        android:text="@string/one_popupOCR_main2"
+        android:text="@string/grammertest_popupOCR_main2"
         android:textColor="@color/white"
         android:textSize="24sp"
         tools:ignore="TextContrastCheck" />
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/one_popupOCR_content2"
+        android:text="@string/grammertest_popupOCR_content2"
         android:textColor="@color/white"
         android:textSize="20sp"
         tools:ignore="TextContrastCheck" />
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            android:text="@string/one_popupOCR_yes2"
+            android:text="@string/grammertest_popupOCR_yes2"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            android:text="@string/one_popupOCR_no2"
+            android:text="@string/grammertest_popupOCR_no2"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>

@@ -1,7 +1,6 @@
 package com.importsejong.korwriting.fragment
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
@@ -13,7 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
-import com.importsejong.korwriting.databinding.FragmentThreeBinding
+import com.importsejong.korwriting.databinding.FragmentMypageBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,14 +21,14 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ThreeFragment.newInstance] factory method to
+ * Use the [MypageFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ThreeFragment : Fragment() {
+class MypageFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var mBinding: FragmentThreeBinding? = null
+    private var mBinding: FragmentMypageBinding? = null
     private val binging get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
@@ -53,8 +52,8 @@ class ThreeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        mBinding = FragmentThreeBinding.inflate(inflater, container, false)
-        binging.toolbar.title.text = resources.getString(R.string.menu_3)
+        mBinding = FragmentMypageBinding.inflate(inflater, container, false)
+        binging.toolbar.title.text = resources.getString(R.string.mypage_menu)
 
         //북마크 뷰 생성
         showBookmark()
@@ -73,12 +72,12 @@ class ThreeFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ThreeFragment.
+         * @return A new instance of fragment MypageFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ThreeFragment().apply {
+            MypageFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -109,7 +108,7 @@ class ThreeFragment : Fragment() {
                 setPadding(dpToPx(5f), 0, dpToPx(5f), 0)
                 text = i.toString() + "번째 뷰"
                 setOnClickListener {
-                    mainActivity!!.openThreeFragment(1, i)
+                    mainActivity!!.openMypageFragment(1, i)
                 }
             }
             layout.addView(textView)

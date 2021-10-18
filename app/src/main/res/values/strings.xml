@@ -7,61 +7,59 @@
     <string name="login_permission2">권한이 다시묻지않기 설정됨(추가입력)</string>
     <string name="login_kakaologin">카카오 로그인 성공(임시)</string>
 
-    <string name="menu_1">맞춤법 검사</string>
-    <string name="title_1">손글씨를 촬영해 주세요</string>
-    <string name="one_folderName">picture</string>
-    <string name="one_fileName">imageFile.jpg</string>
+    <string name="grammertest_menu">맞춤법 검사</string>
+    <string name="grammertest_title">손글씨를 촬영해 주세요</string>
+    <string name="grammertest_folderName">picture</string>
+    <string name="grammertest_fileName">imageFile.jpg</string>
 
-    <string name="one_popupOCR_main">인식 결과</string>
-    <string name="one_popupOCR_content">이렇게 적으신 것이 맞나요?</string>
-    <string name="one_popupOCR_yes">맞아요</string>
-    <string name="one_popupOCR_no">아니에요</string>
+    <string name="grammertest_popupOCR_main">인식 결과</string>
+    <string name="grammertest_popupOCR_content">이렇게 적으신 것이 맞나요?</string>
+    <string name="grammertest_popupOCR_yes">맞아요</string>
+    <string name="grammertest_popupOCR_no">아니에요</string>
 
-    <string name="one_popupOCR_main2">글씨 수정</string>
-    <string name="one_popupOCR_content2">적은 대로 글을 수정해 주세요.</string>
-    <string name="one_popupOCR_yes2">확인</string>
-    <string name="one_popupOCR_no2">취소</string>
+    <string name="grammertest_popupOCR_main2">글씨 수정</string>
+    <string name="grammertest_popupOCR_content2">적은 대로 글을 수정해 주세요.</string>
+    <string name="grammertest_popupOCR_yes2">확인</string>
+    <string name="grammertest_popupOCR_no2">취소</string>
 
-    <string name="one_popupResult_main">맞춤법 검사 결과</string>
-    <string name="one_popupResult_before">내가 적은 글</string>
-    <string name="one_popupResult_after">바르게 고쳐진 글</string>
-    <string name="one_popupResult_ok">확인</string>
-    <string name="one_popupResult_bookmark">책갈피에 넣기</string>
+    <string name="grammertest_popupResult_main">맞춤법 검사 결과</string>
+    <string name="grammertest_popupResult_before">내가 적은 글</string>
+    <string name="grammertest_popupResult_after">바르게 고쳐진 글</string>
+    <string name="grammertest_popupResult_ok">확인</string>
+    <string name="grammertest_popupResult_bookmark">책갈피에 넣기</string>
 
-    <string name="menu_2">글씨교정</string>
-    <string name="title_2_1">글씨를 교정해 볼까요?</string>
-    <string name="title_2_2">글자에 맞추어 글씨를 적어주세요</string>
-    <string name="title_2_3">교정 결과</string>
-    <string name="two_explain_1_1">교정 받을 글씨를</string>
-    <string name="two_explain_1_2">밑칸에 입력해주세요.</string>
-    <string name="two_explain_2_1">입력된 글씨가</string>
-    <string name="two_explain_2_2">화면에 이미지로 나타납니다.</string>
-    <string name="two_explain_3_1">이미지에 맞추어</string>
-    <string name="two_explain_3_2">손글씨를 적고 촬영해 주세요.</string>
-    <string name="two_explain_btn">교정 시작하기</string>
-    <string name="two_result_main">기준으로 사용한 글</string>
-    <string name="two_result_main2">교정 결과</string>
-    <string name="two_result_rating">나쁘지 않아요!\n계속 예쁜 손글씨를 위해 노력해보세요!</string>
-    <string name="two_result_btn">돌아가기</string>
+    <string name="writingtest_menu">글씨교정</string>
+    <string name="writingtest_title_one">글씨를 교정해 볼까요?</string>
+    <string name="writingtest_title_two">글자에 맞추어 글씨를 적어주세요</string>
+    <string name="writingtest_title_three">교정 결과</string>
+    <string name="writingtest_explain_1_1">교정 받을 글씨를</string>
+    <string name="writingtest_explain_1_2">밑칸에 입력해주세요.</string>
+    <string name="writingtest_explain_2_1">입력된 글씨가</string>
+    <string name="writingtest_explain_2_2">화면에 이미지로 나타납니다.</string>
+    <string name="writingtest_explain_3_1">이미지에 맞추어</string>
+    <string name="writingtest_explain_3_2">손글씨를 적고 촬영해 주세요.</string>
+    <string name="writingtest_explain_btn">교정 시작하기</string>
+    <string name="writingtest_result_main">기준으로 사용한 글</string>
+    <string name="writingtest_result_main2">교정 결과</string>
+    <string name="writingtest_result_rating">나쁘지 않아요!\n계속 예쁜 손글씨를 위해 노력해보세요!</string>
+    <string name="writingtest_result_btn">돌아가기</string>
 
-    <string name="menu_3">마이페이지</string>
-    <string name="three_bookmark_unbookmark">책갈피\n해제하기</string>
-    <string name="three_bookmark_text1">내가 적은 글</string>
-    <string name="three_bookmark_text2">바르게 수정된 글</string>
+    <string name="mypage_menu">마이페이지</string>
+    <string name="mypage_bookmark_unbookmark">책갈피\n해제하기</string>
+    <string name="mypage_bookmark_text1">내가 적은 글</string>
+    <string name="mypage_bookmark_text2">바르게 수정된 글</string>
 
-    <string name="menu_4">앱 설정</string>
-    <string name="title_4_2">앱 정보</string>
-    <string name="four_btn_logout">로그아웃</string>
-    <string name="four_textSize">글씨 크기</string>
-    <string name="four_textExample">다람쥐의 쳇바퀴는 어째서 헐었나</string>
-    <string name="four_seekbar_left">작게</string>
-    <string name="four_seekbar_right">크게</string>
-    <string name="four_theme_name">앱 테마</string>
-    <string name="four_theme_contents">앱의 테마를 설정합니다.</string>
-    <string name="four_anima_name">화면 전환 효과</string>
-    <string name="four_anime_contents">전환 애니메이션을 켜고 끕니다.</string>
-    <string name="four_btn">앱 정보 보기</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="setting_menu">앱 설정</string>
+    <string name="setting_title_2">앱 정보</string>
+    <string name="setting_btn_logout">로그아웃</string>
+    <string name="setting_textSize">글씨 크기</string>
+    <string name="setting_textExample">다람쥐의 쳇바퀴는 어째서 헐었나</string>
+    <string name="setting_seekbar_left">작게</string>
+    <string name="setting_seekbar_right">크게</string>
+    <string name="setting_theme_name">앱 테마</string>
+    <string name="setting_theme_contents">앱의 테마를 설정합니다.</string>
+    <string name="setting_anime_name">화면 전환 효과</string>
+    <string name="setting_anime_contents">전환 애니메이션을 켜고 끕니다.</string>
+    <string name="setting_btn">앱 정보 보기</string>
 
 </resources>
