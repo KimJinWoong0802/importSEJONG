@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -84,6 +85,8 @@ class LoginActivity : AppCompatActivity() {
                     else -> { // Unknown
                         Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
                         Log.d("LoginError",error.toString())
+                        binging.editTextTextPersonName.visibility = View.VISIBLE
+                        binging.editTextTextPersonName.setText(error.toString())
                     }
                 }
             }

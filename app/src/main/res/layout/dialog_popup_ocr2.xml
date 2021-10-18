@@ -39,7 +39,6 @@
         android:inputType="text"
         android:text="@string/noText"
         android:textSize="20sp"
-        android:autofillHints=""
         tools:ignore="LabelFor" />
 
     <Space

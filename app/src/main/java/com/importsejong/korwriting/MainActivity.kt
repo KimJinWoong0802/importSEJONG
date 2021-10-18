@@ -10,6 +10,7 @@ import com.importsejong.korwriting.fragment.*
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var mBinding: ActivityMainBinding? = null
     private val binging get() = mBinding!!
+    var kakaoId :Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,4 +118,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
         transaction.commit()
     }
+
+    fun kakaoId():Int? {return kakaoId}
 }
