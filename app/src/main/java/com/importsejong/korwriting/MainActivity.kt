@@ -64,6 +64,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return false
     }
 
+    override fun onBackPressed() {
+        //super.onBackPressed()
+    }
+
     //글씨교정 프래그먼트 안에서 움직임
     fun openWritingtestFragment(int: Int, string: String?) {
         val transaction = supportFragmentManager.beginTransaction()

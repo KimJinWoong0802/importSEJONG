@@ -40,9 +40,6 @@ class LoginActivity : AppCompatActivity() {
         mBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binging.root)
 
-        // Kakao SDK 초기화
-        KakaoSdk.init(this, resources.getString(R.string.kakao_api_key))
-
         //권한요청
         isPermissionGranted(requiredPermissions)
 
