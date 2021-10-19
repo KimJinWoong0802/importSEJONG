@@ -14,6 +14,7 @@ import com.importsejong.korwriting.LoginActivity
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentSettingBinding
+import com.kakao.sdk.user.UserApiClient
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -101,10 +102,15 @@ class SettingFragment : Fragment() {
 
         //로그아웃 버튼
         binging.toolbar.logout.setOnClickListener {
-            Toast.makeText(requireContext(), "카카오 로그아웃", Toast.LENGTH_SHORT).show()
-            // TODO : 로그아웃 이벤트
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            startActivity(intent)
+            UserApiClient.instance.logout {error ->
+                if(error != null) {
+                    Toast.makeText(requireContext(), "로그아웃 실패\n$error", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "로그아웃 성공", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(requireContext(), LoginActivity::class.java)
+                    startActivity(intent)
+                }
+            }
         }
 
         //앱정보보기 버튼

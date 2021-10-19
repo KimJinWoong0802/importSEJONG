@@ -6,15 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <Button
-        android:id="@+id/button"
+    <ImageButton
+        android:id="@+id/btn_kakao_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="임시로그인\n버튼"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/login_kakaologin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck"
+        tools:srcCompat="@drawable/kakao_login_medium_narrow" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -22,10 +25,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="@string/noText"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/btn_kakao_login"
         tools:ignore="TouchTargetSizeCheck"
         tools:layout_editor_absoluteX="202dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

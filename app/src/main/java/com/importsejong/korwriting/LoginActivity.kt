@@ -103,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        binging.button.setOnClickListener {
+        binging.btnKakaoLogin.setOnClickListener {
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
                 UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
             } else {
@@ -115,7 +115,7 @@ class LoginActivity : AppCompatActivity() {
 
     //카카오 로그인과 권한이 승인되면 액티비티 자동이동
     private fun startMainActivity(permissionGrant:Boolean, kakaoLogin:Boolean) {
-        val toastText = "카메라권한:"+permissionGrant.toString()+"\n카카오로그인(임시):"+kakaoLogin.toString()
+        val toastText = "카메라권한:"+permissionGrant.toString()+"\n카카오로그인:"+kakaoLogin.toString()
         Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show()
 
         if(permissionGrant && kakaoLogin) {
