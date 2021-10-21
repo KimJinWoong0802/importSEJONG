@@ -57,8 +57,6 @@ class SettingFragment : Fragment() {
 
         setButton()
 
-        Toast.makeText(requireContext(), mainActivity!!.kakaoId, Toast.LENGTH_SHORT).show()
-
         return binging.root
         //return inflater.inflate(R.layout.fragment_setting, container, false)
     }
