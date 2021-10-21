@@ -10,12 +10,14 @@ import com.importsejong.korwriting.fragment.*
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var mBinding: ActivityMainBinding? = null
     private val binging get() = mBinding!!
-    var kakaoId :Int? = null
+    lateinit var kakaoId : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binging.root)
+
+        kakaoId = intent.getStringExtra("kakaoId")!!
 
         binging.navigation.selectedItemId = R.id.action_3
         val transaction = supportFragmentManager.beginTransaction()
@@ -122,6 +124,4 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
         transaction.commit()
     }
-
-    fun kakaoId():Int? {return kakaoId}
 }

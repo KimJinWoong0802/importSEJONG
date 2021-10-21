@@ -21,12 +21,14 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.kakao.sdk.user.model.User
 
 class LoginActivity : AppCompatActivity() {
     private var mBinding: ActivityLoginBinding? = null
     private val binging get() = mBinding!!
     private var permissionGrant = false
     private var kakaoLogin = false
+    private lateinit var kakaoId : String
 
     private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     private val databaseReference: DatabaseReference = firebaseDatabase.reference
@@ -48,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
             if (error == null && tokenInfo != null) {
                 //이미 로그인 되있음
                 kakaoLogin = true
+                kakaoId = tokenInfo.id.toString()
                 startMainActivity(permissionGrant, kakaoLogin)
             }
         }
@@ -95,6 +98,7 @@ class LoginActivity : AppCompatActivity() {
                     if (error != null) {
                         Toast.makeText(this, "사용자 정보 요청 실패", Toast.LENGTH_SHORT).show()
                     } else if (user != null) {
+                        kakaoId = user.id.toString()
                         databaseReference.child("사용자").child("${user.id}").child("카카오").child("ID").setValue("${user.id}","ID:")
                         databaseReference.child("사용자").child("${user.id}").child("카카오").child("닉네임").setValue("${user.kakaoAccount?.profile?.nickname}","닉네임")
                         databaseReference.child("사용자").child("${user.id}").child("카카오").child("프로필URL").setValue("${user.kakaoAccount?.profile?.thumbnailImageUrl}","프로필URL")
@@ -120,6 +124,7 @@ class LoginActivity : AppCompatActivity() {
 
         if(permissionGrant && kakaoLogin) {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("kakaoId", kakaoId)
             startActivity(intent)
         }
     }
