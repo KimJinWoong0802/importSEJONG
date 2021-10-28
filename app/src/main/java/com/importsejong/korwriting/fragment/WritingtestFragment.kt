@@ -1,11 +1,16 @@
 package com.importsejong.korwriting.fragment
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.StorageReference
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentWritingtestBinding
@@ -20,6 +25,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [WritingtestFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@RequiresApi(Build.VERSION_CODES.O)
 class WritingtestFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -27,6 +33,10 @@ class WritingtestFragment : Fragment() {
     private var mBinding: FragmentWritingtestBinding? = null
     private val binging get() = mBinding!!
     private var mainActivity: MainActivity? = null
+
+    private lateinit var storageReference: StorageReference
+    private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    private val databaseReference: DatabaseReference = firebaseDatabase.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +50,7 @@ class WritingtestFragment : Fragment() {
         super.onAttach(context)
         mainActivity = context as MainActivity
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

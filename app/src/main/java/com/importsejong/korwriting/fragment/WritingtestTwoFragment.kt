@@ -2,11 +2,16 @@ package com.importsejong.korwriting.fragment
 
 import android.content.Context
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.StorageReference
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentWritingtestTwoBinding
@@ -22,6 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [WritingtestTwoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@RequiresApi(Build.VERSION_CODES.O)
 class WritingtestTwoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -29,6 +35,10 @@ class WritingtestTwoFragment : Fragment() {
     private var mBinding: FragmentWritingtestTwoBinding? = null
     private val binging get() = mBinding!!
     private var mainActivity: MainActivity? = null
+
+    private lateinit var storageReference: StorageReference
+    private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    private val databaseReference: DatabaseReference = firebaseDatabase.reference
 
     private lateinit var outputDirectory: File
 

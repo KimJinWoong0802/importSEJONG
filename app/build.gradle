@@ -57,5 +57,5 @@ dependencies {
     implementation "androidx.camera:camera-lifecycle:${camerax_version}"
     implementation "androidx.camera:camera-view:1.0.0-alpha22"
     implementation "androidx.camera:camera-extensions:1.0.0-alpha22"    //~ 카메라
-    implementation "com.kakao.sdk:v2-user:2.8.2" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-user:2.8.2"  // 카카오 로그인
 }

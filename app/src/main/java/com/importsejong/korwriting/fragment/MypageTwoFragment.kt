@@ -1,12 +1,17 @@
 package com.importsejong.korwriting.fragment
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.StorageReference
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.databinding.FragmentMypageBinding
 import com.importsejong.korwriting.databinding.FragmentMypageTwoBinding
@@ -21,6 +26,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [MypageTwoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@RequiresApi(Build.VERSION_CODES.O)
 class MypageTwoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -28,6 +34,10 @@ class MypageTwoFragment : Fragment() {
     private var mBinding: FragmentMypageTwoBinding? = null
     private val binging get() = mBinding!!
     private var mainActivity: MainActivity? = null
+
+    private lateinit var storageReference: StorageReference
+    private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    private val databaseReference: DatabaseReference = firebaseDatabase.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

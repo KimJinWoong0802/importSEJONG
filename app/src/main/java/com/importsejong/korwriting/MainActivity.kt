@@ -1,12 +1,19 @@
 package com.importsejong.korwriting
 
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.view.MenuItem
+import androidx.annotation.RequiresApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.importsejong.korwriting.databinding.ActivityMainBinding
 import com.importsejong.korwriting.fragment.*
+import java.security.MessageDigest
 
+@RequiresApi(Build.VERSION_CODES.O)
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var mBinding: ActivityMainBinding? = null
     private val binging get() = mBinding!!
@@ -24,8 +31,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         transaction.replace(R.id.frame, MypageFragment())
         transaction.commit()
 
+
         binging.navigation.setOnNavigationItemSelectedListener(this)
     }
+
+
+
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId){
@@ -71,6 +82,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     //글씨교정 프래그먼트 안에서 움직임
+
+
     fun openWritingtestFragment(int: Int, string: String?) {
         val transaction = supportFragmentManager.beginTransaction()
         when(int) {
@@ -87,6 +100,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 val fragment = WritingtestTwoFragment()
                 val bundle = Bundle()
                 bundle.putString("dataString", string)
+
                 fragment.arguments = bundle
 
                 transaction.replace(R.id.frame, fragment)
