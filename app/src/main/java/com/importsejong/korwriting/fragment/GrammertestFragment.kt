@@ -2,13 +2,11 @@ package com.importsejong.korwriting.fragment
 
 import android.app.AlertDialog
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -18,11 +16,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
-import com.importsejong.korwriting.databinding.*
+import com.importsejong.korwriting.databinding.DialogPopupOcr2Binding
+import com.importsejong.korwriting.databinding.DialogPopupOcrBinding
+import com.importsejong.korwriting.databinding.DialogPopupResultBinding
+import com.importsejong.korwriting.databinding.FragmentGrammertestBinding
 import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -39,7 +39,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [GrammertestFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-@RequiresApi(Build.VERSION_CODES.O)
+
 class GrammertestFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -238,15 +238,15 @@ class GrammertestFragment : Fragment() {
                 .child("글씨 교정").child(testString!!).child("일자").setValue(formatted)
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("글씨 교정").child(testString!!).child("기준 문장 내용")
+                .child("카카오").child("글씨 교정").child(testString).child("기준 문장 내용")
                 .setValue(testString)
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("글씨 교정").child(testString!!).child("촬영 사진")
+                .child("카카오").child("글씨 교정").child(testString).child("촬영 사진")
                 .setValue("촬영사진")
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("글씨 교정").child(testString!!).child("최고 점수")
+                .child("카카오").child("글씨 교정").child(testString).child("최고 점수")
                 .setValue("최고 점수")
 
         }

@@ -8,10 +8,10 @@ android {
 
     defaultConfig {
         applicationId "com.importsejong.korwriting"
-        minSdk 23
+        minSdk 26
         targetSdk 30
         versionCode 1
-        versionName "0.04"
+        versionName "0.05"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

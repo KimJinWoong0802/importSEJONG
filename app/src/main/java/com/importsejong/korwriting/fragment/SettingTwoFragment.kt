@@ -44,7 +44,7 @@ class SettingTwoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentSettingTwoBinding.inflate(inflater, container, false)
         binging.toolbar.title.text = resources.getString(R.string.setting_title_2)
