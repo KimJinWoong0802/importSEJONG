@@ -204,7 +204,7 @@ class GrammertestFragment : Fragment() {
                 .child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("일자").setValue(formatted)
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("입력 문자 내용")
+                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("입력 문장 내용")
                 .setValue(popupResultBinding!!.txtResultBefore.text.toString())
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
@@ -226,7 +226,30 @@ class GrammertestFragment : Fragment() {
 
     private fun setButtonWritingtest() {
         //사진찍기
-        binging.imageButton.setOnClickListener { takePhoto() }
+        binging.imageButton.setOnClickListener {
+            takePhoto()
+            val current = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")
+            val formatted = current.format(formatter)
+
+            val testString = arguments?.getString("dataString")
+
+            databaseReference.child("사용자").child(mainActivity!!.kakaoId).child("카카오")
+                .child("글씨 교정").child(testString!!).child("일자").setValue(formatted)
+
+            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
+                .child("카카오").child("글씨 교정").child(testString!!).child("기준 문장 내용")
+                .setValue(testString)
+
+            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
+                .child("카카오").child("글씨 교정").child(testString!!).child("촬영 사진")
+                .setValue("촬영사진")
+
+            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
+                .child("카카오").child("글씨 교정").child(testString!!).child("최고 점수")
+                .setValue("최고 점수")
+
+        }
     }
 
     private fun takePhoto() {
