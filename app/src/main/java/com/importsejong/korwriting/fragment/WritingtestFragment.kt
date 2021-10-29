@@ -1,13 +1,11 @@
 package com.importsejong.korwriting.fragment
 
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.StorageReference
@@ -25,7 +23,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [WritingtestFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-@RequiresApi(Build.VERSION_CODES.O)
+
 class WritingtestFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null

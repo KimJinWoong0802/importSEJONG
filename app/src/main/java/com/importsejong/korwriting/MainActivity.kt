@@ -1,19 +1,12 @@
 package com.importsejong.korwriting
 
-import android.content.pm.PackageManager
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Base64
-import android.util.Log
 import android.view.MenuItem
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.importsejong.korwriting.databinding.ActivityMainBinding
 import com.importsejong.korwriting.fragment.*
-import java.security.MessageDigest
 
-@RequiresApi(Build.VERSION_CODES.O)
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var mBinding: ActivityMainBinding? = null
     private val binging get() = mBinding!!

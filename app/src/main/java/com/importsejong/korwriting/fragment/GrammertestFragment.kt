@@ -2,7 +2,6 @@ package com.importsejong.korwriting.fragment
 
 import android.app.AlertDialog
 import android.content.Context
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +15,6 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -69,8 +67,6 @@ class GrammertestFragment : Fragment() {
 
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
-    private lateinit var photoUri: Uri
-    private lateinit var photoUrl: String
 
     var getIntData :Int? = null
     var getStringData :String? = null
@@ -201,22 +197,8 @@ class GrammertestFragment : Fragment() {
         //맞춤법결과 책갈피에넣기
         popupResultBinding!!.btnResultBookmark.setOnClickListener {
             val current = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초")
+            val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")
             val formatted = current.format(formatter)
-
-            storageReference = FirebaseStorage.getInstance().reference.child("images/${mainActivity!!.kakaoId}/맞춤법 검사/$formatted.jpg")
-
-            storageReference.putFile(photoUri).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-
-                    storageReference.downloadUrl.addOnSuccessListener {
-                        photoUrl = it.toString()
-                        databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                            .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("촬영 사진")
-                            .setValue(photoUrl)
-                    }
-                }
-            }
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId).child("카카오")
                 .child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("일자").setValue(formatted)
@@ -228,6 +210,10 @@ class GrammertestFragment : Fragment() {
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
                 .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("고친 문장 내용")
                 .setValue(popupResultBinding!!.txtAfter.text.toString())
+
+            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
+                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("촬영 사진")
+                .setValue("촬영사진")
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
                 .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("맞춤법 검사 정보")
@@ -243,24 +229,10 @@ class GrammertestFragment : Fragment() {
         binging.imageButton.setOnClickListener {
             takePhoto()
             val current = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초")
+            val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")
             val formatted = current.format(formatter)
 
             val testString = arguments?.getString("dataString")
-
-            storageReference = FirebaseStorage.getInstance().reference.child("images/${mainActivity!!.kakaoId}/글씨 교정/$formatted.jpg")
-
-            storageReference.putFile(photoUri).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-
-                    storageReference.downloadUrl.addOnSuccessListener {
-                        photoUrl = it.toString()
-                        databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                            .child("카카오").child("글씨 교정").child(testString!!).child("촬영 사진")
-                            .setValue(photoUrl)
-                    }
-                }
-            }
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId).child("카카오")
                 .child("글씨 교정").child(testString!!).child("일자").setValue(formatted)
@@ -268,6 +240,10 @@ class GrammertestFragment : Fragment() {
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
                 .child("카카오").child("글씨 교정").child(testString!!).child("기준 문장 내용")
                 .setValue(testString)
+
+            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
+                .child("카카오").child("글씨 교정").child(testString!!).child("촬영 사진")
+                .setValue("촬영사진")
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
                 .child("카카오").child("글씨 교정").child(testString!!).child("최고 점수")
@@ -283,8 +259,6 @@ class GrammertestFragment : Fragment() {
             resources.getString(R.string.grammertest_fileName))
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
-        photoUri = getfile(photoFile).toUri()
-
         imageCapture.takePicture(
             outputOptions,
             ContextCompat.getMainExecutor(requireContext()),
@@ -296,8 +270,6 @@ class GrammertestFragment : Fragment() {
                 }
             })
     }
-
-    private fun getfile(file:File):File{ return file }
 
     // 카메라 화면 설정
     private fun startCamera() {
