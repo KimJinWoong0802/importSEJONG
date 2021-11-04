@@ -101,8 +101,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             else if (token != null) {   //로그인 성공
-                kakaoLogin = true
-                startMainActivity(permissionGrant, kakaoLogin)
                 // 정보 저장하기
                 UserApiClient.instance.me { user, error2 ->
                     if (error2 != null) {
@@ -115,6 +113,9 @@ class LoginActivity : AppCompatActivity() {
                         databaseReference.child("사용자").child("${user.id}").child("카카오").child("ID").setValue("${user.id}","ID:")
                         databaseReference.child("사용자").child("${user.id}").child("카카오").child("닉네임").setValue("${user.kakaoAccount?.profile?.nickname}","닉네임")
                         databaseReference.child("사용자").child("${user.id}").child("카카오").child("프로필URL").setValue("${user.kakaoAccount?.profile?.thumbnailImageUrl}","프로필URL")
+
+                        kakaoLogin = true
+                        startMainActivity(permissionGrant, kakaoLogin)
                     }
                 }
             }
