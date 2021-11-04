@@ -11,6 +11,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private var mBinding: ActivityMainBinding? = null
     private val binging get() = mBinding!!
     lateinit var kakaoId : String
+    var kakaoProfile : String? = null
+    var kakaoNickname : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +20,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(binging.root)
 
         kakaoId = intent.getStringExtra("kakaoId")!!
+        kakaoProfile = intent.getStringExtra("kakaoProfile")
+        kakaoNickname = intent.getStringExtra("kakaoNickname")
 
         binging.navigation.selectedItemId = R.id.action_3
         val transaction = supportFragmentManager.beginTransaction()

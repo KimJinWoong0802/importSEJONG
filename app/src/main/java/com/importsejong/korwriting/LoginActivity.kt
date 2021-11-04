@@ -18,10 +18,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.importsejong.korwriting.databinding.ActivityLoginBinding
 import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
-import com.kakao.sdk.user.model.User
 
 class LoginActivity : AppCompatActivity() {
     private var mBinding: ActivityLoginBinding? = null
@@ -29,6 +27,9 @@ class LoginActivity : AppCompatActivity() {
     private var permissionGrant = false
     private var kakaoLogin = false
     private lateinit var kakaoId : String
+    private var kakaoProfile : String? = null
+    private var kakaoNickname : String? = null
+
 
     private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     private val databaseReference: DatabaseReference = firebaseDatabase.reference
@@ -51,7 +52,16 @@ class LoginActivity : AppCompatActivity() {
                 //이미 로그인 되있음
                 kakaoLogin = true
                 kakaoId = tokenInfo.id.toString()
-                startMainActivity(permissionGrant, kakaoLogin)
+
+                UserApiClient.instance.me { user, error2 ->
+                    if (error2 != null) {
+                        Toast.makeText(this, "사용자 정보 요청 실패", Toast.LENGTH_SHORT).show()
+                    } else if (user != null) {
+                        kakaoProfile = user.kakaoAccount?.profile?.profileImageUrl
+                        kakaoNickname = user.kakaoAccount?.profile?.nickname
+                        startMainActivity(permissionGrant, kakaoLogin)
+                    }
+                }
             }
         }
 
@@ -94,11 +104,13 @@ class LoginActivity : AppCompatActivity() {
                 kakaoLogin = true
                 startMainActivity(permissionGrant, kakaoLogin)
                 // 정보 저장하기
-                UserApiClient.instance.me { user, error ->
-                    if (error != null) {
+                UserApiClient.instance.me { user, error2 ->
+                    if (error2 != null) {
                         Toast.makeText(this, "사용자 정보 요청 실패", Toast.LENGTH_SHORT).show()
                     } else if (user != null) {
                         kakaoId = user.id.toString()
+                        kakaoProfile = user.kakaoAccount?.profile?.profileImageUrl
+                        kakaoNickname = user.kakaoAccount?.profile?.nickname
 
                         databaseReference.child("사용자").child("${user.id}").child("카카오").child("ID").setValue("${user.id}","ID:")
                         databaseReference.child("사용자").child("${user.id}").child("카카오").child("닉네임").setValue("${user.kakaoAccount?.profile?.nickname}","닉네임")
@@ -126,6 +138,8 @@ class LoginActivity : AppCompatActivity() {
         if(permissionGrant && kakaoLogin) {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("kakaoId", kakaoId)
+            intent.putExtra("kakaoProfile", kakaoProfile)
+            intent.putExtra("kakaoNickname", kakaoNickname)
             startActivity(intent)
         }
     }
