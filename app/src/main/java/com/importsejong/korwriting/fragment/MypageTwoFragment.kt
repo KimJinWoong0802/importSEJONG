@@ -59,6 +59,7 @@ class MypageTwoFragment : Fragment() {
         val title = "${getData.toString()}번째 뷰"
         binging.toolbar.title.text = title
 
+        setTextSize(mainActivity!!.textSize)
 
         //버튼 이벤트
         setButton()
@@ -85,6 +86,17 @@ class MypageTwoFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    //글씨 크기 변경
+    fun setTextSize(textSize :Int) {
+        val size14 :Float = 10.0f + textSize*2
+
+        binging.textView2.textSize = size14
+        binging.textView3.textSize = size14
+        binging.textView4.textSize = size14
+        binging.textView5.textSize = size14
+        binging.textView.textSize = size14
     }
 
     //버튼 이벤트

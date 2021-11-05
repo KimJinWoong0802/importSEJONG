@@ -49,6 +49,8 @@ class SettingTwoFragment : Fragment() {
         mBinding = FragmentSettingTwoBinding.inflate(inflater, container, false)
         binging.toolbar.title.text = resources.getString(R.string.setting_title_2)
 
+        setTextSize(mainActivity!!.textSize)
+
         setButton()
 
         return binging.root
@@ -72,6 +74,11 @@ class SettingTwoFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    //TODO : 글씨 크기 변경
+    fun setTextSize(textSize :Int) {
+
     }
 
     //버튼이벤트

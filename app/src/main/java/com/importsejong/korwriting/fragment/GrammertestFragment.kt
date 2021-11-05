@@ -106,6 +106,9 @@ class GrammertestFragment : Fragment() {
         popupView1 = builder1!!.create()
         popupView2 = builder2!!.create()
         popupView3 = builder3!!.create()
+        setTextSizeOcr(mainActivity!!.textSize)
+        setTextSizeOcr2(mainActivity!!.textSize)
+        setTextSizeResult(mainActivity!!.textSize)
 
         getIntData = arguments?.getInt("dataInt")
         getStringData = arguments?.getString("dataString")
@@ -156,7 +159,6 @@ class GrammertestFragment : Fragment() {
     }
 
     //맞춤법 검사 버튼 이벤트
-
     private fun setButtonGrammertest() {
         //사진찍기
         binging.imageButton.setOnClickListener{
@@ -320,6 +322,43 @@ class GrammertestFragment : Fragment() {
                     imageCapture)
             } catch(exc: Exception) { }
         }, ContextCompat.getMainExecutor(requireContext()))
+    }
+
+    //글씨 크기 변경
+    fun setTextSizeOcr(textSize :Int) {
+        val size24 :Float = 20.0f + textSize*2
+        val size20 :Float = 16.0f + textSize*2
+
+        popupOcrBinding!!.txtOcrMain.textSize = size24
+        popupOcrBinding!!.txtOcrContent.textSize = size20
+        popupOcrBinding!!.txtOcrBefore.textSize = size20
+        popupOcrBinding!!.btnOcrYes.textSize = size20
+        popupOcrBinding!!.btnOcrNo.textSize = size20
+    }
+
+    fun setTextSizeOcr2(textSize :Int) {
+        val size24 :Float = 20.0f + textSize*2
+        val size20 :Float = 16.0f + textSize*2
+
+        popupOcr2Binding!!.txtOcr2Main.textSize = size24
+        popupOcr2Binding!!.txtOcr2Content.textSize = size20
+        popupOcr2Binding!!.txtOcr2Before.textSize = size20
+        popupOcr2Binding!!.btnOcr2Yes.textSize = size20
+        popupOcr2Binding!!.btnOcr2No.textSize = size20
+    }
+
+    fun setTextSizeResult(textSize :Int) {
+        val size24 :Float = 20.0f + textSize*2
+        val size20 :Float = 16.0f + textSize*2
+        val size14 :Float = 10.0f + textSize*2
+
+        popupResultBinding!!.txtResultMain.textSize = size24
+        popupResultBinding!!.txtResultContent.textSize = size20
+        popupResultBinding!!.txtResultBefore.textSize = size20
+        popupResultBinding!!.textView11.textSize = size20
+        popupResultBinding!!.txtAfter.textSize = size20
+        popupResultBinding!!.btnResultOk.textSize = size14
+        popupResultBinding!!.btnResultBookmark.textSize = size14
     }
 
     private fun getOutputDirectory(): File {

@@ -55,6 +55,8 @@ class MypageFragment : Fragment() {
         mBinding = FragmentMypageBinding.inflate(inflater, container, false)
         binging.toolbar.title.text = resources.getString(R.string.mypage_menu)
 
+        setTextSize(mainActivity!!.textSize)
+
         //북마크 뷰 생성
         showBookmark()
 
@@ -107,12 +109,20 @@ class MypageFragment : Fragment() {
                 gravity = Gravity.CENTER_VERTICAL
                 setPadding(dpToPx(5f), 0, dpToPx(5f), 0)
                 text = i.toString() + "번째 뷰"
+                textSize = 10.0f + mainActivity!!.textSize* 2
                 setOnClickListener {
                     mainActivity!!.openMypageFragment(1, i)
                 }
             }
             layout.addView(textView)
         }
+    }
+
+    //글씨 크기 변경
+    fun setTextSize(textSize :Int) {
+        val size20 :Float = 16.0f + textSize*2
+
+        binging.textName.textSize = size20
     }
 
     private fun setButton() {

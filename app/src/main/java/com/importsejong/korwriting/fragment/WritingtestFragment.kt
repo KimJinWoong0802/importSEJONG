@@ -58,6 +58,8 @@ class WritingtestFragment : Fragment() {
         mBinding = FragmentWritingtestBinding.inflate(inflater, container, false)
         binging.toolbar.title.text = resources.getString(R.string.writingtest_title_one)
 
+        setTextSize(mainActivity!!.textSize)
+
         setButton()
 
         return binging.root
@@ -82,6 +84,22 @@ class WritingtestFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    //글씨 크기 변경
+    fun setTextSize(textSize :Int) {
+        val size20 :Float = 16.0f + textSize*2
+        val size18 :Float = 14.0f + textSize*2
+        val size14 :Float = 10.0f + textSize*2
+
+        binging.textView8.textSize = size20
+        binging.textView10.textSize = size20
+        binging.textView12.textSize = size20
+        binging.textView13.textSize = size20
+        binging.textView14.textSize = size20
+        binging.textView15.textSize = size20
+        binging.edittxtWritingtest.textSize = size18
+        binging.btnWritingtestMove.textSize = size14
     }
 
     private fun setButton() {

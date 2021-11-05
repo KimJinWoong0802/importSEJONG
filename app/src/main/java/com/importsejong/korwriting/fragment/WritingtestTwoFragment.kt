@@ -64,6 +64,8 @@ class WritingtestTwoFragment : Fragment() {
         binging.textView18.text = getStringData
         binging.textView17.text = getStringData
 
+        setTextSize(mainActivity!!.textSize)
+
         setButton()
         setImage()
 
@@ -107,6 +109,21 @@ class WritingtestTwoFragment : Fragment() {
             resources.getString(R.string.grammertest_fileName))
         val savedUri = Uri.fromFile(photoFile)
         binging.imageView5.setImageURI(savedUri)
+    }
+
+    //글씨 크기 변경
+    fun setTextSize(textSize :Int) {
+        val size20 :Float = 16.0f + textSize*2
+        val size24 :Float = 20.0f + textSize*2
+        val size34 :Float = 30.0f + textSize*2
+        val size14 :Float = 10.0f + textSize*2
+
+        binging.textView18.textSize = size20
+        binging.textView21.textSize = size20
+        binging.textView16.textSize = size24
+        binging.textView19.textSize = size24
+        binging.textView20.textSize = size34
+        binging.button2.textSize = size14
     }
 
     private fun setButton() {

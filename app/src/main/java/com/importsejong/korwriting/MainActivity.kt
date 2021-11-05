@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     lateinit var kakaoId : String
     var kakaoProfile : String? = null
     var kakaoNickname : String? = null
+    var textSize : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,16 +24,17 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         kakaoProfile = intent.getStringExtra("kakaoProfile")
         kakaoNickname = intent.getStringExtra("kakaoNickname")
 
+        //저장된 설정값 가져오기
+        val pref=this.getPreferences(0)
+        textSize=pref.getInt("textSize",2)
+
         binging.navigation.selectedItemId = R.id.action_3
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame, MypageFragment())
         transaction.commit()
 
-
         binging.navigation.setOnNavigationItemSelectedListener(this)
     }
-
-
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId){

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.LoginActivity
@@ -55,6 +56,9 @@ class SettingFragment : Fragment() {
         mBinding = FragmentSettingBinding.inflate(inflater, container, false)
         binging.toolbar.title.text = resources.getString(R.string.setting_menu)
 
+        setTextSize(mainActivity!!.textSize)
+        binging.seekBar.progress = mainActivity!!.textSize
+
         setButton()
 
         return binging.root
@@ -81,7 +85,44 @@ class SettingFragment : Fragment() {
             }
     }
 
+    //글씨 크기 변경
+    fun setTextSize(textSize :Int) {
+        val size20 :Float = 16.0f + textSize*2
+        val size24 :Float = 20.0f + textSize*2
+        val size30 :Float = 26.0f + textSize*2
+
+        binging.textView2.textSize = size20
+        binging.textView3.textSize = size20
+        binging.textView7.textSize = size20
+        binging.textView6.textSize = size20
+        binging.textView9.textSize = size20
+        binging.switch1.textSize = size20
+        binging.textView4.textSize = size24
+        binging.textView5.textSize = size24
+        binging.txtInfo.textSize = size30
+    }
+
     private fun setButton() {
+        //글씨 크기 조절 게이지 바
+        binging.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                mainActivity!!.textSize = progress
+
+                //텍스트크기 변경
+                setTextSize(progress)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                //앱에 저장
+                val pref = requireActivity().getPreferences(0)
+                val editor=pref.edit()
+                editor.putInt("textSize",mainActivity!!.textSize)
+                    .apply()
+            }
+        })
+
         //앱 테마 설정 스위치
         binging.spinner.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.itemList, android.R.layout.simple_spinner_item)
         binging.spinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener {
@@ -99,6 +140,8 @@ class SettingFragment : Fragment() {
                 }
             }
         }
+
+        //TODO : 전환 애니메이션 키고 끄기
 
         //로그아웃 버튼
         binging.toolbar.logout.setOnClickListener {
