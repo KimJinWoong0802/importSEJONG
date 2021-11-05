@@ -128,7 +128,10 @@ class WritingtestTwoFragment : Fragment() {
 
     private fun setButton() {
         binging.button2.setOnClickListener {
-            mainActivity!!.openWritingtestFragment(4, null)
+            //프래그먼트 이동
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame, WritingtestFragment())
+            transaction.commit()
         }
     }
 }

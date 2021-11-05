@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.StorageReference
 import com.importsejong.korwriting.MainActivity
+import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentMypageTwoBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -51,7 +52,7 @@ class MypageTwoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentMypageTwoBinding.inflate(inflater, container, false)
         val getData = arguments?.getInt("data")
@@ -89,7 +90,7 @@ class MypageTwoFragment : Fragment() {
     }
 
     //글씨 크기 변경
-    fun setTextSize(textSize :Int) {
+    private fun setTextSize(textSize :Int) {
         val size14 :Float = 10.0f + textSize*2
 
         binging.textView2.textSize = size14
@@ -102,7 +103,10 @@ class MypageTwoFragment : Fragment() {
     //버튼 이벤트
     private fun setButton() {
         binging.toolbar.btnBack.setOnClickListener {
-            mainActivity!!.openMypageFragment(2, -1)
+            //프래그먼트 이동
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame, MypageFragment())
+            transaction.commit()
         }
     }
 }

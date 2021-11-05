@@ -294,7 +294,18 @@ class GrammertestFragment : Fragment() {
                 override fun onError(exc: ImageCaptureException) { }
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     Toast.makeText(requireContext(), "캡처성공", Toast.LENGTH_SHORT).show()
-                    if(getIntData == 2) mainActivity!!.openWritingtestFragment(3, getStringData)
+                    if(getIntData == 2){
+                        //프래그먼트 이동
+                        val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+                        val fragment = WritingtestTwoFragment()
+                        val bundle = Bundle()
+                        bundle.putString("dataString", getStringData)
+
+                        fragment.arguments = bundle
+
+                        transaction.replace(R.id.frame, fragment)
+                        transaction.commit()
+                    }
                 }
             })
     }
@@ -325,7 +336,7 @@ class GrammertestFragment : Fragment() {
     }
 
     //글씨 크기 변경
-    fun setTextSizeOcr(textSize :Int) {
+    private fun setTextSizeOcr(textSize :Int) {
         val size24 :Float = 20.0f + textSize*2
         val size20 :Float = 16.0f + textSize*2
 
@@ -336,7 +347,7 @@ class GrammertestFragment : Fragment() {
         popupOcrBinding!!.btnOcrNo.textSize = size20
     }
 
-    fun setTextSizeOcr2(textSize :Int) {
+    private fun setTextSizeOcr2(textSize :Int) {
         val size24 :Float = 20.0f + textSize*2
         val size20 :Float = 16.0f + textSize*2
 
@@ -347,7 +358,7 @@ class GrammertestFragment : Fragment() {
         popupOcr2Binding!!.btnOcr2No.textSize = size20
     }
 
-    fun setTextSizeResult(textSize :Int) {
+    private fun setTextSizeResult(textSize :Int) {
         val size24 :Float = 20.0f + textSize*2
         val size20 :Float = 16.0f + textSize*2
         val size14 :Float = 10.0f + textSize*2

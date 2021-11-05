@@ -104,8 +104,18 @@ class WritingtestFragment : Fragment() {
 
     private fun setButton() {
         binging.btnWritingtestMove.setOnClickListener {
+            //프래그먼트 이동
             val sendText = binging.edittxtWritingtest.text.toString()
-            mainActivity!!.openWritingtestFragment(2, sendText)
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            val fragment = GrammertestFragment()
+            val bundle = Bundle()
+
+            bundle.putInt("dataInt", 2)
+            bundle.putString("dataString", sendText)
+            fragment.arguments = bundle
+
+            transaction.replace(R.id.frame, fragment)
+            transaction.commit()
         }
     }
 }

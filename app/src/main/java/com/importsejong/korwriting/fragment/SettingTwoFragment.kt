@@ -77,7 +77,7 @@ class SettingTwoFragment : Fragment() {
     }
 
     //TODO : 글씨 크기 변경
-    fun setTextSize(textSize :Int) {
+    private fun setTextSize(textSize :Int) {
 
     }
 
@@ -85,7 +85,10 @@ class SettingTwoFragment : Fragment() {
     private fun setButton() {
         //앱정보보기 버튼
         binging.toolbar.btnBack.setOnClickListener {
-            mainActivity!!.openSettingFragment(2)
+            //프래그먼트 이동
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame, SettingFragment())
+            transaction.commit()
         }
     }
 }

@@ -111,7 +111,14 @@ class MypageFragment : Fragment() {
                 text = i.toString() + "번째 뷰"
                 textSize = 10.0f + mainActivity!!.textSize* 2
                 setOnClickListener {
-                    mainActivity!!.openMypageFragment(1, i)
+                    //프래그먼트 이동
+                    val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+                    val fragment = MypageTwoFragment()
+                    val bundle = Bundle()
+                    bundle.putInt("data",i)
+                    fragment.arguments = bundle
+                    transaction.replace(R.id.frame, fragment)
+                    transaction.commit()
                 }
             }
             layout.addView(textView)
@@ -119,7 +126,7 @@ class MypageFragment : Fragment() {
     }
 
     //글씨 크기 변경
-    fun setTextSize(textSize :Int) {
+    private fun setTextSize(textSize :Int) {
         val size20 :Float = 16.0f + textSize*2
 
         binging.textName.textSize = size20

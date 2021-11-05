@@ -86,7 +86,7 @@ class SettingFragment : Fragment() {
     }
 
     //글씨 크기 변경
-    fun setTextSize(textSize :Int) {
+    private fun setTextSize(textSize :Int) {
         val size20 :Float = 16.0f + textSize*2
         val size24 :Float = 20.0f + textSize*2
         val size30 :Float = 26.0f + textSize*2
@@ -158,7 +158,10 @@ class SettingFragment : Fragment() {
 
         //앱정보보기 버튼
         binging.txtInfo.setOnClickListener {
-                mainActivity!!.openSettingFragment(1)
+            //프래그먼트 이동
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame, SettingTwoFragment())
+            transaction.commit()
         }
     }
 }
