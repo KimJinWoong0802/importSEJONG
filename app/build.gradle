@@ -23,10 +23,9 @@ android {
         }
         applicationVariants.all { variant ->
             variant.outputs.all {
-                def name = parent.project.getName()
                 def buildType = variant.buildType.name
                 def versionName = variant.versionName
-                outputFileName = "${name}-${buildType}-${versionName}.apk"
+                outputFileName = "korwriting-${buildType}-${versionName}.apk"
             }
         }
     }
