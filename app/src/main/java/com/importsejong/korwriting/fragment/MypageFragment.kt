@@ -3,15 +3,14 @@ package com.importsejong.korwriting.fragment
 import android.content.Context
 import android.os.Bundle
 import android.util.TypedValue
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.*
 import com.importsejong.korwriting.MainActivity
-import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentMypageBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,10 +28,15 @@ class MypageFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var mBinding: FragmentMypageBinding? = null
-    private val binging get() = mBinding!!
+    private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
-    var viewId = Array(10) { -1 }
+    private lateinit var bookmarkRecyclerview : RecyclerView
+    private lateinit var bookmarkArrayList : ArrayList<bookmark>
+
+    private lateinit var databaseReference : DatabaseReference
+
+    //var viewId = Array(10) { -1 }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,17 +57,23 @@ class MypageFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentMypageBinding.inflate(inflater, container, false)
-        binging.toolbar.title.text = resources.getString(R.string.mypage_menu)
-
         setTextSize(mainActivity!!.textSize)
 
+        bookmarkRecyclerview = binding.bookmarkList
+        bookmarkRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        bookmarkRecyclerview.setHasFixedSize(true)
+
+        bookmarkArrayList = arrayListOf<bookmark>()
         //북마크 뷰 생성
+
         showBookmark()
+
+
 
         //버튼 이벤트
         setButton()
 
-        return binging.root
+        return binding.root
         //return inflater.inflate(R.layout.fragment_two, container, false)
     }
 
@@ -92,44 +102,41 @@ class MypageFragment : Fragment() {
     }
 
     private fun showBookmark() {
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("사용자").child(mainActivity!!.kakaoId)
+            .child("카카오").child("맞춤법 검사")
 
-        val layout = binging.layBookmark
-        val lp = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            dpToPx(50f))
-        lp.setMargins(0, dpToPx(10f), 0, 0)
+        databaseReference.addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
 
-        // TODO : 북마크 DB에서 가져오기
-        for (i in 0..9) {
-            val textView = TextView(requireContext()).apply {
-                viewId[i] = View.generateViewId()
-                id = viewId[i]
-                layoutParams = lp
-                setBackgroundColor(resources.getColor(R.color.gray, null))
-                gravity = Gravity.CENTER_VERTICAL
-                setPadding(dpToPx(5f), 0, dpToPx(5f), 0)
-                text = i.toString() + "번째 뷰"
-                textSize = 10.0f + mainActivity!!.textSize* 2
-                setOnClickListener {
-                    //프래그먼트 이동
-                    val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-                    val fragment = MypageTwoFragment()
-                    val bundle = Bundle()
-                    bundle.putInt("data",i)
-                    fragment.arguments = bundle
-                    transaction.replace(R.id.frame, fragment)
-                    transaction.commit()
+                    if(snapshot.exists()){
+
+                        for(bookmarkSnapshot in snapshot.children){
+
+                            val bookmark = bookmarkSnapshot.getValue(bookmark::class.java)
+                            bookmarkArrayList.add(bookmark!!)
+
+                        }
+
+                        bookmarkRecyclerview.adapter = MyAdapter(bookmarkArrayList)
+
+                    }
+
+
                 }
-            }
-            layout.addView(textView)
-        }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+
+
     }
 
     //글씨 크기 변경
     private fun setTextSize(textSize :Int) {
         val size20 :Float = 16.0f + textSize*2
 
-        binging.textName.textSize = size20
+        //binging.textName.textSize = size20
     }
 
     private fun setButton() {

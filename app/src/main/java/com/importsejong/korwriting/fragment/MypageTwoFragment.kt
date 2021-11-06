@@ -29,7 +29,7 @@ class MypageTwoFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var mBinding: FragmentMypageTwoBinding? = null
-    private val binging get() = mBinding!!
+    private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
     private lateinit var storageReference: StorageReference
@@ -58,14 +58,22 @@ class MypageTwoFragment : Fragment() {
         val getData = arguments?.getInt("data")
 
         val title = "${getData.toString()}번째 뷰"
-        binging.toolbar.title.text = title
+        binding.toolbar.title.text = title
+
+//        databaseReference.child("사용자").child(mainActivity!!.kakaoId).child("카카오").child("맞춤법 검사")
+//            .get().addOnSuccessListener {
+//                if(it.exists()){
+//                    var test0 = it.child("test0").child("입력 문장 내용").value
+//                    binging.textView3.text = test0.toString()
+//                }
+//            }
 
         setTextSize(mainActivity!!.textSize)
 
         //버튼 이벤트
         setButton()
 
-        return binging.root
+        return binding.root
         //return inflater.inflate(R.layout.fragment_mypage_two, container, false)
     }
 
@@ -93,16 +101,16 @@ class MypageTwoFragment : Fragment() {
     private fun setTextSize(textSize :Int) {
         val size14 :Float = 10.0f + textSize*2
 
-        binging.textView2.textSize = size14
-        binging.textView3.textSize = size14
-        binging.textView4.textSize = size14
-        binging.textView5.textSize = size14
-        binging.textView.textSize = size14
+        binding.textView2.textSize = size14
+        binding.textView3.textSize = size14
+        binding.textView4.textSize = size14
+        binding.textView5.textSize = size14
+        binding.textView.textSize = size14
     }
 
     //버튼 이벤트
     private fun setButton() {
-        binging.toolbar.btnBack.setOnClickListener {
+        binding.toolbar.btnBack.setOnClickListener {
             //프래그먼트 이동
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.frame, MypageFragment())

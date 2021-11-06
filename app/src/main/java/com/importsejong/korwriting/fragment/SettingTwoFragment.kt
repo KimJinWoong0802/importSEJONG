@@ -25,7 +25,7 @@ class SettingTwoFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var mBinding: FragmentSettingTwoBinding? = null
-    private val binging get() = mBinding!!
+    private val binding get() = mBinding!!
     var mainActivity: MainActivity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,13 +47,13 @@ class SettingTwoFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentSettingTwoBinding.inflate(inflater, container, false)
-        binging.toolbar.title.text = resources.getString(R.string.setting_title_2)
+        binding.toolbar.title.text = resources.getString(R.string.setting_title_2)
 
         setTextSize(mainActivity!!.textSize)
 
         setButton()
 
-        return binging.root
+        return binding.root
     }
 
     companion object {
@@ -84,7 +84,7 @@ class SettingTwoFragment : Fragment() {
     //버튼이벤트
     private fun setButton() {
         //앱정보보기 버튼
-        binging.toolbar.btnBack.setOnClickListener {
+        binding.toolbar.btnBack.setOnClickListener {
             //프래그먼트 이동
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.frame, SettingFragment())

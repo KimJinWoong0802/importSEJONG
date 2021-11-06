@@ -32,7 +32,7 @@ class SettingFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var mBinding: FragmentSettingBinding? = null
-    private val binging get() = mBinding!!
+    private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,14 +54,14 @@ class SettingFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentSettingBinding.inflate(inflater, container, false)
-        binging.toolbar.title.text = resources.getString(R.string.setting_menu)
+        binding.toolbar.title.text = resources.getString(R.string.setting_menu)
 
         setTextSize(mainActivity!!.textSize)
-        binging.seekBar.progress = mainActivity!!.textSize
+        binding.seekBar.progress = mainActivity!!.textSize
 
         setButton()
 
-        return binging.root
+        return binding.root
         //return inflater.inflate(R.layout.fragment_setting, container, false)
     }
 
@@ -91,20 +91,20 @@ class SettingFragment : Fragment() {
         val size24 :Float = 20.0f + textSize*2
         val size30 :Float = 26.0f + textSize*2
 
-        binging.textView2.textSize = size20
-        binging.textView3.textSize = size20
-        binging.textView7.textSize = size20
-        binging.textView6.textSize = size20
-        binging.textView9.textSize = size20
-        binging.switch1.textSize = size20
-        binging.textView4.textSize = size24
-        binging.textView5.textSize = size24
-        binging.txtInfo.textSize = size30
+        binding.textView2.textSize = size20
+        binding.textView3.textSize = size20
+        binding.textView7.textSize = size20
+        binding.textView6.textSize = size20
+        binding.textView9.textSize = size20
+        binding.switch1.textSize = size20
+        binding.textView4.textSize = size24
+        binding.textView5.textSize = size24
+        binding.txtInfo.textSize = size30
     }
 
     private fun setButton() {
         //글씨 크기 조절 게이지 바
-        binging.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 mainActivity!!.textSize = progress
 
@@ -124,8 +124,8 @@ class SettingFragment : Fragment() {
         })
 
         //앱 테마 설정 스위치
-        binging.spinner.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.itemList, android.R.layout.simple_spinner_item)
-        binging.spinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener {
+        binding.spinner.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.itemList, android.R.layout.simple_spinner_item)
+        binding.spinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -144,7 +144,7 @@ class SettingFragment : Fragment() {
         //TODO : 전환 애니메이션 키고 끄기
 
         //로그아웃 버튼
-        binging.toolbar.logout.setOnClickListener {
+        binding.toolbar.logout.setOnClickListener {
             UserApiClient.instance.logout {error ->
                 if(error != null) {
                     Toast.makeText(requireContext(), "로그아웃 실패\n$error", Toast.LENGTH_SHORT).show()
@@ -157,7 +157,7 @@ class SettingFragment : Fragment() {
         }
 
         //앱정보보기 버튼
-        binging.txtInfo.setOnClickListener {
+        binding.txtInfo.setOnClickListener {
             //프래그먼트 이동
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.frame, SettingTwoFragment())

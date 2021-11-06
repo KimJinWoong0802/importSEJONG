@@ -29,7 +29,7 @@ class WritingtestFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var mBinding: FragmentWritingtestBinding? = null
-    private val binging get() = mBinding!!
+    private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
     private lateinit var storageReference: StorageReference
@@ -56,13 +56,13 @@ class WritingtestFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentWritingtestBinding.inflate(inflater, container, false)
-        binging.toolbar.title.text = resources.getString(R.string.writingtest_title_one)
+        binding.toolbar.title.text = resources.getString(R.string.writingtest_title_one)
 
         setTextSize(mainActivity!!.textSize)
 
         setButton()
 
-        return binging.root
+        return binding.root
         //return inflater.inflate(R.layout.fragment_writingtest, container, false)
     }
 
@@ -92,20 +92,20 @@ class WritingtestFragment : Fragment() {
         val size18 :Float = 14.0f + textSize*2
         val size14 :Float = 10.0f + textSize*2
 
-        binging.textView8.textSize = size20
-        binging.textView10.textSize = size20
-        binging.textView12.textSize = size20
-        binging.textView13.textSize = size20
-        binging.textView14.textSize = size20
-        binging.textView15.textSize = size20
-        binging.edittxtWritingtest.textSize = size18
-        binging.btnWritingtestMove.textSize = size14
+        binding.textView8.textSize = size20
+        binding.textView10.textSize = size20
+        binding.textView12.textSize = size20
+        binding.textView13.textSize = size20
+        binding.textView14.textSize = size20
+        binding.textView15.textSize = size20
+        binding.edittxtWritingtest.textSize = size18
+        binding.btnWritingtestMove.textSize = size14
     }
 
     private fun setButton() {
-        binging.btnWritingtestMove.setOnClickListener {
+        binding.btnWritingtestMove.setOnClickListener {
             //프래그먼트 이동
-            val sendText = binging.edittxtWritingtest.text.toString()
+            val sendText = binding.edittxtWritingtest.text.toString()
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             val fragment = GrammertestFragment()
             val bundle = Bundle()

@@ -214,25 +214,25 @@ class GrammertestFragment : Fragment() {
                     storageReference.downloadUrl.addOnSuccessListener {
                         photoUrl = it.toString()
                         databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                            .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("촬영 사진")
+                            .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("photourl")
                             .setValue(photoUrl)
                     }
                 }
             }
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId).child("카카오")
-                .child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("일자").setValue(formatted)
+                .child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("date").setValue(formatted)
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("입력 문장 내용")
+                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("inputsentence")
                 .setValue(popupResultBinding!!.txtResultBefore.text.toString())
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("고친 문장 내용")
+                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("fixedsentence")
                 .setValue(popupResultBinding!!.txtAfter.text.toString())
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("맞춤법 검사 정보")
+                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("grammerinfo")
                 .setValue("맞춤법검사정보")
 
             popupView3!!.dismiss()

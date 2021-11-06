@@ -31,7 +31,7 @@ class WritingtestTwoFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var mBinding: FragmentWritingtestTwoBinding? = null
-    private val binging get() = mBinding!!
+    private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
     private lateinit var storageReference: StorageReference
@@ -61,15 +61,15 @@ class WritingtestTwoFragment : Fragment() {
         mBinding = FragmentWritingtestTwoBinding.inflate(inflater, container, false)
         outputDirectory = getOutputDirectory()
         val getStringData = arguments?.getString("dataString")
-        binging.textView18.text = getStringData
-        binging.textView17.text = getStringData
+        binding.textView18.text = getStringData
+        binding.textView17.text = getStringData
 
         setTextSize(mainActivity!!.textSize)
 
         setButton()
         setImage()
 
-        return binging.root
+        return binding.root
         //return inflater.inflate(R.layout.fragment_writingtest, container, false)
     }
 
@@ -108,7 +108,7 @@ class WritingtestTwoFragment : Fragment() {
             outputDirectory,
             resources.getString(R.string.grammertest_fileName))
         val savedUri = Uri.fromFile(photoFile)
-        binging.imageView5.setImageURI(savedUri)
+        binding.imageView5.setImageURI(savedUri)
     }
 
     //글씨 크기 변경
@@ -118,16 +118,16 @@ class WritingtestTwoFragment : Fragment() {
         val size34 :Float = 30.0f + textSize*2
         val size14 :Float = 10.0f + textSize*2
 
-        binging.textView18.textSize = size20
-        binging.textView21.textSize = size20
-        binging.textView16.textSize = size24
-        binging.textView19.textSize = size24
-        binging.textView20.textSize = size34
-        binging.button2.textSize = size14
+        binding.textView18.textSize = size20
+        binding.textView21.textSize = size20
+        binding.textView16.textSize = size24
+        binding.textView19.textSize = size24
+        binding.textView20.textSize = size34
+        binding.button2.textSize = size14
     }
 
     private fun setButton() {
-        binging.button2.setOnClickListener {
+        binding.button2.setOnClickListener {
             //프래그먼트 이동
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.frame, WritingtestFragment())

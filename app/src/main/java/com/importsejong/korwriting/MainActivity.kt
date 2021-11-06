@@ -9,7 +9,7 @@ import com.importsejong.korwriting.fragment.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var mBinding: ActivityMainBinding? = null
-    private val binging get() = mBinding!!
+    private val binding get() = mBinding!!
     lateinit var kakaoId : String
     var kakaoProfile : String? = null
     var kakaoNickname : String? = null
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binging.root)
+        setContentView(binding.root)
 
         kakaoId = intent.getStringExtra("kakaoId")!!
         kakaoProfile = intent.getStringExtra("kakaoProfile")
@@ -28,12 +28,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         val pref=this.getPreferences(0)
         textSize=pref.getInt("textSize",2)
 
-        binging.navigation.selectedItemId = R.id.action_3
+        binding.navigation.selectedItemId = R.id.action_3
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame, MypageFragment())
         transaction.commit()
 
-        binging.navigation.setOnNavigationItemSelectedListener(this)
+        binding.navigation.setOnNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
