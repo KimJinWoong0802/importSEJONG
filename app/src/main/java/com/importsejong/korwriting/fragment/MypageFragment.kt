@@ -2,7 +2,6 @@ package com.importsejong.korwriting.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,8 +35,6 @@ class MypageFragment : Fragment() {
 
     private lateinit var databaseReference : DatabaseReference
 
-    //var viewId = Array(10) { -1 }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -66,7 +63,7 @@ class MypageFragment : Fragment() {
         bookmarkArrayList = arrayListOf<bookmark>()
         //북마크 뷰 생성
 
-        showBookmark()
+        showBookmark(requireContext())
 
 
 
@@ -97,11 +94,7 @@ class MypageFragment : Fragment() {
             }
     }
 
-    private fun dpToPx(dp: Float): Int {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, this.resources.displayMetrics).toInt()
-    }
-
-    private fun showBookmark() {
+    private fun showBookmark(mContext: Context) {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("사용자").child(mainActivity!!.kakaoId)
             .child("카카오").child("맞춤법 검사")
 
@@ -116,8 +109,7 @@ class MypageFragment : Fragment() {
                             bookmarkArrayList.add(bookmark!!)
 
                         }
-
-                        bookmarkRecyclerview.adapter = MyAdapter(bookmarkArrayList)
+                        bookmarkRecyclerview.adapter = MyAdapter(mContext,bookmarkArrayList)
 
                     }
 

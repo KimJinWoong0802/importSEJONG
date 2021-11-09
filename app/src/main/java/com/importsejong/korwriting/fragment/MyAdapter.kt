@@ -1,15 +1,16 @@
 package com.importsejong.korwriting.fragment
 
-import android.util.Log
+import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 
-class MyAdapter(private val bookmarkList : ArrayList<bookmark>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
-
+class MyAdapter(val context : Context, private val bookmarkList : ArrayList<bookmark>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
@@ -28,11 +29,17 @@ class MyAdapter(private val bookmarkList : ArrayList<bookmark>) : RecyclerView.A
         holder.date.text = currentitem.date
 
         holder.itemView.setOnClickListener {
-            Log.d("테스트", "허성원")
-           //TODO:mypagetwo로 프래그먼트 이동
+            //프래그먼트 이동
+            val mainActivity :MainActivity = context as MainActivity
+            val transaction = mainActivity.supportFragmentManager.beginTransaction()
+            val fragment = MypageTwoFragment()
+            val bundle = Bundle()
+            bundle.putString("date", currentitem.date)
+            fragment.arguments = bundle
+
+            transaction.replace(R.id.frame, fragment)
+            transaction.commit()
         }
-
-
     }
 
 

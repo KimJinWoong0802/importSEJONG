@@ -55,9 +55,11 @@ class MypageTwoFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentMypageTwoBinding.inflate(inflater, container, false)
-        val getData = arguments?.getInt("data")
 
-        val title = "${getData.toString()}번째 뷰"
+        val date = arguments?.getString("date")
+        val title = getString(R.string.noText)
+
+        binding.toolbar.date.text = date
         binding.toolbar.title.text = title
 
 //        databaseReference.child("사용자").child(mainActivity!!.kakaoId).child("카카오").child("맞춤법 검사")
