@@ -3,26 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_1"
-        android:enabled="true"
-        android:icon="@android:drawable/ic_menu_edit"
         android:title="@string/grammertest_menu" />
 
     <item
         android:id="@+id/action_2"
-        android:enabled="true"
-        android:icon="@android:drawable/ic_menu_help"
         android:title="@string/writingtest_menu" />
 
     <item
         android:id="@+id/action_3"
-        android:enabled="true"
-        android:icon="@android:drawable/ic_menu_gallery"
         android:title="@string/mypage_menu" />
 
     <item
         android:id="@+id/action_4"
-        android:enabled="true"
-        android:icon="@android:drawable/ic_menu_delete"
         android:title="@string/setting_menu" />
 
 </menu>

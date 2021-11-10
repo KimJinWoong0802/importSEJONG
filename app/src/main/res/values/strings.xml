@@ -4,9 +4,10 @@
     <string name="kakao_api_key">ba9b634a31af67fc0892b3f9adfe653a</string>
     <string name="kakao_api_key2">kakaoba9b634a31af67fc0892b3f9adfe653a</string>
 
+    <string name="login_text">나를 위한 바른 글씨 교정기</string>
     <string name="login_permission1">권한이 거절됨(추가입력)</string>
     <string name="login_permission2">권한이 다시묻지않기 설정됨(추가입력)</string>
-    <string name="login_kakaologin">카카오 로그인 성공(임시)</string>
+    <string name="login_kakaologin">카카오 로그인 버튼</string>
 
     <string name="grammertest_menu">맞춤법 검사</string>
     <string name="grammertest_title">손글씨를 촬영해 주세요</string>
