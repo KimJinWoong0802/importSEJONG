@@ -108,9 +108,9 @@ class LoginActivity : AppCompatActivity() {
                         kakaoProfile = user.kakaoAccount?.profile?.profileImageUrl
                         kakaoNickname = user.kakaoAccount?.profile?.nickname
 
-                        databaseReference.child("사용자").child("${user.id}").child("카카오").child("ID").setValue("${user.id}","ID:")
-                        databaseReference.child("사용자").child("${user.id}").child("카카오").child("닉네임").setValue("${user.kakaoAccount?.profile?.nickname}","닉네임")
-                        databaseReference.child("사용자").child("${user.id}").child("카카오").child("프로필URL").setValue("${user.kakaoAccount?.profile?.thumbnailImageUrl}","프로필URL")
+                        databaseReference.child("사용자").child("${user.id}").child("ID").setValue("${user.id}","ID:")
+                        databaseReference.child("사용자").child("${user.id}").child("닉네임").setValue("${user.kakaoAccount?.profile?.nickname}","닉네임")
+                        databaseReference.child("사용자").child("${user.id}").child("프로필URL").setValue("${user.kakaoAccount?.profile?.thumbnailImageUrl}","프로필URL")
 
                         kakaoLogin = true
                         startMainActivity(permissionGrant, kakaoLogin)

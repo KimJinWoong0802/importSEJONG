@@ -214,25 +214,26 @@ class GrammertestFragment : Fragment() {
                     storageReference.downloadUrl.addOnSuccessListener {
                         photoUrl = it.toString()
                         databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                            .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("photourl")
+                            .child("맞춤법 검사").child(formatted).child("photourl")
                             .setValue(photoUrl)
                     }
                 }
             }
 
-            databaseReference.child("사용자").child(mainActivity!!.kakaoId).child("카카오")
-                .child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("date").setValue(formatted)
-
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("inputsentence")
+                .child("맞춤법 검사").child(formatted).child("inputsentence")
                 .setValue(popupResultBinding!!.txtResultBefore.text.toString())
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("fixedsentence")
+                .child("맞춤법 검사").child(formatted).child("date")
+                .setValue(formatted)
+
+            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
+                .child("맞춤법 검사").child(formatted).child("fixedsentence")
                 .setValue(popupResultBinding!!.txtAfter.text.toString())
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("맞춤법 검사").child(popupResultBinding!!.txtResultBefore.text.toString()).child("grammerinfo")
+                .child("맞춤법 검사").child(formatted).child("grammerinfo")
                 .setValue("맞춤법검사정보")
 
             popupView3!!.dismiss()
@@ -258,21 +259,21 @@ class GrammertestFragment : Fragment() {
                     storageReference.downloadUrl.addOnSuccessListener {
                         photoUrl = it.toString()
                         databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                            .child("카카오").child("글씨 교정").child(testString!!).child("촬영 사진")
+                            .child("글씨 교정").child(testString!!).child("촬영 사진")
                             .setValue(photoUrl)
                     }
                 }
             }
 
-            databaseReference.child("사용자").child(mainActivity!!.kakaoId).child("카카오")
+            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
                 .child("글씨 교정").child(testString!!).child("일자").setValue(formatted)
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("글씨 교정").child(testString!!).child("기준 문장 내용")
+                .child("글씨 교정").child(testString!!).child("기준 문장 내용")
                 .setValue(testString)
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("카카오").child("글씨 교정").child(testString!!).child("최고 점수")
+                .child("글씨 교정").child(testString!!).child("최고 점수")
                 .setValue("최고 점수")
 
         }

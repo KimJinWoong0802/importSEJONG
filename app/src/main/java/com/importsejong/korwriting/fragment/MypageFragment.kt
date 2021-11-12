@@ -96,7 +96,7 @@ class MypageFragment : Fragment() {
 
     private fun showBookmark(mContext: Context) {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("사용자").child(mainActivity!!.kakaoId)
-            .child("카카오").child("맞춤법 검사")
+            .child("맞춤법 검사")
 
         databaseReference.addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {

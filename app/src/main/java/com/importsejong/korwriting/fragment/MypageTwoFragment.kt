@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.StorageReference
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
@@ -33,8 +32,7 @@ class MypageTwoFragment : Fragment() {
     private var mainActivity: MainActivity? = null
 
     private lateinit var storageReference: StorageReference
-    private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private val databaseReference: DatabaseReference = firebaseDatabase.reference
+    //private lateinit var firebaseDatabase: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,13 +60,32 @@ class MypageTwoFragment : Fragment() {
         binding.toolbar.date.text = date
         binding.toolbar.title.text = title
 
-//        databaseReference.child("사용자").child(mainActivity!!.kakaoId).child("카카오").child("맞춤법 검사")
-//            .get().addOnSuccessListener {
-//                if(it.exists()){
-//                    var test0 = it.child("test0").child("입력 문장 내용").value
-//                    binging.textView3.text = test0.toString()
-//                }
-//            }
+        val database_input = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
+            .child("맞춤법 검사").child(date!!).child("inputsentence")
+        val database_fixed = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
+            .child("맞춤법 검사").child(date!!).child("fixedsentence")
+
+        database_input.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                binding.textView3.text = snapshot.getValue().toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
+        database_fixed.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                binding.textView5.text = snapshot.getValue().toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
 
         setTextSize(mainActivity!!.textSize)
 
@@ -98,6 +115,7 @@ class MypageTwoFragment : Fragment() {
                 }
             }
     }
+
 
     //글씨 크기 변경
     private fun setTextSize(textSize :Int) {
