@@ -10,8 +10,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="color_main">#34495E</color>
-    <color name="color_navigationBasic">#1ABC9C</color>
-    <color name="color_navigationSelect">#27AE60</color>
+    <color name="color_navigationBasic">#27AE60</color>
+    <color name="color_navigationSelect">#1ABC9C</color>
     <color name="color_no">#E74C3C</color>
     <color name="color_yes">#16A085</color>
     <color name="color_intoBookmark">#F39C12</color>

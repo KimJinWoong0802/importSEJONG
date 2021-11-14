@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/gray"
+    android:background="?attr/colorPrimary"
     android:orientation="vertical"
     android:paddingStart="25dp"
     android:paddingEnd="25dp"
@@ -57,7 +57,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             android:text="@string/grammertest_popupOCR_yes"
-            android:textColor="@color/black"
+            android:textColor="?attr/yes"
             android:textSize="20sp" />
 
         <Space
@@ -72,7 +72,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             android:text="@string/grammertest_popupOCR_no"
-            android:textColor="@color/black"
+            android:textColor="?attr/no"
             android:textSize="20sp" />
     </LinearLayout>
 

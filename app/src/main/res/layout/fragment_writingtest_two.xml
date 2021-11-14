@@ -55,7 +55,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/border"
-                android:backgroundTint="@android:color/holo_green_dark"
+                android:backgroundTint="?attr/navigationBasic"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:background="@drawable/border"
-                android:backgroundTint="@android:color/holo_green_dark"
+                android:backgroundTint="?attr/navigationBasic"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -114,9 +114,9 @@
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="@android:color/holo_green_dark"
+                android:backgroundTint="?attr/colorPrimary"
                 android:text="@string/writingtest_result_btn"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

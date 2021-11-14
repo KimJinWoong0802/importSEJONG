@@ -9,7 +9,8 @@
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary">
 
         <include
             android:id="@+id/toolbar"
@@ -51,7 +52,9 @@
             android:layout_height="wrap_content"
             android:minWidth="80dp"
             android:minHeight="80dp"
-            android:src="@android:drawable/presence_invisible"
+            android:scaleType="fitXY"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_take_picture"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -19,11 +19,19 @@
         <entry key="..\:/Users/hby89/AndroidStudioProjects/importsejong.korwriting/app/src/main/res/layout/toolbarmain.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/hby89/AndroidStudioProjects/importsejong.korwriting/app/src/main/res/menu/custom_menu.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/libs/kakao-android-legacy-sdk-1.30.6/libraries/auth/src/main/res/layout/activity_kakao_webview.xml" value="0.18931159420289856" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.265625" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/drawable/bg_item_bottom_nav_deselect.xml" value="0.265625" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/drawable/bg_item_bottom_nav_select.xml" value="0.265625" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/drawable/border.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/drawable/bottom_menu_item_bg.xml" value="0.265625" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/drawable/btn_take_picture.xml" value="0.265625" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/drawable/horizontalline.xml" value="0.2546875" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/drawable/ic_launcher_background.xml" value="0.265625" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/drawable/menu_selector_color.xml" value="0.265625" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/activity_login.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/activity_popup.xml" value="0.2427536231884058" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/bookmark_item.xml" value="0.21557971014492755" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/dialog_popupOCR.xml" value="0.2427536231884058" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/dialog_popup_ocr.xml" value="0.2391304347826087" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/dialog_popup_ocr2.xml" value="0.2391304347826087" />
@@ -47,10 +55,9 @@
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/toolbar_bookmark.xml" value="0.20878623188405798" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/toolbar_info.xml" value="0.24728260869565216" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/toolbar_main.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/menu/navigation_menu.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/menu/navigation_menu.xml" value="0.24947916666666667" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/bookmark.xml" value="0.25" />
-        <entry key="..\:/android/korwriting/app/src/main/res/layout/bookmark_item.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/dialog_popup_ocr.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/dialog_popup_ocr2.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/dialog_popup_result.xml" value="0.36614583333333334" />
