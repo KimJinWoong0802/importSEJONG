@@ -1,12 +1,16 @@
 package com.importsejong.korwriting.fragment
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
@@ -64,6 +68,9 @@ class MypageTwoFragment : Fragment() {
             .child("맞춤법 검사").child(date!!).child("inputsentence")
         val database_fixed = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
             .child("맞춤법 검사").child(date!!).child("fixedsentence")
+        val database_photourl = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
+            .child("맞춤법 검사").child(date!!).child("photourl")
+
 
         database_input.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -87,10 +94,23 @@ class MypageTwoFragment : Fragment() {
 
         })
 
+        database_photourl.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Glide.with(this@MypageTwoFragment)
+                    .load(snapshot.getValue().toString())
+                    .into(binding.imageView)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
         setTextSize(mainActivity!!.textSize)
 
         //버튼 이벤트
-        setButton()
+        setButton(date)
 
         return binding.root
         //return inflater.inflate(R.layout.fragment_mypage_two, container, false)
@@ -129,7 +149,26 @@ class MypageTwoFragment : Fragment() {
     }
 
     //버튼 이벤트
-    private fun setButton() {
+    private fun setButton(date : String) {
+        binding.button.setOnClickListener{
+            val databaseReference = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
+                .child("맞춤법 검사").child(date)
+
+            databaseReference.removeValue()
+
+            storageReference = FirebaseStorage.getInstance().reference.child("images/${mainActivity!!.kakaoId}/맞춤법 검사/$date.jpg")
+
+            storageReference.delete().addOnSuccessListener {
+
+            }.addOnFailureListener{
+
+            }
+
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame, MypageFragment())
+            transaction.commit()
+        }
+
         binding.toolbar.btnBack.setOnClickListener {
             //프래그먼트 이동
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()

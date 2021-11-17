@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.databinding.FragmentMypageBinding
@@ -95,10 +96,34 @@ class MypageFragment : Fragment() {
     }
 
     private fun showBookmark(mContext: Context) {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("사용자").child(mainActivity!!.kakaoId)
-            .child("맞춤법 검사")
 
-        databaseReference.addValueEventListener(object : ValueEventListener{
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("사용자").child(mainActivity!!.kakaoId)
+
+        databaseReference.child("프로필URL").addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Glide.with(this@MypageFragment)
+                    .load(snapshot.getValue().toString())
+                    .into(binding.imageProfile)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
+        databaseReference.child("닉네임").addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                binding.textName.text = snapshot.getValue().toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
+        databaseReference.child("맞춤법 검사").addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
 
                     if(snapshot.exists()){
