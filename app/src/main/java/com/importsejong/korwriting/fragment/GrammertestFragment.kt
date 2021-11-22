@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.importsejong.korwriting.ChooseFragment
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.*
@@ -130,6 +131,7 @@ class GrammertestFragment : Fragment() {
                 setButtonWritingtest()
             }
         }
+        setButton()
 
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -276,6 +278,15 @@ class GrammertestFragment : Fragment() {
                 .child("글씨 교정").child(testString!!).child("최고 점수")
                 .setValue("최고 점수")
 
+        }
+    }
+    
+    private fun setButton() {
+        //뒤로가기
+        binging.toolbar.btnBack.setOnClickListener {
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame, ChooseFragment())
+            transaction.commit()
         }
     }
 

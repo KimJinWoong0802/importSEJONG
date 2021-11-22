@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_1"
-        android:title="@string/grammertest_menu" />
+        android:title="@string/choose_menu" />
 
     <item
         android:id="@+id/action_2"
-        android:title="@string/writingtest_menu" />
+        android:title="@string/quiz_menu" />
 
     <item
         android:id="@+id/action_3"

@@ -7,14 +7,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.importsejong.korwriting.databinding.ActivityMainBinding
 import com.importsejong.korwriting.fragment.*
 import android.view.ViewGroup
-
 import android.view.Gravity
 import android.view.View
-
 import android.widget.FrameLayout
-
-
-
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var mBinding: ActivityMainBinding? = null
@@ -52,20 +47,14 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         when(p0.itemId){
             R.id.action_1 ->{
                 val transaction = supportFragmentManager.beginTransaction()
-                val fragment = GrammertestFragment()
-                val bundle = Bundle()
-                bundle.putInt("dataInt", 1)
-                bundle.putString("dataString", "")
-                fragment.arguments = bundle
-
-                transaction.replace(R.id.frame, fragment)
+                transaction.replace(R.id.frame, ChooseFragment())
                 transaction.commit()
                 return true
             }
 
             R.id.action_2 ->{
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frame, WritingtestFragment())
+                transaction.replace(R.id.frame, QuizFragment())
                 transaction.commit()
                 return true
             }

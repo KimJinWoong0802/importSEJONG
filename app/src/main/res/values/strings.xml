@@ -4,12 +4,16 @@
     <string name="kakao_api_key">ba9b634a31af67fc0892b3f9adfe653a</string>
     <string name="kakao_api_key2">kakaoba9b634a31af67fc0892b3f9adfe653a</string>
 
+    <string name="choose_menu">손글씨 검사</string>
+    <string name="choose_title">님,\n손글씨로 어떤 검사를\n진행하고 싶으신가요?</string>
+    <string name="choose_goto_grammertest">손글씨\n맞춤법\n검사하기</string>
+    <string name="choose_goto_writingtest">손글씨\n교정하기</string>
+
     <string name="login_text">나를 위한 바른 글씨 교정기</string>
     <string name="login_permission1">권한이 거절됨(추가입력)</string>
     <string name="login_permission2">권한이 다시묻지않기 설정됨(추가입력)</string>
     <string name="login_kakaologin">카카오 로그인 버튼</string>
 
-    <string name="grammertest_menu">맞춤법 검사</string>
     <string name="grammertest_title">손글씨를 촬영해 주세요</string>
     <string name="grammertest_folderName">.picture</string>
     <string name="grammertest_fileName">imageFile.jpg</string>
@@ -30,7 +34,6 @@
     <string name="grammertest_popupResult_ok">확인</string>
     <string name="grammertest_popupResult_bookmark">책갈피에 넣기</string>
 
-    <string name="writingtest_menu">글씨교정</string>
     <string name="writingtest_title_one">글씨를 교정해 볼까요?</string>
     <string name="writingtest_title_two">글자에 맞추어 글씨를 적어주세요</string>
     <string name="writingtest_title_three">교정 결과</string>
@@ -45,6 +48,8 @@
     <string name="writingtest_result_main2">교정 결과</string>
     <string name="writingtest_result_rating">나쁘지 않아요!\n계속 예쁜 손글씨를 위해 노력해보세요!</string>
     <string name="writingtest_result_btn">돌아가기</string>
+
+    <string name="quiz_menu">퀴즈</string>
 
     <string name="mypage_menu">마이페이지</string>
     <string name="mypage_bookmark_unbookmark">책갈피\n해제하기</string>

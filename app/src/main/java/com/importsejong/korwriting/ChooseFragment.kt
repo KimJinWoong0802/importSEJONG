@@ -1,4 +1,4 @@
-package com.importsejong.korwriting.fragment
+package com.importsejong.korwriting
 
 import android.content.Context
 import android.os.Bundle
@@ -6,13 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.StorageReference
-import com.importsejong.korwriting.ChooseFragment
-import com.importsejong.korwriting.MainActivity
-import com.importsejong.korwriting.R
-import com.importsejong.korwriting.databinding.FragmentWritingtestBinding
+import com.importsejong.korwriting.databinding.FragmentChooseBinding
+import com.importsejong.korwriting.fragment.GrammertestFragment
+import com.importsejong.korwriting.fragment.WritingtestFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,21 +17,16 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [WritingtestFragment.newInstance] factory method to
+ * Use the [ChooseFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-
-class WritingtestFragment : Fragment() {
+class ChooseFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var mBinding: FragmentWritingtestBinding? = null
+    private var mBinding: FragmentChooseBinding? = null
     private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
-
-    private lateinit var storageReference: StorageReference
-    private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private val databaseReference: DatabaseReference = firebaseDatabase.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,21 +41,19 @@ class WritingtestFragment : Fragment() {
         mainActivity = context as MainActivity
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        mBinding = FragmentWritingtestBinding.inflate(inflater, container, false)
-        binding.toolbar.title.text = resources.getString(R.string.writingtest_title_one)
+        mBinding = FragmentChooseBinding.inflate(inflater, container, false)
+        binding.txtTitle.text = mainActivity!!.kakaoNickname.plus(getString(R.string.choose_title))
 
         setTextSize(mainActivity!!.textSize)
 
         setButton()
 
         return binding.root
-        //return inflater.inflate(R.layout.fragment_writingtest, container, false)
     }
 
     companion object {
@@ -74,12 +63,12 @@ class WritingtestFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment WritingtestFragment.
+         * @return A new instance of fragment ChooseFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            WritingtestFragment().apply {
+            ChooseFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -88,42 +77,31 @@ class WritingtestFragment : Fragment() {
     }
 
     //글씨 크기 변경
-    fun setTextSize(textSize :Int) {
-        val size20 :Float = 16.0f + textSize*2
-        val size18 :Float = 14.0f + textSize*2
-        val size14 :Float = 10.0f + textSize*2
+    private fun setTextSize(textSize :Int) {
 
-        binding.textView8.textSize = size20
-        binding.textView10.textSize = size20
-        binding.textView12.textSize = size20
-        binding.textView13.textSize = size20
-        binding.textView14.textSize = size20
-        binding.textView15.textSize = size20
-        binding.edittxtWritingtest.textSize = size18
-        binding.btnWritingtestMove.textSize = size14
     }
 
     private fun setButton() {
-        binding.btnWritingtestMove.setOnClickListener {
-            //프래그먼트 이동
-            val sendText = binding.edittxtWritingtest.text.toString()
+        //맞춤법 검사하기 버튼
+        binding.txtGotoGrammertest.setOnClickListener {
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             val fragment = GrammertestFragment()
             val bundle = Bundle()
-
-            bundle.putInt("dataInt", 2)
-            bundle.putString("dataString", sendText)
+            bundle.putInt("dataInt", 1)
+            bundle.putString("dataString", "")
             fragment.arguments = bundle
 
             transaction.replace(R.id.frame, fragment)
             transaction.commit()
         }
 
-        //뒤로가기
-        binding.toolbar.btnBack.setOnClickListener {
+        //손글씨 교정하기 버튼
+        binding.txtGotoWritingtest.setOnClickListener {
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame, ChooseFragment())
+            transaction.replace(R.id.frame, WritingtestFragment())
             transaction.commit()
         }
     }
+
+
 }
