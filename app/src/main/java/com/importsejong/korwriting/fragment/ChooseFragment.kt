@@ -1,4 +1,4 @@
-package com.importsejong.korwriting
+package com.importsejong.korwriting.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.importsejong.korwriting.MainActivity
+import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentChooseBinding
-import com.importsejong.korwriting.fragment.GrammertestFragment
-import com.importsejong.korwriting.fragment.WritingtestFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,6 +49,7 @@ class ChooseFragment : Fragment() {
         mBinding = FragmentChooseBinding.inflate(inflater, container, false)
         binding.txtTitle.text = mainActivity!!.kakaoNickname.plus(getString(R.string.choose_title))
 
+        // TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)
 
         setButton()

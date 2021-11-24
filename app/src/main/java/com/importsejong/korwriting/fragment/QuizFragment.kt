@@ -1,10 +1,13 @@
-package com.importsejong.korwriting
+package com.importsejong.korwriting.fragment
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.importsejong.korwriting.MainActivity
+import com.importsejong.korwriting.databinding.FragmentQuizBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +23,9 @@ class QuizFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var mBinding: FragmentQuizBinding? = null
+    private val binding get() = mBinding!!
+    private var mainActivity: MainActivity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,12 +35,25 @@ class QuizFragment : Fragment() {
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainActivity = context as MainActivity
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quiz, container, false)
+        mBinding = FragmentQuizBinding.inflate(inflater, container, false)
+
+        // TODO : 텍스트크기 변경
+        setTextSize(mainActivity!!.textSize)
+
+        //TODO : setButton
+        setButton()
+
+        return binding.root
     }
 
     companion object {
@@ -55,5 +74,15 @@ class QuizFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    //글씨 크기 변경
+    private fun setTextSize(textSize :Int) {
+
+    }
+
+
+    private fun setButton() {
+
     }
 }
