@@ -2,13 +2,15 @@ package com.importsejong.korwriting.fragment
 
 import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
-import com.importsejong.korwriting.databinding.FragmentQuizBinding
+import com.importsejong.korwriting.databinding.FragmentQuizGrammerBinding
+import com.importsejong.korwriting.databinding.FragmentQuizWritingBinding
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,14 +19,14 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [QuizFragment.newInstance] factory method to
+ * Use the [QuizGrammerFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class QuizFragment : Fragment() {
+class QuizGrammerFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var mBinding: FragmentQuizBinding? = null
+    private var mBinding: FragmentQuizGrammerBinding? = null
     private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
@@ -46,12 +48,12 @@ class QuizFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        mBinding = FragmentQuizBinding.inflate(inflater, container, false)
-        binding.toolbar.title.text = getString(R.string.quiz_menu)
+        mBinding = FragmentQuizGrammerBinding.inflate(inflater, container, false)
 
         // TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)
 
+        //TODO : setButton
         setButton()
 
         return binding.root
@@ -64,17 +66,45 @@ class QuizFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment QuizFragment.
+         * @return A new instance of fragment QuizGrammerFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            QuizFragment().apply {
+            QuizGrammerFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    //DB에서 퀴즈 가져오기
+    private fun getQuizGrammer() {
+        //TODO : DB에서 맞춤법 퀴즈 가져오기
+    }
+
+    //겹치지 않는 랜덤숫자리스트 10개 생성
+    private fun listRandom(count: Int): List<Int>?{
+        val set = mutableSetOf<Int>()
+        val random = Random()
+
+        //입력값 10 이하는 오류 출력
+        if(count <= 10) {
+            return null
+        }
+
+        while (true) {
+            set.add(random.nextInt(count) + 1)
+
+            //Set을 List로 변환, 정렬, 출력
+            if(set.size >= 10) {
+                val list = ArrayList(set)
+                list.sort()
+
+                return list
+            }
+        }
     }
 
     //글씨 크기 변경
@@ -83,25 +113,6 @@ class QuizFragment : Fragment() {
     }
 
     private fun setButton() {
-        //손글씨 단어 퀴즈로 이동
-        binding.txtGotoQuizwriting.setOnClickListener {
-            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame, QuizWritingFragment())
-            transaction.commit()
-        }
-
-        //우리말 맞춤법 퀴즈로 이동
-        binding.txtGotoQuizgrammer.setOnClickListener {
-            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame, QuizGrammerFragment())
-            transaction.commit()
-        }
-
-        //종합 랭킹 보기로 이동
-        binding.txtGotoRank.setOnClickListener {
-            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame, QuizRankFragment())
-            transaction.commit()
-        }
+        //TODO : 버튼 생성
     }
 }

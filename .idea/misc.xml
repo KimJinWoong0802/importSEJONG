@@ -33,9 +33,12 @@
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/activity_popup.xml" value="0.2427536231884058" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/bookmark_item.xml" value="0.21557971014492755" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/dialog_popupOCR.xml" value="0.2427536231884058" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/dialog_popup_grammerquiz.xml" value="0.2441123188405797" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/dialog_popup_ocr.xml" value="0.2391304347826087" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/dialog_popup_ocr2.xml" value="0.2391304347826087" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/dialog_popup_quizback.xml" value="0.2441123188405797" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/dialog_popup_result.xml" value="0.2391304347826087" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/dialog_popup_writingquiz.xml" value="0.2441123188405797" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_choose.xml" value="0.1947463768115942" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_four.xml" value="0.264" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_four_two.xml" value="0.24728260869565216" />
@@ -45,6 +48,9 @@
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_mypage_two.xml" value="0.2391304347826087" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_one.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_quiz.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_quiz_grammer.xml" value="0.2441123188405797" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_quiz_rank.xml" value="0.2441123188405797" />
+        <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_quiz_writing.xml" value="0.2441123188405797" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_setting.xml" value="0.2259963768115942" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_setting_two.xml" value="0.2391304347826087" />
         <entry key="..\:/Users/hby89/Documents/importSEJONG/app/src/main/res/layout/fragment_three.xml" value="0.20878623188405798" />

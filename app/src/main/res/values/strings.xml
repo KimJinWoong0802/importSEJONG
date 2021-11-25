@@ -50,6 +50,13 @@
     <string name="writingtest_result_btn">돌아가기</string>
 
     <string name="quiz_menu">퀴즈</string>
+    <string name="quiz_menu_goto_quizwriting">손글씨 단어 퀴즈</string>
+    <string name="quiz_menu_goto_quizgrammer">우리말 맞춤법 퀴즈</string>
+    <string name="quiz_menu_goto_rank">종합 랭킹 보기</string>
+
+
+    <string name="quiz_popup_writing_next_next">다음 문제</string>
+    <string name="quiz_popup_writing_next_end">끝내기</string>
 
     <string name="mypage_menu">마이페이지</string>
     <string name="mypage_bookmark_unbookmark">책갈피\n해제하기</string>

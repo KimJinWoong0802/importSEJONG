@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,14 +23,27 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.importsejong.korwriting.Dao
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.*
+import com.importsejong.korwriting.network.data.ocrdata
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.BufferedReader
 import java.io.File
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import kotlin.concurrent.thread
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,6 +63,8 @@ class GrammertestFragment : Fragment() {
     private var mBinding: FragmentGrammertestBinding? = null
     private val binging get() = mBinding!!
     private var mainActivity: MainActivity? = null
+
+    private var dao = Dao
 
     private var popupResultBinding : DialogPopupResultBinding? = null
     private var popupOcrBinding : DialogPopupOcrBinding? = null
@@ -170,7 +186,9 @@ class GrammertestFragment : Fragment() {
         //popupOcr 팝업 버튼
         //인식결과 맞아요
         popupOcrBinding!!.btnOcrYes.setOnClickListener {
-            popupResultBinding!!.txtResultBefore.text = popupOcrBinding!!.txtOcrBefore.text
+            val beforeText: String = popupOcrBinding!!.txtOcrBefore.text.toString()
+            popupResultBinding!!.txtResultBefore.text = beforeText
+            spellCheck(beforeText)
 
             popupView1!!.dismiss()
             popupView3!!.show()
@@ -186,7 +204,9 @@ class GrammertestFragment : Fragment() {
         //popupOcr2 팝업 버튼
         //글씨수정 확인
         popupOcr2Binding!!.btnOcr2Yes.setOnClickListener {
-            popupResultBinding!!.txtResultBefore.text = popupOcr2Binding!!.txtOcr2Before.text
+            val beforeText: String = popupOcr2Binding!!.txtOcr2Before.text.toString()
+            popupResultBinding!!.txtResultBefore.text = beforeText
+            spellCheck(beforeText)
 
             popupView2!!.dismiss()
             popupView3!!.show()
@@ -200,6 +220,7 @@ class GrammertestFragment : Fragment() {
         //맞춤법결과 확인
         popupResultBinding!!.btnResultOk.setOnClickListener {
             popupView3!!.dismiss()
+            popupResultBinding!!.txtAfter.text = getText(R.string.noText)
         }
         //맞춤법결과 책갈피에넣기
         popupResultBinding!!.btnResultBookmark.setOnClickListener {
@@ -305,6 +326,11 @@ class GrammertestFragment : Fragment() {
                 override fun onError(exc: ImageCaptureException) { }
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     Toast.makeText(requireContext(), "캡처성공", Toast.LENGTH_SHORT).show()
+
+                    //OCR실행
+                    if(getIntData == 1) {
+                        OCR(photoFile)
+                    }
                     if(getIntData == 2){
                         //프래그먼트 이동
                         val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
@@ -393,6 +419,100 @@ class GrammertestFragment : Fragment() {
         else requireContext().filesDir
     }
 
+    private fun OCR(file :File) {
+        val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+
+        dao.ocr(
+            "KakaoAK daf1f2ea535740044cc45bb025b6b041",
+            body,
+            object : Callback<ocrdata> {
+                override fun onResponse(
+                    call: Call<ocrdata>,
+                    response: Response<ocrdata>
+                ) {
+                    Log.d("결과", "성공 : ${response.raw()}")
+                    Log.d("결과", "성공 : ${response.body()}")
+                    popupOcrBinding!!.txtOcrBefore.text =
+                        response.body().toString().replace(("[^\\D]").toRegex(), "").replace("[, ]","").replace("=[","")
+                            .replace(("[a-z]").toRegex(), "").replace(("[A-Z]").toRegex(), "").replace(("_").toRegex(), " ")
+                            .replace(", , , ],","").replace("]),","").replace("( ","").replace("(","")
+                            .replace("])])","")
+                }
+                override fun onFailure(call: Call<ocrdata>, t: Throwable) {
+                    Log.d("결과:", "실패 : $t")
+                    popupOcrBinding!!.txtOcrBefore.text = t.toString()
+                }
+            }
+        )
+    }
+
+    private fun spellCheck(spell:String) {
+        thread(start = true) {
+            try {
+                val urlText = "https://speller.cs.pusan.ac.kr/results?text1=$spell"
+                val url = URL(urlText)
+                val netConn = url.openConnection() as HttpURLConnection
+                netConn.requestMethod = "POST"
+                netConn.setRequestProperty("Accept", "application/json")
+                //이게 실행인듯?
+                netConn.doOutput
+                //response code 불러오기
+                if(netConn.responseCode == HttpURLConnection.HTTP_OK) {
+                    val streamReader = InputStreamReader(netConn.inputStream)
+                    val buffered = BufferedReader(streamReader)
+
+                    val content = StringBuilder()
+                    var i = 1
+
+                    while(true) {
+                        val line = buffered.readLine() ?: break
+                        content.append("$i. ")
+                        content.append(line)
+                        content.append("\n")
+                        i++
+                    }
+                    buffered.close()
+                    netConn.disconnect()
+
+                    mainActivity!!.runOnUiThread {
+                        val testString : String = content.replace(("[^\\w]").toRegex(), " ").replace(("[^\\D]").toRegex(), " ")
+                        Log.d("tset",testString)
+                        try{
+                            val splitArray : ArrayList<String> = testString.split("candWord") as ArrayList<String>
+                            Log.d("split",splitArray.toString())
+                            var testArray :ArrayList<String>
+                            val len = splitArray.size
+                            val resultArray = ArrayList<String>()
+                            for (n: Int in 1..len step 2){
+                                try {
+                                    testArray = splitArray[n].split("help") as ArrayList<String>
+                                    Log.d("List ckeck",testArray.toString())
+                                    val len2 = testArray.size
+                                    for(t:Int in 0..len2 step 2){
+                                        try{
+                                            resultArray.add(testArray[t])
+                                        } catch (e : Exception) {
+
+                                        }
+                                    }
+                                }catch (e:Exception){
+                                    break
+                                }
+
+                            }
+                            popupResultBinding!!.txtAfter.text = resultArray.toString()
+                        }catch (e: Exception){
+                            popupResultBinding!!.txtAfter.text = "맞춤법과 문법 오류를 찾지 못했습니다, 기술적 한계로 찾지 못한 맞춤법 오류나 문법 오류가 있을 수 있습니다."
+                        }
+
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
