@@ -1,5 +1,6 @@
 package com.importsejong.korwriting.fragment
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.MainActivity
+import com.importsejong.korwriting.R
+import com.importsejong.korwriting.databinding.DialogPopupQuizbackBinding
 import com.importsejong.korwriting.databinding.FragmentQuizWritingBinding
 import java.util.*
 
@@ -27,6 +30,11 @@ class QuizWritingFragment : Fragment() {
     private var mBinding: FragmentQuizWritingBinding? = null
     private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
+
+    //quizback팝업창 변수
+    private var popupQuizbackBinding :DialogPopupQuizbackBinding? = null
+    private var builderQuizBack : AlertDialog.Builder? = null
+    private var popupViewQuizBack : AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +59,18 @@ class QuizWritingFragment : Fragment() {
         // TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)
 
-        //TODO : setButton
+        //팝업 설정
+        popupQuizbackBinding = DialogPopupQuizbackBinding.inflate(inflater, container, false)
+        builderQuizBack = AlertDialog.Builder(requireContext()).setView(popupQuizbackBinding!!.root).setCancelable(false)
+        popupViewQuizBack = builderQuizBack!!.create()
+
         setButton()
+
+        val maxQuizNumber = 20  // TODO : DB에서 문제 개수 가져오기
+        val quizNumberList:List<Int> = randomInt10(maxQuizNumber)
+
+        //TODO : 번호에 맞는 퀴즈 가져오기
+        setQuiz(quizNumberList[0])
 
         return binding.root
     }
@@ -77,19 +95,14 @@ class QuizWritingFragment : Fragment() {
             }
     }
 
-    //DB에서 퀴즈 가져오기
-    private fun getQuizWriting() {
-        //TODO : DB에서 손글씨 퀴즈 가져오기
-    }
-
     //겹치지 않는 랜덤숫자리스트 10개 생성
-    private fun listRandom(count: Int): List<Int>?{
+    private fun randomInt10(count: Int): List<Int>{
         val set = mutableSetOf<Int>()
         val random = Random()
 
-        //입력값 10 이하는 오류 출력
+        //입력값 10 이하는 -1 출력
         if(count <= 10) {
-            return null
+            return List(10) { -1 }
         }
 
         while (true) {
@@ -108,9 +121,34 @@ class QuizWritingFragment : Fragment() {
     //글씨 크기 변경
     private fun setTextSize(textSize :Int) {
         //TODO : 글씨 크기 변경
+
+        //TODO : 팝업 글씨 크기 변경
     }
 
     private fun setButton() {
-        //TODO : 버튼 생성
+        //뒤로가기
+        binding.toolbar.btnBack.setOnClickListener {
+            popupViewQuizBack!!.show()
+        }
+
+        //뒤로가기 계속하기
+        popupQuizbackBinding!!.txtContinue.setOnClickListener {
+            popupViewQuizBack!!.dismiss()
+        }
+
+        //뒤로가기 끝내기
+        popupQuizbackBinding!!.txtEnd.setOnClickListener {
+            popupViewQuizBack!!.dismiss()
+
+            //프래그먼트 이동
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame, QuizFragment())
+            transaction.commit()
+        }
+    }
+
+    //번호에 맞는 퀴즈 가져오기
+    private fun setQuiz(int :Int) {
+        //TODO : 번호에 맞는 퀴즈 가져오기
     }
 }

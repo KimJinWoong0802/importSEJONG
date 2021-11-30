@@ -54,9 +54,13 @@
     <string name="quiz_menu_goto_quizgrammer">우리말 맞춤법 퀴즈</string>
     <string name="quiz_menu_goto_rank">종합 랭킹 보기</string>
 
+    <string name="quiz_popup_next_answer">정답</string>
+    <string name="quiz_popup_next_next">다음 문제</string>
+    <string name="quiz_popup_next_end">끝내기</string>
 
-    <string name="quiz_popup_writing_next_next">다음 문제</string>
-    <string name="quiz_popup_writing_next_end">끝내기</string>
+    <string name="quiz_popup_back_header">게임을 마치시겠습니까?</string>
+    <string name="quiz_popup_back_body">여기서 마치시게 되면\n풀었던 문제 까지만\n점수를 획득하고\n퀴즈 선택화면으로\n돌아가게 됩니다.</string>
+    <string name="quiz_popup_back_continue">계속 하기</string>
 
     <string name="mypage_menu">마이페이지</string>
     <string name="mypage_bookmark_unbookmark">책갈피\n해제하기</string>

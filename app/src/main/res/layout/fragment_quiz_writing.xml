@@ -21,13 +21,13 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/textView24"
+            app:layout_constraintBottom_toTopOf="@+id/txt_progress_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" >
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/txt_quiz"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="?attr/colorPrimary"
@@ -47,7 +47,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView26"
+                    android:id="@+id/txt_choice1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -61,7 +61,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/txt_choice2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -82,7 +82,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView28"
+                    android:id="@+id/txt_choice3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -96,7 +96,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
-                    android:id="@+id/textView29"
+                    android:id="@+id/txt_choice4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -108,7 +108,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView24"
+            android:id="@+id/txt_progress_number"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:gravity="center"

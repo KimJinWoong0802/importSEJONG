@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/gray"
@@ -13,7 +11,7 @@
         android:layout_height="50dp"
         android:background="?attr/colorPrimary"
         android:gravity="center"
-        android:text="TextView"
+        android:text="@string/noText"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
@@ -29,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="@string/noText"
+            android:text="@string/quiz_popup_next_answer"
             android:textSize="24sp" />
 
         <TextView
@@ -69,7 +67,7 @@
             android:layout_weight="1"
             android:background="?attr/colorPrimary"
             android:gravity="center"
-            android:text="@string/quiz_popup_writing_next_next"
+            android:text="@string/quiz_popup_next_next"
             android:textColor="@color/white"
             android:textSize="24sp" />
 
@@ -86,7 +84,7 @@
             android:layout_weight="1"
             android:background="?attr/colorPrimary"
             android:gravity="center"
-            android:text="@string/quiz_popup_writing_next_end"
+            android:text="@string/quiz_popup_next_end"
             android:textColor="@color/white"
             android:textSize="24sp" />
     </LinearLayout>
