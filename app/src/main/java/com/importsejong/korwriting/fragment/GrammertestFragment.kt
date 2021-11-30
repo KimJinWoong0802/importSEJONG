@@ -502,6 +502,7 @@ class GrammertestFragment : Fragment() {
 
                             }
                             popupResultBinding!!.txtAfter.text = resultArray.toString()
+                            popupResultBinding!!.txtAfter2.text = ""    //TODO : 추가된 텍스트상자
                         }catch (e: Exception){
                             popupResultBinding!!.txtAfter.text = "맞춤법과 문법 오류를 찾지 못했습니다, 기술적 한계로 찾지 못한 맞춤법 오류나 문법 오류가 있을 수 있습니다."
                         }
