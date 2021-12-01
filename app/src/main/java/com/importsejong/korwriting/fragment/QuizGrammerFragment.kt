@@ -18,6 +18,17 @@ import java.util.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+//DB에서 받아올 문제 클래스
+data class GrammerQuiz(
+    val quiz :String,
+    val choice1 :QuizChoice,
+    val choice2 :QuizChoice
+)
+data class QuizChoice(
+    val text :String,
+    val result :Boolean
+)
+
 /**
  * A simple [Fragment] subclass.
  * Use the [QuizGrammerFragment.newInstance] factory method to

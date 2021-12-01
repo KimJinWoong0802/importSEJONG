@@ -4,119 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.QuizWritingFragment">
+    tools:context=".fragment.GrammertestFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar_back" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/txt_progress_number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" >
-
-            <TextView
-                android:id="@+id/txt_quiz"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="?attr/colorPrimary"
-                android:gravity="center"
-                android:text="@string/noText"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txt_choice1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="?attr/colorPrimary"
-                    android:gravity="center"
-                    android:text="@string/noText"
-                    android:textColor="@color/white" />
-
-                <Space
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/txt_choice2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="?attr/colorPrimary"
-                    android:gravity="center"
-                    android:text="@string/noText"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txt_choice3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="?attr/colorPrimary"
-                    android:gravity="center"
-                    android:text="@string/noText"
-                    android:textColor="@color/white" />
-
-                <Space
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/txt_choice4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="?attr/colorPrimary"
-                    android:gravity="center"
-                    android:text="@string/noText"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-        </LinearLayout>
-
         <TextView
-            android:id="@+id/txt_progress_number"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:id="@+id/txt_quiz"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_margin="30dp"
+            android:background="?attr/colorPrimary"
             android:gravity="center"
             android:text="@string/noText"
+            android:textColor="@color/white"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:layout_editor_absoluteY="56dp">
+
+            <androidx.camera.view.PreviewView
+                android:id="@+id/viewFinder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:minWidth="80dp"
+                android:minHeight="80dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/btn_take_picture"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/noText"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
 </FrameLayout>

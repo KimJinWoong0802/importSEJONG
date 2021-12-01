@@ -54,6 +54,8 @@
     <string name="quiz_menu_goto_quizgrammer">우리말 맞춤법 퀴즈</string>
     <string name="quiz_menu_goto_rank">종합 랭킹 보기</string>
 
+    <string name="quiz_popup_next_correct">정답입니다!</string>
+    <string name="quiz_popup_next_incorrect">틀렸습니다!</string>
     <string name="quiz_popup_next_answer">정답</string>
     <string name="quiz_popup_next_next">다음 문제</string>
     <string name="quiz_popup_next_end">끝내기</string>
@@ -79,5 +81,7 @@
     <string name="setting_anime_name">화면 전환 효과</string>
     <string name="setting_anime_contents">전환 애니메이션을 켜고 끕니다.</string>
     <string name="setting_btn">앱 정보 보기</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

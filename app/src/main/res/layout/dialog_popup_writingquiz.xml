@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/txt_main"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="?attr/colorPrimary"
@@ -31,7 +31,7 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView39"
+            android:id="@+id/txt_answer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -61,7 +61,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView35"
+            android:id="@+id/txt_next"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -78,7 +78,7 @@
             android:background="@color/black" />
 
         <TextView
-            android:id="@+id/textView36"
+            android:id="@+id/txt_end"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
