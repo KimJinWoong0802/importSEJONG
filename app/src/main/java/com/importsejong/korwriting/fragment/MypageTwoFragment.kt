@@ -66,8 +66,10 @@ class MypageTwoFragment : Fragment() {
 
         val database_input = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
             .child("맞춤법 검사").child(date!!).child("inputsentence")
-        val database_fixed = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
-            .child("맞춤법 검사").child(date!!).child("fixedsentence")
+        val database_fixedpart = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
+            .child("맞춤법 검사").child(date!!).child("fixedpart")
+        val database_parttofix = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
+            .child("맞춤법 검사").child(date!!).child("parttofix")
         val database_photourl = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
             .child("맞춤법 검사").child(date!!).child("photourl")
 
@@ -83,9 +85,22 @@ class MypageTwoFragment : Fragment() {
 
         })
 
-        database_fixed.addListenerForSingleValueEvent(object : ValueEventListener{
+        //parttofix
+        database_parttofix.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.textView5.text = snapshot.getValue().toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
+
+        database_fixedpart.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                binding.textView.text = snapshot.getValue().toString()
             }
 
             override fun onCancelled(error: DatabaseError) {

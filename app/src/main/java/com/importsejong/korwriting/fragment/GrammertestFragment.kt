@@ -251,12 +251,12 @@ class GrammertestFragment : Fragment() {
                 .setValue(formatted)
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("맞춤법 검사").child(formatted).child("fixedsentence")
+                .child("맞춤법 검사").child(formatted).child("parttofix")
                 .setValue(popupResultBinding!!.txtAfter.text.toString())
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("맞춤법 검사").child(formatted).child("grammerinfo")
-                .setValue("맞춤법검사정보")
+                .child("맞춤법 검사").child(formatted).child("fixedpart")
+                .setValue(popupResultBinding!!.txtAfter2.text.toString())
 
             popupView3!!.dismiss()
 
