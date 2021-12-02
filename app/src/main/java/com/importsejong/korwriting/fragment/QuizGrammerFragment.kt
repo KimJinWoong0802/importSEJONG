@@ -3,17 +3,20 @@ package com.importsejong.korwriting.fragment
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.*
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.DialogPopupGrammerquizBinding
 import com.importsejong.korwriting.databinding.DialogPopupQuizbackBinding
-import com.importsejong.korwriting.databinding.DialogPopupWritingquizBinding
 import com.importsejong.korwriting.databinding.FragmentQuizGrammerBinding
 import java.util.*
+
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,14 +25,11 @@ private const val ARG_PARAM2 = "param2"
 
 //DB에서 받아올 문제 클래스
 data class GrammerQuiz(
-    val quiz :String,
-    val choice1 :QuizChoice,
-    val choice2 :QuizChoice
+    var quiztext :String? = null,
+    var exFalse :String? = null,
+    var exTrue :String? = null
 )
-data class QuizChoice(
-    val text :String,
-    val result :Boolean
-)
+
 
 /**
  * A simple [Fragment] subclass.
@@ -53,9 +53,11 @@ class QuizGrammerFragment : Fragment() {
     private var builderGrammerquiz : AlertDialog.Builder? = null
     private var popupViewGrammerquiz : AlertDialog? = null
 
+    private lateinit var databaseReference : DatabaseReference
+
     //퀴즈에서 사용되는 변수
     private var progressNumber :Int = 0 //퀴즈의 진행상황 0~9
-    private lateinit var quizList :List<GrammerQuiz>
+    private var quizList = arrayListOf<GrammerQuiz>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,18 +94,7 @@ class QuizGrammerFragment : Fragment() {
 
         setButton()
 
-        val maxQuizNumber = 20  // TODO : DB에서 문제 개수 가져오기
-        val quizNumberList:List<Int> = randomInt10(maxQuizNumber)
-
-        //TODO : 번호에 맞는 퀴즈 가져와서 quizList에 저장
-        setQuiz(quizNumberList)
-
-        //첫번째 퀴즈 표시
-        //TODO : 예시 2개 랜덤으로 뒤섞기
-        binding.txtQuiz.text = quizList[0].quiz
-        binding.txtExample1.text = quizList[0].choice1.text
-        binding.txtExample2.text = quizList[0].choice2.text
-        binding.txtCount.text = getString(R.string.quiz_count,1)
+        setQuiz()
 
         return binding.root
     }
@@ -161,10 +152,10 @@ class QuizGrammerFragment : Fragment() {
     private fun setButton() {
         //예시1
         binding.txtExample1.setOnClickListener {
-            if(quizList[progressNumber].choice1.result) popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_correct)
+            if(false) popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_correct)
             else popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_incorrect)
 
-            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].choice1.text
+            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exFalse
 
             //TODO : 점수판
 
@@ -173,10 +164,10 @@ class QuizGrammerFragment : Fragment() {
 
         //예시2
         binding.txtExample2.setOnClickListener {
-            if(quizList[progressNumber].choice2.result) popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_correct)
+            if(true) popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_correct)
             else popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_incorrect)
 
-            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].choice2.text
+            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exTrue
 
             //TODO : 점수판
 
@@ -189,7 +180,9 @@ class QuizGrammerFragment : Fragment() {
             progressNumber++
 
             if(progressNumber <= 9) {
-                binding.txtQuiz.text = quizList[progressNumber].quiz
+                binding.txtQuiz.text = quizList[progressNumber].quiztext
+                binding.txtExample1.text = quizList[progressNumber].exFalse
+                binding.txtExample2.text = quizList[progressNumber].exTrue
                 binding.txtCount.text = getString(R.string.quiz_count,progressNumber+1)
 
                 popupViewGrammerquiz!!.dismiss()
@@ -231,13 +224,34 @@ class QuizGrammerFragment : Fragment() {
     }
 
     //번호에 맞는 퀴즈 가져오기
-    private fun setQuiz(listInt :List<Int>) {
-        //TODO : 번호에 맞는 퀴즈 가져와서 quizList에 저장
+    private fun setQuiz(){
 
-        //임시로 넣은 리스트
-        val b = QuizChoice("정답",true)
-        val c = QuizChoice("오답",false)
-        val a = GrammerQuiz("문제",b,c)
-        quizList = listOf(a,a,a,a,a,a,a,a,a,a)
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("퀴즈").child("우리말 맞춤법 퀴즈")
+
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot.exists()) {
+
+                    for (quizSnapshot in snapshot.children) {
+                        val grammerquiz = quizSnapshot.getValue(GrammerQuiz::class.java)
+                        quizList.add(grammerquiz!!)
+                    }
+
+                    //TODO : 예시 2개 랜덤으로 뒤섞기
+                    binding.txtQuiz.text = quizList[0].quiztext
+                    binding.txtExample1.text = quizList[0].exFalse
+                    binding.txtExample2.text = quizList[0].exTrue
+                    binding.txtCount.text = getString(R.string.quiz_count,1)
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
     }
 }
