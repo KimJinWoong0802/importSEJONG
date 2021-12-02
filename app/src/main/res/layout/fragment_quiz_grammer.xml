@@ -16,7 +16,7 @@
             layout="@layout/toolbar_back" />
 
         <TextView
-            android:id="@+id/textView30"
+            android:id="@+id/txt_quiz"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
@@ -27,7 +27,7 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/txt_example1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="30dp"
@@ -39,7 +39,7 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView32"
+            android:id="@+id/txt_example2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="30dp"
@@ -51,11 +51,11 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView33"
+            android:id="@+id/txt_count"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:text="TextView"
+            android:text="@string/quiz_count"
             android:textSize="24sp" />
     </LinearLayout>
 

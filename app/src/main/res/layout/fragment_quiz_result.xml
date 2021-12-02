@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,6 +13,70 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar_main" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="50dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?attr/colorPrimary"
+                android:gravity="center"
+                android:text="@string/quiz_result_result"
+                android:textColor="@color/white" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:background="?attr/colorPrimary"
+                android:gravity="center"
+                android:text="@string/quiz_result_count"
+                android:textColor="@color/white" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:id="@+id/txt_goto_quizrank"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?attr/colorPrimary"
+                android:gravity="center"
+                android:text="@string/quiz_result_goto_rank"
+                android:textColor="@color/white" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:id="@+id/txt_goto_quiz"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?attr/colorPrimary"
+                android:gravity="center"
+                android:text="@string/quiz_result_goto_quiz"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

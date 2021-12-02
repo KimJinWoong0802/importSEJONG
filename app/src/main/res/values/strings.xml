@@ -4,16 +4,19 @@
     <string name="kakao_api_key">ba9b634a31af67fc0892b3f9adfe653a</string>
     <string name="kakao_api_key2">kakaoba9b634a31af67fc0892b3f9adfe653a</string>
 
+    <!-- 손글씨 검사 프래그먼트 -->
     <string name="choose_menu">손글씨 검사</string>
     <string name="choose_title">님,\n손글씨로 어떤 검사를\n진행하고 싶으신가요?</string>
     <string name="choose_goto_grammertest">손글씨\n맞춤법\n검사하기</string>
     <string name="choose_goto_writingtest">손글씨\n교정하기</string>
 
+    <!-- 로그인 화면 -->
     <string name="login_text">나를 위한 바른 글씨 교정기</string>
     <string name="login_permission1">권한이 거절됨(추가입력)</string>
     <string name="login_permission2">권한이 다시묻지않기 설정됨(추가입력)</string>
     <string name="login_kakaologin">카카오 로그인 버튼</string>
 
+    <!-- 손글씨 맞춤법 검사 프래그먼트 -->
     <string name="grammertest_title">손글씨를 촬영해 주세요</string>
     <string name="grammertest_folderName">.picture</string>
     <string name="grammertest_fileName">imageFile.jpg</string>
@@ -34,6 +37,8 @@
     <string name="grammertest_popupResult_ok">확인</string>
     <string name="grammertest_popupResult_bookmark">책갈피에 넣기</string>
 
+
+    <!-- 손글씨 교정 프래그먼트 -->
     <string name="writingtest_title_one">글씨를 교정해 볼까요?</string>
     <string name="writingtest_title_two">글자에 맞추어 글씨를 적어주세요</string>
     <string name="writingtest_title_three">교정 결과</string>
@@ -49,26 +54,45 @@
     <string name="writingtest_result_rating">나쁘지 않아요!\n계속 예쁜 손글씨를 위해 노력해보세요!</string>
     <string name="writingtest_result_btn">돌아가기</string>
 
+
+    <!-- 퀴즈 프래그먼트 -->
     <string name="quiz_menu">퀴즈</string>
     <string name="quiz_menu_goto_quizwriting">손글씨 단어 퀴즈</string>
     <string name="quiz_menu_goto_quizgrammer">우리말 맞춤법 퀴즈</string>
     <string name="quiz_menu_goto_rank">종합 랭킹 보기</string>
+    <string name="quiz_count">%1$d/10</string>
 
+    <string name="quiz_grammer_main">다음 중 올바르게\n맞춤법을\n따르는 문장을 고르세요</string>
+
+    <!-- 퀴즈 문제결과 팝업 -->
     <string name="quiz_popup_next_correct">정답입니다!</string>
     <string name="quiz_popup_next_incorrect">틀렸습니다!</string>
     <string name="quiz_popup_next_answer">정답</string>
     <string name="quiz_popup_next_next">다음 문제</string>
     <string name="quiz_popup_next_end">끝내기</string>
 
+    <!-- 퀴즈 끝내기 팝업 -->
     <string name="quiz_popup_back_header">게임을 마치시겠습니까?</string>
     <string name="quiz_popup_back_body">여기서 마치시게 되면\n풀었던 문제 까지만\n점수를 획득하고\n퀴즈 선택화면으로\n돌아가게 됩니다.</string>
     <string name="quiz_popup_back_continue">계속 하기</string>
 
+    <!-- 퀴즈 결과 프래그먼트 -->
+    <string name="quiz_result_main_grammertest">우리말 맞춤법 퀴즈</string>
+    <string name="quiz_result_main_writingtest">손글씨 단어 퀴즈</string>
+    <string name="quiz_result_result">게임 결과</string>
+    <string name="quiz_result_count">맞춘 문제 %1$d개\n틀린 문제 %2$d개\n획득한 점수 %3$d점\n누적 점수 %4$d점</string>
+    <string name="quiz_result_goto_rank">종합 랭킹 보기</string>
+    <string name="quiz_result_goto_quiz">퀴즈 선택화면으로 돌아가기</string>
+
+
+    <!-- 마이페이지 프래그먼트 -->
     <string name="mypage_menu">마이페이지</string>
     <string name="mypage_bookmark_unbookmark">책갈피\n해제하기</string>
     <string name="mypage_bookmark_text1">내가 적은 글</string>
     <string name="mypage_bookmark_text2">바르게 수정된 글</string>
 
+
+    <!-- 앱 설정 프래그먼트 -->
     <string name="setting_menu">앱 설정</string>
     <string name="setting_title_2">앱 정보</string>
     <string name="setting_btn_logout">로그아웃</string>

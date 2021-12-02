@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
+import com.importsejong.korwriting.databinding.DialogPopupGrammerquizBinding
 import com.importsejong.korwriting.databinding.DialogPopupQuizbackBinding
+import com.importsejong.korwriting.databinding.DialogPopupWritingquizBinding
 import com.importsejong.korwriting.databinding.FragmentQuizGrammerBinding
 import java.util.*
 
@@ -42,10 +44,19 @@ class QuizGrammerFragment : Fragment() {
     private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
 
-    //quizback팝업창 변수
+    //quizback, Grammerquiz팝업창 변수
     private var popupQuizbackBinding : DialogPopupQuizbackBinding? = null
     private var builderQuizBack : AlertDialog.Builder? = null
     private var popupViewQuizBack : AlertDialog? = null
+
+    private var popupGrammerquizBinding : DialogPopupGrammerquizBinding? = null
+    private var builderGrammerquiz : AlertDialog.Builder? = null
+    private var popupViewGrammerquiz : AlertDialog? = null
+
+    //퀴즈에서 사용되는 변수
+    private var progressNumber :Int = 0 //퀴즈의 진행상황 0~9
+    private lateinit var quizList :List<GrammerQuiz>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,14 +86,24 @@ class QuizGrammerFragment : Fragment() {
         builderQuizBack = AlertDialog.Builder(requireContext()).setView(popupQuizbackBinding!!.root).setCancelable(false)
         popupViewQuizBack = builderQuizBack!!.create()
 
-        //TODO : setButton
+        popupGrammerquizBinding = DialogPopupGrammerquizBinding.inflate(inflater, container, false)
+        builderGrammerquiz = AlertDialog.Builder(requireContext()).setView(popupGrammerquizBinding!!.root).setCancelable(false)
+        popupViewGrammerquiz = builderGrammerquiz!!.create()
+
         setButton()
 
         val maxQuizNumber = 20  // TODO : DB에서 문제 개수 가져오기
         val quizNumberList:List<Int> = randomInt10(maxQuizNumber)
 
-        //TODO : 번호에 맞는 퀴즈 가져오기
-        setQuiz(quizNumberList[0])
+        //TODO : 번호에 맞는 퀴즈 가져와서 quizList에 저장
+        setQuiz(quizNumberList)
+
+        //첫번째 퀴즈 표시
+        //TODO : 예시 2개 랜덤으로 뒤섞기
+        binding.txtQuiz.text = quizList[0].quiz
+        binding.txtExample1.text = quizList[0].choice1.text
+        binding.txtExample2.text = quizList[0].choice2.text
+        binding.txtCount.text = getString(R.string.quiz_count,1)
 
         return binding.root
     }
@@ -138,6 +159,55 @@ class QuizGrammerFragment : Fragment() {
     }
 
     private fun setButton() {
+        //예시1
+        binding.txtExample1.setOnClickListener {
+            if(quizList[progressNumber].choice1.result) popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_correct)
+            else popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_incorrect)
+
+            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].choice1.text
+
+            //TODO : 점수판
+
+            popupViewGrammerquiz!!.show()
+        }
+
+        //예시2
+        binding.txtExample2.setOnClickListener {
+            if(quizList[progressNumber].choice2.result) popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_correct)
+            else popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_incorrect)
+
+            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].choice2.text
+
+            //TODO : 점수판
+
+            popupViewGrammerquiz!!.show()
+        }
+
+        //popupWritingquiz 팝업 버튼
+        //다음문제 버튼
+        popupGrammerquizBinding!!.txtNext.setOnClickListener {
+            progressNumber++
+
+            if(progressNumber <= 9) {
+                binding.txtQuiz.text = quizList[progressNumber].quiz
+                binding.txtCount.text = getString(R.string.quiz_count,progressNumber+1)
+
+                popupViewGrammerquiz!!.dismiss()
+            }
+            else {
+                popupViewGrammerquiz!!.dismiss()
+
+                //TODO : 변수 보내기
+                val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frame, QuizResultFragment())
+                transaction.commit()
+            }
+        }
+        //끝내기 버튼
+        popupGrammerquizBinding!!.txtEnd.setOnClickListener {
+            popupViewQuizBack!!.show()
+        }
+
         //뒤로가기
         binding.toolbar.btnBack.setOnClickListener {
             popupViewQuizBack!!.show()
@@ -150,6 +220,7 @@ class QuizGrammerFragment : Fragment() {
 
         //뒤로가기 끝내기
         popupQuizbackBinding!!.txtEnd.setOnClickListener {
+            popupViewGrammerquiz!!.dismiss()
             popupViewQuizBack!!.dismiss()
 
             //프래그먼트 이동
@@ -160,7 +231,13 @@ class QuizGrammerFragment : Fragment() {
     }
 
     //번호에 맞는 퀴즈 가져오기
-    private fun setQuiz(int :Int) {
-        //TODO : 번호에 맞는 퀴즈 가져오기
+    private fun setQuiz(listInt :List<Int>) {
+        //TODO : 번호에 맞는 퀴즈 가져와서 quizList에 저장
+
+        //임시로 넣은 리스트
+        val b = QuizChoice("정답",true)
+        val c = QuizChoice("오답",false)
+        val a = GrammerQuiz("문제",b,c)
+        quizList = listOf(a,a,a,a,a,a,a,a,a,a)
     }
 }

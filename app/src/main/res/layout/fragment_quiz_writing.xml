@@ -69,10 +69,10 @@
                 tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/txt_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/noText"
+                android:text="@string/quiz_count"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

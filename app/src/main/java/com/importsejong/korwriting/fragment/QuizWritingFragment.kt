@@ -62,7 +62,7 @@ class QuizWritingFragment : Fragment() {
 
     private var dao = Dao
 
-    //*/ quizback, ocr, ocr2팝업창 변수
+    //*/ quizback, ocr, ocr2, Writingquiz팝업창 변수
     private var popupQuizbackBinding :DialogPopupQuizbackBinding? = null
     private var builderQuizBack : AlertDialog.Builder? = null
     private var popupViewQuizBack : AlertDialog? = null
@@ -112,7 +112,7 @@ class QuizWritingFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentQuizWritingBinding.inflate(inflater, container, false)
-
+        binding.toolbar.title.text = getString(R.string.quiz_grammer_main)
         // TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)
 
@@ -131,7 +131,7 @@ class QuizWritingFragment : Fragment() {
 
         popupWritingquizBinding = DialogPopupWritingquizBinding.inflate(inflater, container, false)
         builderWritingquiz = AlertDialog.Builder(requireContext()).setView(popupWritingquizBinding!!.root).setCancelable(false)
-        popupViewWritingquiz = builderOcr2!!.create()
+        popupViewWritingquiz = builderWritingquiz!!.create()
 
         //카메라 화면 설정
         startCamera()
@@ -149,6 +149,7 @@ class QuizWritingFragment : Fragment() {
 
         //첫번째 퀴즈 표시
         binding.txtQuiz.text = quizList[0].quiz
+        binding.txtCount.text = getString(R.string.quiz_count,1)
 
         return binding.root
     }
@@ -256,7 +257,7 @@ class QuizWritingFragment : Fragment() {
             //TODO : 점수판
 
 
-            popupViewOcr!!.dismiss()
+            popupViewOcr2!!.dismiss()
             popupViewWritingquiz!!.show()
         }
         //글씨수정 취소
@@ -271,14 +272,17 @@ class QuizWritingFragment : Fragment() {
 
             if(progressNumber <= 9) {
                 binding.txtQuiz.text = quizList[progressNumber].quiz
+                binding.txtCount.text = getString(R.string.quiz_count,progressNumber+1)
 
                 popupViewWritingquiz!!.dismiss()
             }
             else {
-                //TODO : 프래그먼트로 이동
-                //val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-                //transaction.replace(R.id.frame, QuizFragment())
-                //transaction.commit()
+                popupViewWritingquiz!!.dismiss()
+
+                //TODO : 변수 보내기
+                val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frame, QuizResultFragment())
+                transaction.commit()
             }
         }
         //끝내기 버튼
@@ -286,20 +290,23 @@ class QuizWritingFragment : Fragment() {
             popupViewQuizBack!!.show()
         }
 
-
         //뒤로가기
         binding.toolbar.btnBack.setOnClickListener {
             popupViewQuizBack!!.show()
         }
 
-        //뒤로가기 계속하기
+
+        //뒤로가기 팝업 버튼
+        //계속하기
         popupQuizbackBinding!!.txtContinue.setOnClickListener {
             popupViewQuizBack!!.dismiss()
         }
-
-        //뒤로가기 끝내기
+        //끝내기
         popupQuizbackBinding!!.txtEnd.setOnClickListener {
+            popupViewWritingquiz!!.dismiss()
             popupViewQuizBack!!.dismiss()
+
+            cameraExecutor.shutdown()
 
             //프래그먼트 이동
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
@@ -311,6 +318,10 @@ class QuizWritingFragment : Fragment() {
     //번호에 맞는 퀴즈 가져오기
     private fun setQuiz(listInt :List<Int>) {
         //TODO : 번호에 맞는 퀴즈 가져와서 quizList에 저장
+
+        //임시로 넣은 리스트
+        val a = WritingQuiz("quiz","answer")
+        quizList = listOf(a,a,a,a,a,a,a,a,a,a)
     }
 
     private fun takePhoto() {

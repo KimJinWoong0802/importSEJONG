@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.MainActivity
+import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentQuizResultBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -47,10 +48,11 @@ class QuizResultFragment : Fragment() {
         // Inflate the layout for this fragment
         mBinding = FragmentQuizResultBinding.inflate(inflater, container, false)
 
+        //TODO : 데이터 받기
+
         // TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)
 
-        //TODO : setButton
         setButton()
 
         return binding.root
@@ -85,6 +87,18 @@ class QuizResultFragment : Fragment() {
     }
 
     private fun setButton() {
-        //TODO : setButton
+        //종합 랭킹 보기 버튼
+        binding.txtGotoQuizrank.setOnClickListener {
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame, QuizRankFragment())
+            transaction.commit()
+        }
+
+        //퀴즈 선택화면으로 돌아가기 버튼
+        binding.txtGotoQuiz.setOnClickListener {
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame, QuizFragment())
+            transaction.commit()
+        }
     }
 }
