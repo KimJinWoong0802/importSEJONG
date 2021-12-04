@@ -69,12 +69,15 @@
         <entry key="..\:/android/korwriting/app/src/main/res/layout/bookmark.xml" value="0.25" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/dialog_popup_ocr.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/dialog_popup_ocr2.xml" value="0.36614583333333334" />
+        <entry key="..\:/android/korwriting/app/src/main/res/layout/dialog_popup_quizback.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/dialog_popup_result.xml" value="0.36614583333333334" />
+        <entry key="..\:/android/korwriting/app/src/main/res/layout/dialog_popup_writingquiz.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/fragment_grammertest.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/fragment_mypage.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/fragment_mypage_two.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/fragment_quiz_grammer.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/fragment_quiz_rank.xml" value="0.36614583333333334" />
+        <entry key="..\:/android/korwriting/app/src/main/res/layout/fragment_quiz_writing.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/fragment_setting.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/fragment_writingtest.xml" value="0.36614583333333334" />
         <entry key="..\:/android/korwriting/app/src/main/res/layout/fragment_writingtest_two.xml" value="0.36614583333333334" />

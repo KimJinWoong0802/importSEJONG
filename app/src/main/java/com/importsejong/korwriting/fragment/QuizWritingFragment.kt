@@ -19,6 +19,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.*
 import com.importsejong.korwriting.Dao
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
@@ -42,8 +43,8 @@ private const val ARG_PARAM2 = "param2"
 
 //DB에서 받아올 문제 클래스
 data class WritingQuiz(
-    val quiz :String,
-    val answer :String
+    var quizText :String? =null,
+    var answer :String? = null
 )
 
 /**
@@ -90,7 +91,9 @@ class QuizWritingFragment : Fragment() {
 
     //퀴즈에서 사용되는 변수
     private var progressNumber :Int = 0 //퀴즈의 진행상황 0~9
-    private lateinit var quizList :List<WritingQuiz>
+    private var quizList = arrayListOf<WritingQuiz>()
+
+    private lateinit var databaseReference : DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -141,15 +144,9 @@ class QuizWritingFragment : Fragment() {
 
         setButton()
 
-        val maxQuizNumber = 20  // TODO : DB에서 문제 개수 가져오기
-        val quizNumberList:List<Int> = randomInt10(maxQuizNumber)
 
-        //TODO : 번호에 맞는 퀴즈 가져와서 quizList에 저장
-        setQuiz(quizNumberList)
+        setQuiz()
 
-        //첫번째 퀴즈 표시
-        binding.txtQuiz.text = quizList[0].quiz
-        binding.txtCount.text = getString(R.string.quiz_count,1)
 
         return binding.root
     }
@@ -271,7 +268,7 @@ class QuizWritingFragment : Fragment() {
             progressNumber++
 
             if(progressNumber <= 9) {
-                binding.txtQuiz.text = quizList[progressNumber].quiz
+                binding.txtQuiz.text = quizList[progressNumber].quizText
                 binding.txtCount.text = getString(R.string.quiz_count,progressNumber+1)
 
                 popupViewWritingquiz!!.dismiss()
@@ -315,13 +312,36 @@ class QuizWritingFragment : Fragment() {
         }
     }
 
-    //번호에 맞는 퀴즈 가져오기
-    private fun setQuiz(listInt :List<Int>) {
+
+    private fun setQuiz() {
         //TODO : 번호에 맞는 퀴즈 가져와서 quizList에 저장
 
-        //임시로 넣은 리스트
-        val a = WritingQuiz("quiz","answer")
-        quizList = listOf(a,a,a,a,a,a,a,a,a,a)
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("퀴즈").child("손글씨 단어 퀴즈")
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot.exists()) {
+
+                    for (quizSnapshot in snapshot.children) {
+                        val writingquiz = quizSnapshot.getValue(WritingQuiz::class.java)
+                        quizList.add(writingquiz!!)
+                    }
+
+
+                    //TODO : 예시 2개 랜덤으로 뒤섞기
+                    binding.txtQuiz.text = quizList[0].quizText
+                    binding.txtCount.text = getString(R.string.quiz_count,1)
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
+
+
     }
 
     private fun takePhoto() {

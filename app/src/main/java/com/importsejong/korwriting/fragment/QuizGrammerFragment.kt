@@ -25,7 +25,7 @@ private const val ARG_PARAM2 = "param2"
 
 //DB에서 받아올 문제 클래스
 data class GrammerQuiz(
-    var quiztext :String? = null,
+    var quizText :String? = null,
     var exFalse :String? = null,
     var exTrue :String? = null
 )
@@ -180,7 +180,7 @@ class QuizGrammerFragment : Fragment() {
             progressNumber++
 
             if(progressNumber <= 9) {
-                binding.txtQuiz.text = quizList[progressNumber].quiztext
+                binding.txtQuiz.text = quizList[progressNumber].quizText
                 binding.txtExample1.text = quizList[progressNumber].exFalse
                 binding.txtExample2.text = quizList[progressNumber].exTrue
                 binding.txtCount.text = getString(R.string.quiz_count,progressNumber+1)
@@ -240,7 +240,7 @@ class QuizGrammerFragment : Fragment() {
                     }
 
                     //TODO : 예시 2개 랜덤으로 뒤섞기
-                    binding.txtQuiz.text = quizList[0].quiztext
+                    binding.txtQuiz.text = quizList[0].quizText
                     binding.txtExample1.text = quizList[0].exFalse
                     binding.txtExample2.text = quizList[0].exTrue
                     binding.txtCount.text = getString(R.string.quiz_count,1)
