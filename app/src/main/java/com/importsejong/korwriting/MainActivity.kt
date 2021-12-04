@@ -15,8 +15,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private var mBinding: ActivityMainBinding? = null
     private val binding get() = mBinding!!
     lateinit var kakaoId : String
-    var kakaoProfile : String? = null
-    var kakaoNickname : String? = null
     var textSize : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +23,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(binding.root)
 
         kakaoId = intent.getStringExtra("kakaoId")!!
-        kakaoProfile = intent.getStringExtra("kakaoProfile")
-        kakaoNickname = intent.getStringExtra("kakaoNickname")
 
         //바텀네비게이션 텍스트 가운데정렬
         adjustGravity(binding.navigation)

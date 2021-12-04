@@ -27,8 +27,6 @@ class LoginActivity : AppCompatActivity() {
     private var permissionGrant = false
     private var kakaoLogin = false
     private lateinit var kakaoId : String
-    private var kakaoProfile : String? = null
-    private var kakaoNickname : String? = null
 
 
     private val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -57,8 +55,6 @@ class LoginActivity : AppCompatActivity() {
                     if (error2 != null) {
                         Toast.makeText(this, "사용자 정보 요청 실패", Toast.LENGTH_SHORT).show()
                     } else if (user != null) {
-                        kakaoProfile = user.kakaoAccount?.profile?.profileImageUrl
-                        kakaoNickname = user.kakaoAccount?.profile?.nickname
                         startMainActivity(permissionGrant, kakaoLogin)
                     }
                 }
@@ -105,8 +101,6 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "사용자 정보 요청 실패", Toast.LENGTH_SHORT).show()
                     } else if (user != null) {
                         kakaoId = user.id.toString()
-                        kakaoProfile = user.kakaoAccount?.profile?.profileImageUrl
-                        kakaoNickname = user.kakaoAccount?.profile?.nickname
 
                         databaseReference.child("사용자").child("${user.id}").child("ID").setValue("${user.id}","ID:")
                         databaseReference.child("사용자").child("${user.id}").child("닉네임").setValue("${user.kakaoAccount?.profile?.nickname}","닉네임")
@@ -137,8 +131,6 @@ class LoginActivity : AppCompatActivity() {
         if(permissionGrant && kakaoLogin) {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("kakaoId", kakaoId)
-            intent.putExtra("kakaoProfile", kakaoProfile)
-            intent.putExtra("kakaoNickname", kakaoNickname)
             startActivity(intent)
         }
     }
