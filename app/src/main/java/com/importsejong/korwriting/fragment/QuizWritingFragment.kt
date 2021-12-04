@@ -171,25 +171,35 @@ class QuizWritingFragment : Fragment() {
             }
     }
 
-    //겹치지 않는 랜덤숫자리스트 10개 생성
-    private fun randomInt10(count: Int): List<Int>{
-        val set = mutableSetOf<Int>()
+    //퀴즈를 랜덤으로 10개 뽑기
+    private fun randomList(allList: ArrayList<WritingQuiz>) {
+        val randomInt10 = mutableSetOf<Int>()
+        val size = allList.size
         val random = Random()
 
-        //입력값 10 이하는 -1 출력
-        if(count <= 10) {
-            return List(10) { -1 }
+
+        //입력값 10 이하는 Error출력
+        if(size < 10) {
+            val temp = WritingQuiz("Error","Error")
+
+            for(i in 0..9) {
+                quizList.add(temp)
+            }
+
+            return
         }
 
         while (true) {
-            set.add(random.nextInt(count) + 1)
+            //랜덤으로 숫자 10개 리스트 생성
+            randomInt10.add(random.nextInt(size))
 
-            //Set을 List로 변환, 정렬, 출력
-            if(set.size >= 10) {
-                val list = ArrayList(set)
-                list.sort()
+            //랜덤숫자10개에 맞는 문제를 리턴
+            if(randomInt10.size >= 10) {
+                for(i in randomInt10) {
+                    quizList.add(allList[i])
+                }
 
-                return list
+                return
             }
         }
     }
@@ -314,24 +324,22 @@ class QuizWritingFragment : Fragment() {
 
 
     private fun setQuiz() {
-        //TODO : 번호에 맞는 퀴즈 가져와서 quizList에 저장
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child("퀴즈").child("손글씨 단어 퀴즈")
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 if(snapshot.exists()) {
+                    val allList = arrayListOf<WritingQuiz>()
 
                     for (quizSnapshot in snapshot.children) {
                         val writingquiz = quizSnapshot.getValue(WritingQuiz::class.java)
-                        quizList.add(writingquiz!!)
+                        allList.add(writingquiz!!)
                     }
 
+                    randomList(allList)
 
                     //TODO : 예시 2개 랜덤으로 뒤섞기
                     binding.txtQuiz.text = quizList[0].quizText
                     binding.txtCount.text = getString(R.string.quiz_count,1)
-
                 }
             }
 
@@ -339,9 +347,6 @@ class QuizWritingFragment : Fragment() {
 
             }
         })
-
-
-
     }
 
     private fun takePhoto() {
