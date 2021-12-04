@@ -3,7 +3,6 @@ package com.importsejong.korwriting.fragment
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import com.importsejong.korwriting.databinding.DialogPopupGrammerquizBinding
 import com.importsejong.korwriting.databinding.DialogPopupQuizbackBinding
 import com.importsejong.korwriting.databinding.FragmentQuizGrammerBinding
 import java.util.*
-
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -40,6 +38,8 @@ class QuizGrammerFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    //바인딩
     private var mBinding: FragmentQuizGrammerBinding? = null
     private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
@@ -53,12 +53,15 @@ class QuizGrammerFragment : Fragment() {
     private var builderGrammerquiz : AlertDialog.Builder? = null
     private var popupViewGrammerquiz : AlertDialog? = null
 
+    //파이어베이스
     private lateinit var databaseReference : DatabaseReference
 
     //퀴즈에서 사용되는 변수
     private var progressNumber :Int = 0 //퀴즈의 진행상황 0~9
     private var quizList = arrayListOf<GrammerQuiz>()
-
+    private var scoreAnswer = 0 //정답개수
+    private var scoreWorng = 0  //오답개수
+    private var score = 0   //획득점수
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +82,7 @@ class QuizGrammerFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentQuizGrammerBinding.inflate(inflater, container, false)
+        binding.toolbar.title.text = getString(R.string.quiz_menu_goto_quizgrammer)
 
         // TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)
@@ -161,24 +165,50 @@ class QuizGrammerFragment : Fragment() {
     private fun setButton() {
         //예시1
         binding.txtExample1.setOnClickListener {
-            if(false) popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_correct)
-            else popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_incorrect)
+            val getScore: Int
+            val txtMain: String
 
+            //정답표시 및 점수획득
+            if(false) {
+                txtMain = getString(R.string.quiz_popup_next_correct)
+                scoreAnswer += 1
+                getScore = 100
+            }
+            else {
+                txtMain = getString(R.string.quiz_popup_next_incorrect)
+                scoreWorng += 1
+                getScore = 0
+            }
+            score += getScore
+
+            popupGrammerquizBinding!!.txtMain.text = txtMain
             popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exFalse
-
-            //TODO : 점수판
+            popupGrammerquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore, score)
 
             popupViewGrammerquiz!!.show()
         }
 
         //예시2
         binding.txtExample2.setOnClickListener {
-            if(true) popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_correct)
-            else popupGrammerquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_incorrect)
+            val getScore: Int
+            val txtMain: String
 
-            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exTrue
+            //정답표시 및 점수획득
+            if(true) {
+                txtMain = getString(R.string.quiz_popup_next_correct)
+                scoreAnswer += 1
+                getScore = 100
+            }
+            else {
+                txtMain = getString(R.string.quiz_popup_next_incorrect)
+                scoreWorng += 1
+                getScore = 0
+            }
+            score += getScore
 
-            //TODO : 점수판
+            popupGrammerquizBinding!!.txtMain.text = txtMain
+            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exFalse
+            popupGrammerquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore, score)
 
             popupViewGrammerquiz!!.show()
         }
@@ -199,9 +229,17 @@ class QuizGrammerFragment : Fragment() {
             else {
                 popupViewGrammerquiz!!.dismiss()
 
-                //TODO : 변수 보내기
+                //결과 프래그먼트로 이동
                 val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frame, QuizResultFragment())
+                val fragment = QuizResultFragment()
+                val bundle = Bundle()
+
+                bundle.putString("name","QuizGrammer")
+                bundle.putInt("scoreAnswer", scoreAnswer)
+                bundle.putInt("scoreWorng", scoreWorng)
+                bundle.putInt("score", score)
+                fragment.arguments = bundle
+                transaction.replace(R.id.frame, fragment)
                 transaction.commit()
             }
         }

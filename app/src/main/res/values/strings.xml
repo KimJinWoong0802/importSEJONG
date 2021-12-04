@@ -45,6 +45,7 @@
     <string name="quiz_popup_next_correct">정답입니다!</string>
     <string name="quiz_popup_next_incorrect">틀렸습니다!</string>
     <string name="quiz_popup_next_answer">정답</string>
+    <string name="quiz_popup_score">+%1$d점\n현재까지 획득한 점수\n%2$d점</string>
     <string name="quiz_popup_next_next">다음 문제</string>
     <string name="quiz_popup_next_end">끝내기</string>
 

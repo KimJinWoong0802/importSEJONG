@@ -92,6 +92,9 @@ class QuizWritingFragment : Fragment() {
     //퀴즈에서 사용되는 변수
     private var progressNumber :Int = 0 //퀴즈의 진행상황 0~9
     private var quizList = arrayListOf<WritingQuiz>()
+    private var scoreAnswer = 0 //정답개수
+    private var scoreWorng = 0  //오답개수
+    private var score = 0   //획득점수
 
     private lateinit var databaseReference : DatabaseReference
 
@@ -224,17 +227,25 @@ class QuizWritingFragment : Fragment() {
         //인식결과 맞아요
         popupOcrBinding!!.btnOcrYes.setOnClickListener {
             val beforeText: String = popupOcrBinding!!.txtOcrBefore.text.toString()
+            val getScore: Int
+            val txtMain: String
 
             //writingquiz 팝업 내용
             if(quizList[progressNumber].answer == beforeText) {
-                popupWritingquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_correct)
+                txtMain = getString(R.string.quiz_popup_next_correct)
+                scoreAnswer += 1
+                getScore = 100
             }
             else {
-                popupWritingquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_incorrect)
+                txtMain = getString(R.string.quiz_popup_next_incorrect)
+                scoreWorng += 1
+                getScore = 0
             }
-            popupWritingquizBinding!!.txtAnswer.text = quizList[progressNumber].answer
-            //TODO : 점수판
+            score += getScore
 
+            popupWritingquizBinding!!.txtMain.text = txtMain
+            popupWritingquizBinding!!.txtAnswer.text = quizList[progressNumber].answer
+            popupWritingquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore, score)
 
             popupViewOcr!!.dismiss()
             popupViewWritingquiz!!.show()
@@ -252,17 +263,25 @@ class QuizWritingFragment : Fragment() {
         //글씨수정 확인
         popupOcr2Binding!!.btnOcr2Yes.setOnClickListener {
             val beforeText: String = popupOcr2Binding!!.txtOcr2Before.text.toString()
+            val getScore: Int
+            val txtMain: String
 
             //writingquiz 팝업 내용
             if(quizList[progressNumber].answer == beforeText) {
-                popupWritingquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_correct)
+                txtMain = getString(R.string.quiz_popup_next_correct)
+                scoreAnswer += 1
+                getScore = 100
             }
             else {
-                popupWritingquizBinding!!.txtMain.text = getString(R.string.quiz_popup_next_incorrect)
+                txtMain = getString(R.string.quiz_popup_next_incorrect)
+                scoreWorng += 1
+                getScore = 0
             }
-            popupWritingquizBinding!!.txtAnswer.text = quizList[progressNumber].answer
-            //TODO : 점수판
+            score += getScore
 
+            popupWritingquizBinding!!.txtMain.text = txtMain
+            popupWritingquizBinding!!.txtAnswer.text = quizList[progressNumber].answer
+            popupWritingquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore, score)
 
             popupViewOcr2!!.dismiss()
             popupViewWritingquiz!!.show()
@@ -286,9 +305,17 @@ class QuizWritingFragment : Fragment() {
             else {
                 popupViewWritingquiz!!.dismiss()
 
-                //TODO : 변수 보내기
+                //결과 프래그먼트로 이동
                 val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frame, QuizResultFragment())
+                val fragment = QuizResultFragment()
+                val bundle = Bundle()
+
+                bundle.putString("name","QuizWriting")
+                bundle.putInt("scoreAnswer", scoreAnswer)
+                bundle.putInt("scoreWorng", scoreWorng)
+                bundle.putInt("score", score)
+                fragment.arguments = bundle
+                transaction.replace(R.id.frame, fragment)
                 transaction.commit()
             }
         }

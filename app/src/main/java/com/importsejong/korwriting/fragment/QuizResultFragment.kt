@@ -24,6 +24,8 @@ class QuizResultFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    //바인딩
     private var mBinding: FragmentQuizResultBinding? = null
     private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
@@ -48,9 +50,25 @@ class QuizResultFragment : Fragment() {
         // Inflate the layout for this fragment
         mBinding = FragmentQuizResultBinding.inflate(inflater, container, false)
 
-        //TODO : 데이터 받기
+        //전달 데이터 받기
+        val name = requireArguments().getString("name", "Error")
+        val scoreAnswer = requireArguments().getInt("scoreAnswer", 0)
+        val scoreWorng = requireArguments().getInt("scoreWorng", 0)
+        val score = requireArguments().getInt("score", 0)
 
-        // TODO : 텍스트크기 변경
+        //TODO : DB에서 내 누적점수 가져오고 score을 더한후 DB에 저장
+
+        val toolbarText :String = when(name) {
+            "QuizGrammer" -> getString(R.string.quiz_menu_goto_quizgrammer)
+            "QuizWriting" -> getString(R.string.quiz_menu_goto_quizwriting)
+            else -> getString(R.string.noText)
+        }
+
+        //텍스트 변환
+        binding.toolbar.title.text = toolbarText
+        binding.txtScore.text = getString(R.string.quiz_result_count, scoreAnswer, scoreWorng, score, -1)   //TODO : 4번째 값 = 누적점수
+
+        //TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)
 
         setButton()
