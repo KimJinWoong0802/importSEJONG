@@ -88,8 +88,6 @@ class GrammertestFragment : Fragment() {
     private lateinit var photoUri: Uri
     private lateinit var photoUrl: String
 
-    var getIntData :Int? = null
-    var getStringData :String? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -111,6 +109,7 @@ class GrammertestFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentGrammertestBinding.inflate(inflater, container, false)
+        binging.toolbar.title.text = resources.getString(R.string.grammertest_title)
 
         //팝업 설정
         popupResultBinding = DialogPopupResultBinding.inflate(inflater, container, false)
@@ -126,33 +125,15 @@ class GrammertestFragment : Fragment() {
         setTextSizeOcr2(mainActivity!!.textSize)
         setTextSizeResult(mainActivity!!.textSize)
 
-        getIntData = arguments?.getInt("dataInt")
-        getStringData = arguments?.getString("dataString")
-
         //카메라 화면 설정
         startCamera()
-        binging.txtPractice.text = getStringData
 
-        //맞춤법검사? 글씨교정?
-        when(getIntData) {
-            //맞춤법 검사 버튼 이벤트
-            1 -> {
-                binging.toolbar.title.text = resources.getString(R.string.grammertest_title)
-                setButtonGrammertest()
-            }
-            //글씨 교정 버튼 이벤트
-            2 -> {
-                binging.toolbar.title.text = resources.getString(R.string.writingtest_title_two)
-                setButtonWritingtest()
-            }
-        }
         setButton()
 
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         return binging.root
-        //return inflater.inflate(R.layout.fragment_grammertest, container, false)
     }
 
     companion object {
@@ -175,8 +156,7 @@ class GrammertestFragment : Fragment() {
             }
     }
 
-    //맞춤법 검사 버튼 이벤트
-    private fun setButtonGrammertest() {
+    private fun setButton() {
         //사진찍기
         binging.imageButton.setOnClickListener{
             takePhoto()
@@ -259,54 +239,6 @@ class GrammertestFragment : Fragment() {
                 .setValue(popupResultBinding!!.txtAfter2.text.toString())
 
             popupView3!!.dismiss()
-
-        }
-    }
-
-    private fun setButtonWritingtest() {
-        //사진찍기
-        binging.imageButton.setOnClickListener {
-            takePhoto()
-            val current = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초")
-            val formatted = current.format(formatter)
-
-            val testString = arguments?.getString("dataString")
-
-            storageReference = FirebaseStorage.getInstance().reference.child("images/${mainActivity!!.kakaoId}/글씨 교정/$formatted.jpg")
-
-            storageReference.putFile(photoUri).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-
-                    storageReference.downloadUrl.addOnSuccessListener {
-                        photoUrl = it.toString()
-                        databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                            .child("글씨 교정").child(testString!!).child("촬영 사진")
-                            .setValue(photoUrl)
-                    }
-                }
-            }
-
-            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("글씨 교정").child(testString!!).child("일자").setValue(formatted)
-
-            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("글씨 교정").child(testString!!).child("기준 문장 내용")
-                .setValue(testString)
-
-            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
-                .child("글씨 교정").child(testString!!).child("최고 점수")
-                .setValue("최고 점수")
-
-        }
-    }
-    
-    private fun setButton() {
-        //뒤로가기
-        binging.toolbar.btnBack.setOnClickListener {
-            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame, ChooseFragment())
-            transaction.commit()
         }
     }
 
@@ -328,21 +260,7 @@ class GrammertestFragment : Fragment() {
                     Toast.makeText(requireContext(), "캡처성공", Toast.LENGTH_SHORT).show()
 
                     //OCR실행
-                    if(getIntData == 1) {
-                        OCR(photoFile)
-                    }
-                    if(getIntData == 2){
-                        //프래그먼트 이동
-                        val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-                        val fragment = WritingtestTwoFragment()
-                        val bundle = Bundle()
-                        bundle.putString("dataString", getStringData)
-
-                        fragment.arguments = bundle
-
-                        transaction.replace(R.id.frame, fragment)
-                        transaction.commit()
-                    }
+                    OCR(photoFile)
                 }
             })
     }

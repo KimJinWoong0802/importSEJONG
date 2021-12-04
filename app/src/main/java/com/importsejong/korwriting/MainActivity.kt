@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         when(p0.itemId){
             R.id.action_1 ->{
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frame, ChooseFragment())
+                transaction.replace(R.id.frame, GrammertestFragment())
                 transaction.commit()
                 return true
             }
