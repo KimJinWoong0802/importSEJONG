@@ -41,55 +41,6 @@
 
         </LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="고친 문장 내용 :"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="26sp"-->
-<!--                android:textStyle="bold"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tvfixedsentence"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:text="저쩌고"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="20sp" />-->
-
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="촬영 사진 :"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="26sp"-->
-<!--                android:textStyle="bold"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tvphotourl"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:text="url"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="20sp" />-->
-
-<!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -116,30 +67,6 @@
 
         </LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="맞춤법 검사 정보 :"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="26sp"-->
-<!--                android:textStyle="bold"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tvgrammerinfo"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:text="맞춤법 검사 정보"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="20sp" />-->
-
-<!--        </LinearLayout>-->
 
 
     </LinearLayout>

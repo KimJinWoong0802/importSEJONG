@@ -14,8 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.importsejong.korwriting.databinding.ActivityLoginBinding
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
@@ -102,9 +101,22 @@ class LoginActivity : AppCompatActivity() {
                     } else if (user != null) {
                         kakaoId = user.id.toString()
 
-                        databaseReference.child("사용자").child("${user.id}").child("ID").setValue("${user.id}","ID:")
-                        databaseReference.child("사용자").child("${user.id}").child("닉네임").setValue("${user.kakaoAccount?.profile?.nickname}","닉네임")
-                        databaseReference.child("사용자").child("${user.id}").child("프로필URL").setValue("${user.kakaoAccount?.profile?.thumbnailImageUrl}","프로필URL")
+                        databaseReference.child("사용자").child("${user.id}").child("kakao").child("nickname").setValue("${user.kakaoAccount?.profile?.nickname}")
+                        databaseReference.child("사용자").child("${user.id}").child("kakao").child("profileurl").setValue("${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+
+                        databaseReference.child("사용자").child("${user.id}").child("rankscore").addListenerForSingleValueEvent(object :
+                            ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if(snapshot.getValue()==null){
+                                    databaseReference.child("사용자").child("${user.id}").child("rankscore").setValue(0)
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+
+                        })
 
                         kakaoLogin = true
                         startMainActivity(permissionGrant, kakaoLogin)

@@ -2,6 +2,7 @@ package com.importsejong.korwriting.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.databinding.FragmentMypageBinding
+import com.kakao.sdk.common.util.SdkLog
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -99,7 +101,7 @@ class MypageFragment : Fragment() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("사용자").child(mainActivity!!.kakaoId)
 
-        databaseReference.child("프로필URL").addListenerForSingleValueEvent(object : ValueEventListener{
+        databaseReference.child("kakao").child("profileurl").addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 Glide.with(this@MypageFragment)
                     .load(snapshot.getValue().toString())
@@ -112,7 +114,7 @@ class MypageFragment : Fragment() {
 
         })
 
-        databaseReference.child("닉네임").addListenerForSingleValueEvent(object : ValueEventListener{
+        databaseReference.child("kakao").child("nickname").addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.textName.text = snapshot.getValue().toString()
             }
@@ -122,6 +124,7 @@ class MypageFragment : Fragment() {
             }
 
         })
+
 
         databaseReference.child("맞춤법 검사").addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -134,6 +137,7 @@ class MypageFragment : Fragment() {
                             bookmarkArrayList.add(bookmark!!)
 
                         }
+
                         bookmarkRecyclerview.adapter = MyAdapter(mContext,bookmarkArrayList)
 
                     }

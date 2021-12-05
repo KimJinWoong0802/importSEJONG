@@ -2,14 +2,20 @@ package com.importsejong.korwriting.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.firebase.database.*
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentQuizGrammerBinding
 import com.importsejong.korwriting.databinding.FragmentQuizRankBinding
+import retrofit2.http.Query
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +34,11 @@ class QuizRankFragment : Fragment() {
     private var mBinding: FragmentQuizRankBinding? = null
     private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
+
+    private lateinit var quizrankRecyclerview : RecyclerView
+    private lateinit var quizrankArrayList : ArrayList<quizrank>
+
+    private lateinit var databaseReference : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +62,14 @@ class QuizRankFragment : Fragment() {
 
         // TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)
+
+        quizrankRecyclerview = binding.quizrankList
+        quizrankRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        quizrankRecyclerview.setHasFixedSize(true)
+
+        quizrankArrayList = arrayListOf<quizrank>()
+
+        showQuizRank(requireContext())
 
         //TODO : setButton
         setButton()
@@ -77,6 +96,39 @@ class QuizRankFragment : Fragment() {
                 }
             }
     }
+
+    private fun showQuizRank(mContext: Context){
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("사용자")
+        val QuizRankQuery: com.google.firebase.database.Query = databaseReference.orderByChild("rankscore")
+
+        QuizRankQuery.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot.exists()){
+
+                    for(quizrankSnapshot in snapshot.children){
+
+                        val quizrank = quizrankSnapshot.getValue(quizrank::class.java)
+                        quizrankArrayList.add(0,quizrank!!)
+
+                    }
+
+                    Log.d("허", quizrankArrayList.toString())
+
+                    quizrankRecyclerview.adapter = QuizAdapter(mContext,quizrankArrayList)
+
+                }
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
 
     //글씨 크기 변경
     private fun setTextSize(textSize :Int) {
