@@ -62,6 +62,7 @@ class QuizGrammerFragment : Fragment() {
     private var scoreAnswer = 0 //정답개수
     private var scoreWorng = 0  //오답개수
     private var score = 0   //획득점수
+    private var randomQuizPlace :Boolean = true // true면 상단이 exTrue
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -169,7 +170,7 @@ class QuizGrammerFragment : Fragment() {
             val txtMain: String
 
             //정답표시 및 점수획득
-            if(false) {
+            if(randomQuizPlace) {
                 txtMain = getString(R.string.quiz_popup_next_correct)
                 scoreAnswer += 1
                 getScore = 100
@@ -182,7 +183,7 @@ class QuizGrammerFragment : Fragment() {
             score += getScore
 
             popupGrammerquizBinding!!.txtMain.text = txtMain
-            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exFalse
+            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exTrue
             popupGrammerquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore, score)
 
             popupViewGrammerquiz!!.show()
@@ -194,7 +195,7 @@ class QuizGrammerFragment : Fragment() {
             val txtMain: String
 
             //정답표시 및 점수획득
-            if(true) {
+            if(!randomQuizPlace) {
                 txtMain = getString(R.string.quiz_popup_next_correct)
                 scoreAnswer += 1
                 getScore = 100
@@ -207,7 +208,7 @@ class QuizGrammerFragment : Fragment() {
             score += getScore
 
             popupGrammerquizBinding!!.txtMain.text = txtMain
-            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exFalse
+            popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exTrue
             popupGrammerquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore, score)
 
             popupViewGrammerquiz!!.show()
@@ -219,9 +220,18 @@ class QuizGrammerFragment : Fragment() {
             progressNumber++
 
             if(progressNumber <= 9) {
+                //예시 2개 위치 랜덤변경
+                randomQuizPlace = Random().nextBoolean()
+
                 binding.txtQuiz.text = quizList[progressNumber].quizText
-                binding.txtExample1.text = quizList[progressNumber].exFalse
-                binding.txtExample2.text = quizList[progressNumber].exTrue
+
+                if(randomQuizPlace) {
+                    binding.txtExample1.text = quizList[progressNumber].exTrue
+                    binding.txtExample2.text = quizList[progressNumber].exFalse
+                } else {
+                    binding.txtExample1.text = quizList[progressNumber].exFalse
+                    binding.txtExample2.text = quizList[progressNumber].exTrue
+                }
                 binding.txtCount.text = getString(R.string.quiz_count,progressNumber+1)
 
                 popupViewGrammerquiz!!.dismiss()
@@ -286,12 +296,18 @@ class QuizGrammerFragment : Fragment() {
 
                     randomList(allList)
 
-                    //TODO : 예시 2개 랜덤으로 뒤섞기
-                    binding.txtQuiz.text = quizList[0].quizText
-                    binding.txtExample1.text = quizList[0].exFalse
-                    binding.txtExample2.text = quizList[0].exTrue
-                    binding.txtCount.text = getString(R.string.quiz_count,1)
+                    //예시 2개 위치 랜덤변경
+                    randomQuizPlace = Random().nextBoolean()
 
+                    binding.txtQuiz.text = quizList[0].quizText
+                    if(randomQuizPlace) {
+                        binding.txtExample1.text = quizList[0].exTrue
+                        binding.txtExample2.text = quizList[0].exFalse
+                    } else{
+                        binding.txtExample1.text = quizList[0].exFalse
+                        binding.txtExample2.text = quizList[0].exTrue
+                    }
+                    binding.txtCount.text = getString(R.string.quiz_count,1)
                 }
             }
 
