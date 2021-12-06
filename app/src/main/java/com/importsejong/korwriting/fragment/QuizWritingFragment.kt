@@ -2,9 +2,12 @@ package com.importsejong.korwriting.fragment
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +35,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -87,7 +92,6 @@ class QuizWritingFragment : Fragment() {
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var photoUri: Uri
-    private lateinit var photoUrl: String
 
     //퀴즈에서 사용되는 변수
     private var progressNumber :Int = 0 //퀴즈의 진행상황 0~9
@@ -394,7 +398,7 @@ class QuizWritingFragment : Fragment() {
                     Toast.makeText(requireContext(), "캡처성공", Toast.LENGTH_SHORT).show()
 
                     //OCR 실행
-                    OCR(photoFile)
+                    OCR(photoUri, photoFile)
                 }
             })
     }
@@ -434,7 +438,23 @@ class QuizWritingFragment : Fragment() {
         else requireContext().filesDir
     }
 
-    private fun OCR(file :File) {
+    private fun OCR(uri : Uri, file: File) {
+        var bitmap = MediaStore.Images.Media.getBitmap(context?.getContentResolver(), uri)
+        var rotateMatrix = Matrix()
+        rotateMatrix.postRotate(90F)
+        bitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(), bitmap.getHeight(), rotateMatrix, true)
+        bitmap = Bitmap.createScaledBitmap(bitmap,300,300,true)
+
+        var out: OutputStream? = null
+        try{
+            out = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
+            out?.flush()
+            out?.close()
+        }finally {
+            out?.close()
+        }
+
         val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
 

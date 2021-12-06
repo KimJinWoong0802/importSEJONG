@@ -2,9 +2,12 @@ package com.importsejong.korwriting.fragment
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -34,9 +37,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.BufferedReader
-import java.io.File
-import java.io.InputStreamReader
+import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 import java.time.LocalDateTime
@@ -260,7 +261,7 @@ class GrammertestFragment : Fragment() {
                     Toast.makeText(requireContext(), "캡처성공", Toast.LENGTH_SHORT).show()
 
                     //OCR실행
-                    OCR(photoFile)
+                    OCR(photoUri,photoFile)
                 }
             })
     }
@@ -337,7 +338,23 @@ class GrammertestFragment : Fragment() {
         else requireContext().filesDir
     }
 
-    private fun OCR(file :File) {
+    private fun OCR(uri : Uri, file: File) {
+        var bitmap = MediaStore.Images.Media.getBitmap(context?.getContentResolver(), uri)
+        var rotateMatrix = Matrix()
+        rotateMatrix.postRotate(90F)
+        bitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(), bitmap.getHeight(), rotateMatrix, true)
+        bitmap = Bitmap.createScaledBitmap(bitmap,300,300,true)
+
+        var out: OutputStream? = null
+        try{
+            out = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
+            out?.flush()
+            out?.close()
+        }finally {
+            out?.close()
+        }
+
         val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
 
@@ -394,17 +411,43 @@ class GrammertestFragment : Fragment() {
                     netConn.disconnect()
 
                     mainActivity!!.runOnUiThread {
-                        val testString : String = content.replace(("[^\\w]").toRegex(), " ").replace(("[^\\D]").toRegex(), " ")
+                        val testString : String = content.toString()
                         Log.d("tset",testString)
                         try{
-                            val splitArray : ArrayList<String> = testString.split("candWord") as ArrayList<String>
+                            val splitArray : ArrayList<String> = testString.split("\"orgStr\":\"") as ArrayList<String>
                             Log.d("split",splitArray.toString())
                             var testArray :ArrayList<String>
                             val len = splitArray.size
                             val resultArray = ArrayList<String>()
                             for (n: Int in 1..len step 2){
                                 try {
-                                    testArray = splitArray[n].split("help") as ArrayList<String>
+                                    testArray = splitArray[n].split("\",") as ArrayList<String>
+                                    Log.d("List ckeck",testArray.toString())
+                                    val len2 = testArray.size
+                                    for(t:Int in 0..len2 step 2){
+                                        try{
+                                            resultArray.add(testArray[t])
+                                        } catch (e : Exception) {
+                                        }
+                                    }
+                                }catch (e:Exception){
+                                    break
+                                }
+                            }
+                            popupResultBinding!!.txtAfter.text = resultArray.toString()
+
+                        }catch (e: Exception){
+                            popupResultBinding!!.txtAfter.text = "맞춤법과 문법 오류를 찾지 못했습니다, 기술적 한계로 찾지 못한 맞춤법 오류나 문법 오류가 있을 수 있습니다."
+                        }
+                        try{
+                            val splitArray : ArrayList<String> = testString.split("\"candWord\":\"") as ArrayList<String>
+                            Log.d("split",splitArray.toString())
+                            var testArray :ArrayList<String>
+                            val len = splitArray.size
+                            val resultArray = ArrayList<String>()
+                            for (n: Int in 1..len step 2){
+                                try {
+                                    testArray = splitArray[n].split("\"}]") as ArrayList<String>
                                     Log.d("List ckeck",testArray.toString())
                                     val len2 = testArray.size
                                     for(t:Int in 0..len2 step 2){
@@ -417,14 +460,11 @@ class GrammertestFragment : Fragment() {
                                 }catch (e:Exception){
                                     break
                                 }
-
                             }
-                            popupResultBinding!!.txtAfter.text = resultArray.toString()
-                            popupResultBinding!!.txtAfter2.text = ""    //TODO : 추가된 텍스트상자
+                            popupResultBinding!!.txtAfter2.text = resultArray.toString()
                         }catch (e: Exception){
                             popupResultBinding!!.txtAfter.text = "맞춤법과 문법 오류를 찾지 못했습니다, 기술적 한계로 찾지 못한 맞춤법 오류나 문법 오류가 있을 수 있습니다."
                         }
-
                     }
                 }
             } catch (e: Exception) {
@@ -432,6 +472,7 @@ class GrammertestFragment : Fragment() {
             }
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
