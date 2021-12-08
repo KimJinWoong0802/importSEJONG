@@ -46,7 +46,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
 
-// TODO: Rename parameter arguments, choose names that match
+//Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -58,7 +58,7 @@ private const val ARG_PARAM2 = "param2"
  */
 @RequiresApi(Build.VERSION_CODES.O)
 class GrammertestFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+    // Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var mBinding: FragmentGrammertestBinding? = null
@@ -108,22 +108,23 @@ class GrammertestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         mBinding = FragmentGrammertestBinding.inflate(inflater, container, false)
         binging.toolbar.title.text = resources.getString(R.string.grammertest_title)
 
         //팝업 설정
-        popupResultBinding = DialogPopupResultBinding.inflate(inflater, container, false)
         popupOcrBinding = DialogPopupOcrBinding.inflate(inflater, container, false)
-        popupOcr2Binding = DialogPopupOcr2Binding.inflate(inflater, container, false)
         builder1 = AlertDialog.Builder(requireContext()).setView(popupOcrBinding!!.root).setCancelable(false)
-        builder2 = AlertDialog.Builder(requireContext()).setView(popupOcr2Binding!!.root).setCancelable(false)
-        builder3 = AlertDialog.Builder(requireContext()).setView(popupResultBinding!!.root).setCancelable(false)
         popupView1 = builder1!!.create()
-        popupView2 = builder2!!.create()
-        popupView3 = builder3!!.create()
         setTextSizeOcr(mainActivity!!.textSize)
+
+        popupOcr2Binding = DialogPopupOcr2Binding.inflate(inflater, container, false)
+        builder2 = AlertDialog.Builder(requireContext()).setView(popupOcr2Binding!!.root).setCancelable(false)
+        popupView2 = builder2!!.create()
         setTextSizeOcr2(mainActivity!!.textSize)
+
+        popupResultBinding = DialogPopupResultBinding.inflate(inflater, container, false)
+        builder3 = AlertDialog.Builder(requireContext()).setView(popupResultBinding!!.root).setCancelable(false)
+        popupView3 = builder3!!.create()
         setTextSizeResult(mainActivity!!.textSize)
 
         //카메라 화면 설정
@@ -146,7 +147,7 @@ class GrammertestFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment GrammertestFragment.
          */
-        // TODO: Rename and change types and number of parameters
+        //Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             GrammertestFragment().apply {

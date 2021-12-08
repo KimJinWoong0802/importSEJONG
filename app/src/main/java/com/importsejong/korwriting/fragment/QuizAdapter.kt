@@ -1,18 +1,13 @@
 package com.importsejong.korwriting.fragment
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.firebase.database.*
-import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 
 class QuizAdapter(val context : Context, private val quizrankList : ArrayList<quizrank>) : RecyclerView.Adapter<QuizAdapter.MyViewHolder>() {

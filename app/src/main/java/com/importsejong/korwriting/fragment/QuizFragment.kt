@@ -10,7 +10,7 @@ import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentQuizBinding
 
-// TODO: Rename parameter arguments, choose names that match
+//Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -21,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class QuizFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+    //Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var mBinding: FragmentQuizBinding? = null
@@ -49,7 +49,7 @@ class QuizFragment : Fragment() {
         mBinding = FragmentQuizBinding.inflate(inflater, container, false)
         binding.toolbar.title.text = getString(R.string.quiz_menu)
 
-        // TODO : 텍스트크기 변경
+        //텍스트크기 변경
         setTextSize(mainActivity!!.textSize)
 
         setButton()
@@ -66,7 +66,7 @@ class QuizFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment QuizFragment.
          */
-        // TODO: Rename and change types and number of parameters
+        //Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             QuizFragment().apply {
@@ -79,7 +79,11 @@ class QuizFragment : Fragment() {
 
     //글씨 크기 변경
     private fun setTextSize(textSize :Int) {
-        //TODO : 글씨 크기 변경
+        val size34 :Float = 30.0f + textSize*2
+
+        binding.txtGotoQuizwriting.textSize = size34
+        binding.txtGotoQuizgrammer.textSize = size34
+        binding.txtGotoRank.textSize = size34
     }
 
     private fun setButton() {

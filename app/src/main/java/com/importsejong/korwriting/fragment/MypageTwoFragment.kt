@@ -16,7 +16,7 @@ import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentMypageTwoBinding
 
-// TODO: Rename parameter arguments, choose names that match
+//Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -28,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  */
 
 class MypageTwoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+    //Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var mBinding: FragmentMypageTwoBinding? = null
@@ -59,10 +59,9 @@ class MypageTwoFragment : Fragment() {
         mBinding = FragmentMypageTwoBinding.inflate(inflater, container, false)
 
         val date = arguments?.getString("date")
-        val title = getString(R.string.noText)
 
-        binding.toolbar.date.text = date
-        binding.toolbar.title.text = title
+        val dateText = "${date?.substring(2,4)}.${date?.substring(6,8)}.${date?.substring(10,12)}"
+        binding.toolbar.date.text = dateText
 
         val database_input = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
             .child("맞춤법 검사").child(date!!).child("inputsentence")
@@ -76,7 +75,14 @@ class MypageTwoFragment : Fragment() {
 
         database_input.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                binding.textView3.text = snapshot.getValue().toString()
+                val text = snapshot.getValue().toString()
+                binding.textView3.text = text
+
+                if(text.length >= 10) {
+                    binding.toolbar.title.text = text.substring(0, 10).plus("...")
+                } else {
+                    binding.toolbar.title.text = text
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -140,7 +146,7 @@ class MypageTwoFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment MypageTwoFragment.
          */
-        // TODO: Rename and change types and number of parameters
+        //Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             MypageTwoFragment().apply {
@@ -161,6 +167,8 @@ class MypageTwoFragment : Fragment() {
         binding.textView4.textSize = size14
         binding.textView5.textSize = size14
         binding.textView.textSize = size14
+        binding.textView8.textSize = size14
+        binding.textView10.textSize = size14
     }
 
     //버튼 이벤트

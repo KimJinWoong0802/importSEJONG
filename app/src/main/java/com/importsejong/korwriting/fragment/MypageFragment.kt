@@ -16,7 +16,7 @@ import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentMypageBinding
 import com.kakao.sdk.common.util.SdkLog
 
-// TODO: Rename parameter arguments, choose names that match
+//Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -27,7 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class MypageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+    //Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var mBinding: FragmentMypageBinding? = null
@@ -56,7 +56,6 @@ class MypageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         mBinding = FragmentMypageBinding.inflate(inflater, container, false)
         binding.toolbar.title.text = getString(R.string.mypage_menu)
         setTextSize(mainActivity!!.textSize)
@@ -76,7 +75,6 @@ class MypageFragment : Fragment() {
         setButton()
 
         return binding.root
-        //return inflater.inflate(R.layout.fragment_two, container, false)
     }
 
     companion object {
@@ -88,7 +86,7 @@ class MypageFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment MypageFragment.
          */
-        // TODO: Rename and change types and number of parameters
+        //Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             MypageFragment().apply {
@@ -158,7 +156,7 @@ class MypageFragment : Fragment() {
     //글씨 크기 변경
     private fun setTextSize(textSize :Int) {
         val size20 :Float = 16.0f + textSize*2
-
+        //TODO : 텍스트 크기 변경
         //binging.textName.textSize = size20
     }
 
