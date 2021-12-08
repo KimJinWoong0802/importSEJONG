@@ -88,7 +88,7 @@ class MypageTwoFragment : Fragment() {
         //parttofix
         database_parttofix.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                binding.textView5.text = snapshot.getValue().toString()
+                binding.textView10.text = snapshot.getValue().toString()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -100,7 +100,7 @@ class MypageTwoFragment : Fragment() {
 
         database_fixedpart.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                binding.textView.text = snapshot.getValue().toString()
+                binding.textView5.text = snapshot.getValue().toString()
             }
 
             override fun onCancelled(error: DatabaseError) {
