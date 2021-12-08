@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.*
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentQuizResultBinding
@@ -29,6 +30,8 @@ class QuizResultFragment : Fragment() {
     private var mBinding: FragmentQuizResultBinding? = null
     private val binding get() = mBinding!!
     private var mainActivity: MainActivity? = null
+
+    private lateinit var databaseReference : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +59,23 @@ class QuizResultFragment : Fragment() {
         val scoreWorng = requireArguments().getInt("scoreWorng", 0)
         val score = requireArguments().getInt("score", 0)
 
-        //TODO : DB에서 내 누적점수 가져오고 score을 더한후 DB에 저장
+        var rankscore = 0
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("사용자").child(mainActivity!!.kakaoId)
+
+        databaseReference.child("rankscore").addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                rankscore = score + snapshot.getValue().toString().toInt()
+                databaseReference.child("rankscore").setValue(rankscore)
+                binding.txtScore.text = getString(R.string.quiz_result_count, scoreAnswer, scoreWorng, score, rankscore)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
 
         val toolbarText :String = when(name) {
             "QuizGrammer" -> getString(R.string.quiz_menu_goto_quizgrammer)
@@ -66,7 +85,7 @@ class QuizResultFragment : Fragment() {
 
         //텍스트 변환
         binding.toolbar.title.text = toolbarText
-        binding.txtScore.text = getString(R.string.quiz_result_count, scoreAnswer, scoreWorng, score, -1)   //TODO : 4번째 값 = 누적점수
+
 
         //TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)

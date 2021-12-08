@@ -346,6 +346,22 @@ class QuizWritingFragment : Fragment() {
 
             cameraExecutor.shutdown()
 
+            var rankscore = 0
+
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("사용자").child(mainActivity!!.kakaoId)
+
+            databaseReference.child("rankscore").addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    rankscore = score + snapshot.getValue().toString().toInt()
+                    databaseReference.child("rankscore").setValue(rankscore)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
             //프래그먼트 이동
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.frame, QuizFragment())
