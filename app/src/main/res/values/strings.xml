@@ -39,7 +39,7 @@
     <string name="quiz_menu_goto_rank">종합 랭킹 보기</string>
     <string name="quiz_count">%1$d/10</string>
 
-    <string name="quiz_grammer_main">다음 중 올바르게\n맞춤법을\n따르는 문장을 고르세요</string>
+    <string name="quiz_grammer_main">다음 설명에 해당하는 단어를\n손으로 쓰고\n촬영하세요</string>
 
     <!-- 퀴즈 문제결과 팝업 -->
     <string name="quiz_popup_next_correct">정답입니다!</string>
@@ -62,11 +62,14 @@
     <string name="quiz_result_goto_rank">종합 랭킹 보기</string>
     <string name="quiz_result_goto_quiz">퀴즈 선택화면으로 돌아가기</string>
 
+    <!-- 랭킹 프래그먼트 -->
+    <string name="quiz_rank_menu">랭킹</string>
 
     <!-- 마이페이지 프래그먼트 -->
     <string name="mypage_menu">마이페이지</string>
     <string name="mypage_bookmark_unbookmark">책갈피\n해제하기</string>
     <string name="mypage_bookmark_text1">내가 적은 글</string>
+    <string name="mypage_bookmark_text3">고쳐야 할 부분</string>
     <string name="mypage_bookmark_text2">바르게 수정된 글</string>
 
 

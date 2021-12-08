@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.importsejong.korwriting.MainActivity
+import com.importsejong.korwriting.R
 import com.importsejong.korwriting.databinding.FragmentMypageBinding
 import com.kakao.sdk.common.util.SdkLog
 
@@ -57,6 +58,7 @@ class MypageFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentMypageBinding.inflate(inflater, container, false)
+        binding.toolbar.title.text = getString(R.string.mypage_menu)
         setTextSize(mainActivity!!.textSize)
 
         bookmarkRecyclerview = binding.bookmarkList

@@ -59,6 +59,7 @@ class QuizRankFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentQuizRankBinding.inflate(inflater, container, false)
+        binding.toolbar.title.text = getString(R.string.quiz_rank_menu)
 
         // TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)
@@ -71,7 +72,6 @@ class QuizRankFragment : Fragment() {
 
         showQuizRank(requireContext())
 
-        //TODO : setButton
         setButton()
 
         return binding.root
@@ -136,6 +136,10 @@ class QuizRankFragment : Fragment() {
     }
 
     private fun setButton() {
-        //TODO : 버튼 생성
+        binding.toolbar.btnBack.setOnClickListener {
+            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame, QuizFragment())
+            transaction.commit()
+        }
     }
 }

@@ -384,7 +384,6 @@ class QuizWritingFragment : Fragment() {
 
                     randomList(allList)
 
-                    //TODO : 예시 2개 랜덤으로 뒤섞기
                     binding.txtQuiz.text = quizList[0].quizText
                     binding.txtCount.text = getString(R.string.quiz_count,1)
                 }
