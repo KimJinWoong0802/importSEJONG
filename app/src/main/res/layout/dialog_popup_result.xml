@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
-    android:orientation="vertical"
-    android:paddingStart="25dp"
-    android:paddingEnd="25dp"
-    android:paddingBottom="25dp">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/txt_result_main"
@@ -17,94 +15,144 @@
         android:gravity="center_vertical"
         android:text="@string/grammertest_popupResult_main"
         android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:textSize="34sp" />
 
-    <TextView
-        android:id="@+id/txt_result_content"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/grammertest_popupResult_before"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon_arrow_red" />
+
+        <TextView
+            android:id="@+id/txt_result_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mypage_bookmark_text1"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
 
     <TextView
         android:id="@+id/txt_result_before"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:background="@color/white"
         android:gravity="center"
         android:text="@string/noText"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="end"
-        android:layout_marginEnd="50dp"
-        android:contentDescription="@string/noText"
-        app:srcCompat="@android:drawable/arrow_down_float" />
-
-    <TextView
-        android:id="@+id/textView11"
+    <Space
         android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/grammertest_popupResult_after"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon_arrow_green" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mypage_bookmark_text3"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
 
     <TextView
         android:id="@+id/txt_after"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:background="@color/white"
         android:gravity="center"
         android:text="@string/noText"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="end"
-        android:layout_marginEnd="50dp"
-        android:contentDescription="@string/noText"
-        app:srcCompat="@android:drawable/arrow_down_float" />
-
-    <TextView
-        android:id="@+id/textView24"
+    <Space
         android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/grammertest_popupResult_after"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon_arrow_blue" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mypage_bookmark_text2"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
 
     <TextView
         android:id="@+id/txt_after2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:background="@color/white"
         android:gravity="center"
         android:text="@string/noText"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="30dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_result_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             android:text="@string/grammertest_popupResult_ok"
-            android:textColor="?attr/yes" />
+            android:textColor="?attr/yes"
+            android:textSize="20sp" />
 
         <Space
             android:layout_width="50dp"
@@ -112,13 +160,18 @@
 
         <Button
             android:id="@+id/btn_result_bookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             android:text="@string/grammertest_popupResult_bookmark"
-            android:textColor="?attr/intoBookmark" />
+            android:textColor="?attr/intoBookmark"
+            android:textSize="20sp" />
 
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
 
 </LinearLayout>

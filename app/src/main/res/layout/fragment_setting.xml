@@ -18,6 +18,8 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/txt_info"
@@ -28,7 +30,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_weight="1.5">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -45,6 +47,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/border"
                     android:gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:text="@string/setting_textExample"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -102,6 +106,8 @@
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView6"
                     tools:layout_editor_absoluteX="20dp">
@@ -156,6 +162,8 @@
                     android:layout_height="0dp"
                     android:text="@string/setting_anime_contents"
                     android:textSize="20sp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView9"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />

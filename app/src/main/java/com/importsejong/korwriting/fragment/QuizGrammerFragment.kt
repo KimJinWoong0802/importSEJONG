@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.importsejong.korwriting.MainActivity
@@ -81,12 +82,8 @@ class QuizGrammerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         mBinding = FragmentQuizGrammerBinding.inflate(inflater, container, false)
         binding.toolbar.title.text = getString(R.string.quiz_menu_goto_quizgrammer)
-
-        //텍스트크기 변경
-        setTextSize(mainActivity!!.textSize)
 
         //팝업 설정
         popupQuizbackBinding = DialogPopupQuizbackBinding.inflate(inflater, container, false)
@@ -96,6 +93,9 @@ class QuizGrammerFragment : Fragment() {
         popupGrammerquizBinding = DialogPopupGrammerquizBinding.inflate(inflater, container, false)
         builderGrammerquiz = AlertDialog.Builder(requireContext()).setView(popupGrammerquizBinding!!.root).setCancelable(false)
         popupViewGrammerquiz = builderGrammerquiz!!.create()
+
+        //텍스트크기 변경
+        setTextSize(mainActivity!!.textSize)
 
         setButton()
 
@@ -159,11 +159,26 @@ class QuizGrammerFragment : Fragment() {
     //글씨 크기 변경
     private fun setTextSize(textSize :Int) {
         val size24 :Float = 20.0f + textSize*2
+        val size34 :Float = 30.0f + textSize*2
 
+        binding.textView8.textSize = size24
         binding.txtQuiz.textSize = size24
         binding.txtExample1.textSize = size24
         binding.txtExample2.textSize = size24
         binding.txtCount.textSize = size24
+
+        popupQuizbackBinding!!.textView34.textSize = size24
+        popupQuizbackBinding!!.textView39.textSize = size24
+        popupQuizbackBinding!!.txtContinue.textSize = size24
+        popupQuizbackBinding!!.txtEnd.textSize = size24
+
+        popupGrammerquizBinding!!.txtMain.textSize = size34
+        popupGrammerquizBinding!!.textView37.textSize = size34
+        popupGrammerquizBinding!!.txtAnswer.textSize = size24
+        popupGrammerquizBinding!!.txtScore.textSize = size24
+        popupGrammerquizBinding!!.txtScore2.textSize = size24
+        popupGrammerquizBinding!!.txtNext.textSize = size24
+        popupGrammerquizBinding!!.txtEnd.textSize = size24
     }
 
     private fun setButton() {
@@ -171,23 +186,28 @@ class QuizGrammerFragment : Fragment() {
         binding.txtExample1.setOnClickListener {
             val getScore: Int
             val txtMain: String
+            val color: Int
 
             //정답표시 및 점수획득
             if(randomQuizPlace) {
                 txtMain = getString(R.string.quiz_popup_next_correct)
                 scoreAnswer += 1
                 getScore = 100
+                color = ContextCompat.getColor(requireContext(), R.color.color_correct)
             }
             else {
                 txtMain = getString(R.string.quiz_popup_next_incorrect)
                 scoreWorng += 1
                 getScore = 0
+                color = ContextCompat.getColor(requireContext(), R.color.color_incorrect)
             }
             score += getScore
 
             popupGrammerquizBinding!!.txtMain.text = txtMain
+            popupGrammerquizBinding!!.txtMain.setBackgroundColor(color)
             popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exTrue
-            popupGrammerquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore, score)
+            popupGrammerquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore)
+            popupGrammerquizBinding!!.txtScore2.text = getString(R.string.quiz_popup_score2, score)
 
             popupViewGrammerquiz!!.show()
         }
@@ -196,23 +216,28 @@ class QuizGrammerFragment : Fragment() {
         binding.txtExample2.setOnClickListener {
             val getScore: Int
             val txtMain: String
+            val color: Int
 
             //정답표시 및 점수획득
             if(!randomQuizPlace) {
                 txtMain = getString(R.string.quiz_popup_next_correct)
                 scoreAnswer += 1
                 getScore = 100
+                color = ContextCompat.getColor(requireContext(), R.color.color_correct)
             }
             else {
                 txtMain = getString(R.string.quiz_popup_next_incorrect)
                 scoreWorng += 1
                 getScore = 0
+                color = ContextCompat.getColor(requireContext(), R.color.color_incorrect)
             }
             score += getScore
 
             popupGrammerquizBinding!!.txtMain.text = txtMain
+            popupGrammerquizBinding!!.txtMain.setBackgroundColor(color)
             popupGrammerquizBinding!!.txtAnswer.text = quizList[progressNumber].exTrue
-            popupGrammerquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore, score)
+            popupGrammerquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore)
+            popupGrammerquizBinding!!.txtScore2.text = getString(R.string.quiz_popup_score2, score)
 
             popupViewGrammerquiz!!.show()
         }

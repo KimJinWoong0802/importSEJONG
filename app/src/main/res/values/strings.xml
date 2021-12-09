@@ -27,8 +27,6 @@
     <string name="grammertest_popupOCR_no2">취소</string>
 
     <string name="grammertest_popupResult_main">맞춤법 검사 결과</string>
-    <string name="grammertest_popupResult_before">내가 적은 글</string>
-    <string name="grammertest_popupResult_after">바르게 고쳐진 글</string>
     <string name="grammertest_popupResult_ok">확인</string>
     <string name="grammertest_popupResult_bookmark">책갈피에 넣기</string>
 
@@ -39,19 +37,21 @@
     <string name="quiz_menu_goto_rank">종합 랭킹 보기</string>
     <string name="quiz_count">%1$d/10</string>
 
-    <string name="quiz_grammer_main">다음 설명에 해당하는 단어를\n손으로 쓰고\n촬영하세요</string>
+    <string name="quiz_writing_main">다음 설명에 해당하는 단어를\n손으로 쓰고\n촬영하세요</string>
+    <string name="quiz_grammer_main">다음 중 올바르게\n맞춤법을\n따르는 문장을 고르세요</string>
 
     <!-- 퀴즈 문제결과 팝업 -->
     <string name="quiz_popup_next_correct">정답입니다!</string>
     <string name="quiz_popup_next_incorrect">틀렸습니다!</string>
     <string name="quiz_popup_next_answer">정답</string>
-    <string name="quiz_popup_score">+%1$d점\n현재까지 획득한 점수\n%2$d점</string>
+    <string name="quiz_popup_score">+%1$d점\n현재까지 획득한 점수</string>
+    <string name="quiz_popup_score2">%1$d점</string>
     <string name="quiz_popup_next_next">다음 문제</string>
     <string name="quiz_popup_next_end">끝내기</string>
 
     <!-- 퀴즈 끝내기 팝업 -->
     <string name="quiz_popup_back_header">게임을 마치시겠습니까?</string>
-    <string name="quiz_popup_back_body">여기서 마치시게 되면\n풀었던 문제 까지만\n점수를 획득하고\n퀴즈 선택화면으로\n돌아가게 됩니다.</string>
+    <string name="quiz_popup_back_body">여기서 마치시게 되면\n풀었던 문제 까지만\n점수를 획득하고 퀴즈 선택화면으로\n돌아가게 됩니다.</string>
     <string name="quiz_popup_back_continue">계속 하기</string>
 
     <!-- 퀴즈 결과 프래그먼트 -->
@@ -67,10 +67,8 @@
 
     <!-- 마이페이지 프래그먼트 -->
     <string name="mypage_menu">마이페이지</string>
+    <string name="mypage_list">책갈피</string>
     <string name="mypage_bookmark_unbookmark">책갈피\n해제하기</string>
-    <string name="mypage_bookmark_text1">내가 적은 글</string>
-    <string name="mypage_bookmark_text3">고쳐야 할 부분</string>
-    <string name="mypage_bookmark_text2">바르게 수정된 글</string>
 
 
     <!-- 앱 설정 프래그먼트 -->
@@ -86,6 +84,11 @@
     <string name="setting_anime_name">화면 전환 효과</string>
     <string name="setting_anime_contents">전환 애니메이션을 켜고 끕니다.</string>
     <string name="setting_btn">앱 정보 보기</string>
+
+    <!-- 부산대API 결과 -->
+    <string name="mypage_bookmark_text1">내가 적은 글</string>
+    <string name="mypage_bookmark_text3">고쳐야 할 부분</string>
+    <string name="mypage_bookmark_text2">바르게 수정된 글</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

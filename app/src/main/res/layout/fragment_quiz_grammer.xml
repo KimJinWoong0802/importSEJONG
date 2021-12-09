@@ -15,48 +15,88 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar_back" />
 
-        <TextView
-            android:id="@+id/txt_quiz"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            android:background="?attr/colorPrimary"
-            android:gravity="center"
-            android:text="@string/noText"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txt_example1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="30dp"
-            android:layout_weight="1"
-            android:background="?attr/colorPrimary"
-            android:gravity="center"
-            android:text="@string/noText"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
 
-        <TextView
-            android:id="@+id/txt_example2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="30dp"
-            android:layout_weight="1"
-            android:background="?attr/colorPrimary"
-            android:gravity="center"
-            android:text="@string/noText"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="@color/color_navigationBasic"
+                android:gravity="center"
+                android:text="@string/quiz_grammer_main"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:ignore="TextContrastCheck" />
 
-        <TextView
-            android:id="@+id/txt_count"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/quiz_count"
-            android:textSize="24sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/txt_quiz"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="@color/color_navigationSelect"
+                android:gravity="center"
+                android:text="@string/noText"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:ignore="TextContrastCheck" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:id="@+id/txt_example1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?attr/colorPrimary"
+                android:gravity="center"
+                android:text="@string/noText"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:id="@+id/txt_example2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?attr/colorPrimary"
+                android:gravity="center"
+                android:text="@string/noText"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:id="@+id/txt_count"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="@string/quiz_count"
+                android:textSize="24sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </FrameLayout>

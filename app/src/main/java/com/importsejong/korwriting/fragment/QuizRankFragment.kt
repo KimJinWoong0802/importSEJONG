@@ -60,6 +60,9 @@ class QuizRankFragment : Fragment() {
         // Inflate the layout for this fragment
         mBinding = FragmentQuizRankBinding.inflate(inflater, container, false)
         binding.toolbar.title.text = getString(R.string.quiz_rank_menu)
+        Glide.with(requireContext())
+            .load(R.drawable.icon_rank_toolbar)
+            .into(binding.toolbar.imageView7)
 
         // TODO : 텍스트크기 변경
         setTextSize(mainActivity!!.textSize)

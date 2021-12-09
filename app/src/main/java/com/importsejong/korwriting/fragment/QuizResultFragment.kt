@@ -128,7 +128,7 @@ class QuizResultFragment : Fragment() {
 
     private fun setButton() {
         //종합 랭킹 보기 버튼
-        binding.txtGotoQuizrank.setOnClickListener {
+        binding.layGotoQuizrank.setOnClickListener {
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.frame, QuizRankFragment())
             transaction.commit()

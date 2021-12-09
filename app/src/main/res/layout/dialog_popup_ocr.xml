@@ -12,19 +12,19 @@
     <TextView
         android:id="@+id/txt_ocr_main"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:gravity="center_vertical"
         android:text="@string/grammertest_popupOCR_main"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="34sp"
         tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/txt_ocr_content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
         android:text="@string/grammertest_popupOCR_content"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -37,7 +37,7 @@
         android:background="@color/white"
         android:gravity="center"
         android:text="@string/noText"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
 
     <Space
@@ -52,7 +52,7 @@
         <Button
             android:id="@+id/btn_ocr_yes"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
@@ -67,7 +67,7 @@
         <Button
             android:id="@+id/btn_ocr_no"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/white"

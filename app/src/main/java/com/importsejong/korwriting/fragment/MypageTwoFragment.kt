@@ -160,15 +160,16 @@ class MypageTwoFragment : Fragment() {
 
     //글씨 크기 변경
     private fun setTextSize(textSize :Int) {
-        val size14 :Float = 10.0f + textSize*2
+        val size20 :Float = 16.0f + textSize*2
+        val size24 :Float = 20.0f + textSize*2
 
-        binding.textView2.textSize = size14
-        binding.textView3.textSize = size14
-        binding.textView4.textSize = size14
-        binding.textView5.textSize = size14
-        binding.textView.textSize = size14
-        binding.textView8.textSize = size14
-        binding.textView10.textSize = size14
+        binding.txtResultContent.textSize = size24
+        binding.textView3.textSize = size20
+        binding.textView11.textSize = size24
+        binding.textView5.textSize = size20
+        binding.textView24.textSize = size24
+        binding.textView10.textSize = size20
+        binding.textView.textSize = size20
     }
 
     //버튼 이벤트

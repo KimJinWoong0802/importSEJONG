@@ -28,46 +28,86 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <TextView
-                android:id="@+id/txt_goto_quizwriting"
+            <LinearLayout
+                android:id="@+id/lay_goto_quizwriting"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:background="?attr/colorPrimary"
+                android:background="@color/color_navigationBasic"
                 android:gravity="center"
-                android:text="@string/quiz_menu_goto_quizwriting"
-                android:textColor="@color/white"
-                android:textSize="34sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_goto_quizwriting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quiz_menu_goto_quizwriting"
+                    android:textColor="@color/white"
+                    android:textSize="34sp" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/icon_magnifier_2" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
 
-            <TextView
-                android:id="@+id/txt_goto_quizgrammer"
+            <LinearLayout
+                android:id="@+id/lay_goto_quizgrammer"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:background="?attr/colorPrimary"
+                android:background="@color/color_navigationSelect"
                 android:gravity="center"
-                android:text="@string/quiz_menu_goto_quizgrammer"
-                android:textColor="@color/white"
-                android:textSize="34sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_goto_quizgrammer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quiz_menu_goto_quizgrammer"
+                    android:textColor="@color/white"
+                    android:textSize="34sp" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/icon_magnifier" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
 
-            <TextView
-                android:id="@+id/txt_goto_rank"
+            <LinearLayout
+                android:id="@+id/lay_goto_rank"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="?attr/colorPrimary"
                 android:gravity="center"
-                android:text="@string/quiz_menu_goto_rank"
-                android:textColor="@color/white"
-                android:textSize="34sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_goto_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quiz_menu_goto_rank"
+                    android:textColor="@color/white"
+                    android:textSize="34sp" />
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/icon_nomal_trophy" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,15 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:text="@string/noText"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:text="@string/noText" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="right"
-        android:src="@drawable/icon_toolbar" />
+        android:textSize="20sp" />
 
 </androidx.appcompat.widget.Toolbar>

@@ -6,7 +6,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="gray">#AAAAAA</color>
+    <color name="gray">#E0E0E0</color>
     <color name="white">#FFFFFFFF</color>
 
     <color name="color_main">#34495E</color>
@@ -15,7 +15,10 @@
     <color name="color_no">#E74C3C</color>
     <color name="color_yes">#16A085</color>
     <color name="color_intoBookmark">#F39C12</color>
-    <color name="color_arrow1">#C0392B</color>
     <color name="color_arrow2">#27AE60</color>
-    <color name="color_goButton">#3498DB</color>
+
+    <color name="color_correct">#3498DB</color>
+    <color name="color_end">#7F8C8D</color>
+    <color name="color_incorrect">#C0392B</color>
+    <color name="color_goto_quizrank">#F1C40F</color>
 </resources>

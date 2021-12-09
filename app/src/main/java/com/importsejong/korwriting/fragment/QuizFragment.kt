@@ -45,7 +45,6 @@ class QuizFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         mBinding = FragmentQuizBinding.inflate(inflater, container, false)
         binding.toolbar.title.text = getString(R.string.quiz_menu)
 
@@ -88,21 +87,21 @@ class QuizFragment : Fragment() {
 
     private fun setButton() {
         //손글씨 단어 퀴즈로 이동
-        binding.txtGotoQuizwriting.setOnClickListener {
+        binding.layGotoQuizwriting.setOnClickListener {
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.frame, QuizWritingFragment())
             transaction.commit()
         }
 
         //우리말 맞춤법 퀴즈로 이동
-        binding.txtGotoQuizgrammer.setOnClickListener {
+        binding.layGotoQuizgrammer.setOnClickListener {
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.frame, QuizGrammerFragment())
             transaction.commit()
         }
 
         //종합 랭킹 보기로 이동
-        binding.txtGotoRank.setOnClickListener {
+        binding.layGotoRank.setOnClickListener {
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.frame, QuizRankFragment())
             transaction.commit()

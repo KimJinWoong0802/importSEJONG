@@ -122,7 +122,7 @@ class QuizWritingFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentQuizWritingBinding.inflate(inflater, container, false)
-        binding.toolbar.title.text = getString(R.string.quiz_grammer_main)
+        binding.toolbar.title.text = getString(R.string.quiz_writing_main)
         //글씨 크기 변경
         setTextSize(mainActivity!!.textSize)
 
@@ -233,23 +233,28 @@ class QuizWritingFragment : Fragment() {
             val beforeText: String = popupOcrBinding!!.txtOcrBefore.text.toString()
             val getScore: Int
             val txtMain: String
+            val color: Int
 
             //writingquiz 팝업 내용
             if(quizList[progressNumber].answer == beforeText) {
                 txtMain = getString(R.string.quiz_popup_next_correct)
                 scoreAnswer += 1
                 getScore = 100
+                color = ContextCompat.getColor(requireContext(), R.color.color_correct)
             }
             else {
                 txtMain = getString(R.string.quiz_popup_next_incorrect)
                 scoreWorng += 1
                 getScore = 0
+                color = ContextCompat.getColor(requireContext(), R.color.color_incorrect)
             }
             score += getScore
 
             popupWritingquizBinding!!.txtMain.text = txtMain
+            popupWritingquizBinding!!.txtMain.setBackgroundColor(color)
             popupWritingquizBinding!!.txtAnswer.text = quizList[progressNumber].answer
-            popupWritingquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore, score)
+            popupWritingquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore)
+            popupWritingquizBinding!!.txtScore2.text = getString(R.string.quiz_popup_score2, score)
 
             popupViewOcr!!.dismiss()
             popupViewWritingquiz!!.show()
@@ -269,23 +274,28 @@ class QuizWritingFragment : Fragment() {
             val beforeText: String = popupOcr2Binding!!.txtOcr2Before.text.toString()
             val getScore: Int
             val txtMain: String
+            val color: Int
 
             //writingquiz 팝업 내용
             if(quizList[progressNumber].answer == beforeText) {
                 txtMain = getString(R.string.quiz_popup_next_correct)
                 scoreAnswer += 1
                 getScore = 100
+                color = ContextCompat.getColor(requireContext(), R.color.color_correct)
             }
             else {
                 txtMain = getString(R.string.quiz_popup_next_incorrect)
                 scoreWorng += 1
                 getScore = 0
+                color = ContextCompat.getColor(requireContext(), R.color.color_incorrect)
             }
             score += getScore
 
             popupWritingquizBinding!!.txtMain.text = txtMain
+            popupWritingquizBinding!!.txtMain.setBackgroundColor(color)
             popupWritingquizBinding!!.txtAnswer.text = quizList[progressNumber].answer
-            popupWritingquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore, score)
+            popupWritingquizBinding!!.txtScore.text = getString(R.string.quiz_popup_score, getScore)
+            popupWritingquizBinding!!.txtScore2.text = getString(R.string.quiz_popup_score2, score)
 
             popupViewOcr2!!.dismiss()
             popupViewWritingquiz!!.show()

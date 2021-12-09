@@ -155,9 +155,12 @@ class MypageFragment : Fragment() {
 
     //글씨 크기 변경
     private fun setTextSize(textSize :Int) {
+        val size34 :Float = 30.0f + textSize*2
         val size20 :Float = 16.0f + textSize*2
-        //TODO : 텍스트 크기 변경
-        //binging.textName.textSize = size20
+
+        binding.textName.textSize = size34
+        binding.textView12.textSize = size20
+        binding.textView13.textSize = size34
     }
 
     private fun setButton() {

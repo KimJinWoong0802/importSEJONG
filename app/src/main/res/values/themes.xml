@@ -14,8 +14,6 @@
         <item name="yes">@color/color_yes</item>
         <item name="no">@color/color_no</item>
         <item name="intoBookmark">@color/color_intoBookmark</item>
-        <item name="arrow1">@color/color_arrow1</item>
         <item name="arrow2">@color/color_arrow2</item>
-        <item name="goButton">@color/color_goButton</item>
     </style>
 </resources>
