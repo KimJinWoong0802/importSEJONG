@@ -88,7 +88,6 @@ class GrammertestFragment : Fragment() {
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var photoUri: Uri
     private lateinit var photoUrl: String
-    private lateinit var helpString : String
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -175,6 +174,9 @@ class GrammertestFragment : Fragment() {
 
             popupView1!!.dismiss()
             popupView3!!.show()
+
+            //초기화
+            popupOcrBinding!!.txtOcrBefore.text = getText(R.string.noText)
         }
         //인식결과 아니에요
         popupOcrBinding!!.btnOcrNo.setOnClickListener{
@@ -182,6 +184,9 @@ class GrammertestFragment : Fragment() {
 
             popupView1!!.dismiss()
             popupView2!!.show()
+
+            //초기화
+            popupOcrBinding!!.txtOcrBefore.text = getText(R.string.noText)
         }
 
         //popupOcr2 팝업 버튼
@@ -193,17 +198,28 @@ class GrammertestFragment : Fragment() {
 
             popupView2!!.dismiss()
             popupView3!!.show()
+
+            //초기화
+            popupOcr2Binding!!.txtOcr2Before.setText(getText(R.string.noText))
         }
         //글씨수정 취소
         popupOcr2Binding!!.btnOcr2No.setOnClickListener {
             popupView2!!.dismiss()
+
+            //초기화
+            popupOcr2Binding!!.txtOcr2Before.setText(getText(R.string.noText))
         }
 
         //popupResult 팝업 버튼
         //맞춤법결과 확인
         popupResultBinding!!.btnResultOk.setOnClickListener {
             popupView3!!.dismiss()
+
+            //초기화
+            popupResultBinding!!.txtResultBefore.text = getText(R.string.noText)
             popupResultBinding!!.txtAfter.text = getText(R.string.noText)
+            popupResultBinding!!.txtAfter2.text = getText(R.string.noText)
+            popupResultBinding!!.txtAfter3.text = getText(R.string.noText)
         }
         //맞춤법결과 책갈피에넣기
         popupResultBinding!!.btnResultBookmark.setOnClickListener {
@@ -243,7 +259,13 @@ class GrammertestFragment : Fragment() {
 
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
                 .child("맞춤법 검사").child(formatted).child("help")
-                .setValue(helpString)
+                .setValue(popupResultBinding!!.txtAfter3.text)
+
+            //초기화
+            popupResultBinding!!.txtResultBefore.text = getText(R.string.noText)
+            popupResultBinding!!.txtAfter.text = getText(R.string.noText)
+            popupResultBinding!!.txtAfter2.text = getText(R.string.noText)
+            popupResultBinding!!.txtAfter3.text = getText(R.string.noText)
 
             popupView3!!.dismiss()
         }
@@ -476,9 +498,10 @@ class GrammertestFragment : Fragment() {
                                     break
                                 }
                             }
-                            helpString = helpresultArray.toString().replace("&apos;","").replace("[","").replace("]","")
+
+                            popupResultBinding!!.txtAfter3.text = helpresultArray.toString().replace("&apos;","").replace("[","").replace("]","")
                         }catch (e: Exception){
-                            helpString = "맞춤법과 문법 오류를 찾지 못했습니다."
+                            popupResultBinding!!.txtAfter3.text = "맞춤법과 문법 오류를 찾지 못했습니다."
                         }
                     }
                 }

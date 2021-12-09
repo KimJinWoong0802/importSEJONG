@@ -89,6 +89,7 @@
     <string name="mypage_bookmark_text1">내가 적은 글</string>
     <string name="mypage_bookmark_text3">고쳐야 할 부분</string>
     <string name="mypage_bookmark_text2">바르게 수정된 글</string>
+    <string name="mypage_bookmark_text4">틀린 이유</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
