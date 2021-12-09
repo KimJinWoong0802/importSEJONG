@@ -88,7 +88,7 @@ class GrammertestFragment : Fragment() {
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var photoUri: Uri
     private lateinit var photoUrl: String
-
+    private lateinit var helpString : String
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -239,6 +239,10 @@ class GrammertestFragment : Fragment() {
             databaseReference.child("사용자").child(mainActivity!!.kakaoId)
                 .child("맞춤법 검사").child(formatted).child("fixedpart")
                 .setValue(popupResultBinding!!.txtAfter2.text.toString())
+
+            databaseReference.child("사용자").child(mainActivity!!.kakaoId)
+                .child("맞춤법 검사").child(formatted).child("help")
+                .setValue(helpString)
 
             popupView3!!.dismiss()
         }
@@ -424,18 +428,13 @@ class GrammertestFragment : Fragment() {
                                 try {
                                     testArray = splitArray[n].split("\",") as ArrayList<String>
                                     Log.d("List ckeck",testArray.toString())
-                                    val len2 = testArray.size
-                                    for(t:Int in 0..len2 step 2){
-                                        try{
-                                            resultArray.add(testArray[t])
-                                        } catch (e : Exception) {
-                                        }
-                                    }
+                                    resultArray.add(testArray[0])
+
                                 }catch (e:Exception){
                                     break
                                 }
                             }
-                            popupResultBinding!!.txtAfter.text = resultArray.toString()
+                            popupResultBinding!!.txtAfter.text = resultArray.toString().replace("[","").replace("]","")
 
                         }catch (e: Exception){
                             popupResultBinding!!.txtAfter.text = "맞춤법과 문법 오류를 찾지 못했습니다, 기술적 한계로 찾지 못한 맞춤법 오류나 문법 오류가 있을 수 있습니다."
@@ -450,21 +449,33 @@ class GrammertestFragment : Fragment() {
                                 try {
                                     testArray = splitArray[n].split("\"}]") as ArrayList<String>
                                     Log.d("List ckeck",testArray.toString())
-                                    val len2 = testArray.size
-                                    for(t:Int in 0..len2 step 2){
-                                        try{
-                                            resultArray.add(testArray[t])
-                                        } catch (e : Exception) {
-
-                                        }
-                                    }
+                                    resultArray.add(testArray[0])
                                 }catch (e:Exception){
                                     break
                                 }
                             }
-                            popupResultBinding!!.txtAfter2.text = resultArray.toString()
+                            popupResultBinding!!.txtAfter2.text = resultArray.toString().replace("[","").replace("]","")
                         }catch (e: Exception){
                             popupResultBinding!!.txtAfter.text = "맞춤법과 문법 오류를 찾지 못했습니다, 기술적 한계로 찾지 못한 맞춤법 오류나 문법 오류가 있을 수 있습니다."
+                        }
+                        try{
+                            val helpArray : ArrayList<String> = testString.split("\"help\":\"") as ArrayList<String>
+                            Log.d("split",helpArray.toString())
+                            var testArray :ArrayList<String>
+                            val len = helpArray.size
+                            val helpresultArray = ArrayList<String>()
+                            for (n: Int in 1..len step 2){
+                                try {
+                                    testArray = helpArray[n].split("\",\"") as ArrayList<String>
+                                    Log.d("List ckeck",testArray.toString())
+                                    helpresultArray.add(testArray[0])
+                                }catch (e:Exception){
+                                    break
+                                }
+                            }
+                            helpString = helpresultArray.toString().replace("&apos;","").replace("[","").replace("]","")
+                        }catch (e: Exception){
+                            helpString = "맞춤법과 문법 오류를 찾지 못했습니다."
                         }
                     }
                 }
