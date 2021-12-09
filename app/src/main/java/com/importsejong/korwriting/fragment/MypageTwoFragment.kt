@@ -71,6 +71,8 @@ class MypageTwoFragment : Fragment() {
             .child("맞춤법 검사").child(date!!).child("parttofix")
         val database_photourl = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
             .child("맞춤법 검사").child(date!!).child("photourl")
+        val database_help = FirebaseDatabase.getInstance().getReference("사용자").child(mainActivity!!.kakaoId)
+            .child("맞춤법 검사").child(date!!).child("help")
 
 
         database_input.addListenerForSingleValueEvent(object : ValueEventListener{
@@ -115,6 +117,17 @@ class MypageTwoFragment : Fragment() {
 
         })
 
+        database_help.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                binding.textView.text = snapshot.getValue().toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
         database_photourl.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 Glide.with(this@MypageTwoFragment)
@@ -127,6 +140,8 @@ class MypageTwoFragment : Fragment() {
             }
 
         })
+
+
 
         setTextSize(mainActivity!!.textSize)
 
