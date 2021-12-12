@@ -2,12 +2,13 @@ package com.importsejong.korwriting.fragment
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.importsejong.korwriting.MainActivity
 import com.importsejong.korwriting.R
+import com.importsejong.korwriting.databinding.FragmentSettingThreeBinding
 import com.importsejong.korwriting.databinding.FragmentSettingTwoBinding
 
 //Rename parameter arguments, choose names that match
@@ -17,14 +18,16 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SettingTwoFragment.newInstance] factory method to
+ * Use the [SettingThreeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SettingTwoFragment : Fragment() {
+class SettingThreeFragment : Fragment() {
     //Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var mBinding: FragmentSettingTwoBinding? = null
+
+    //바인딩
+    private var mBinding: FragmentSettingThreeBinding? = null
     private val binding get() = mBinding!!
     var mainActivity: MainActivity? = null
 
@@ -45,8 +48,7 @@ class SettingTwoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        mBinding = FragmentSettingTwoBinding.inflate(inflater, container, false)
+        mBinding = FragmentSettingThreeBinding.inflate(inflater, container, false)
         binding.toolbar.title.text = resources.getString(R.string.setting_title_2)
 
         setTextSize(mainActivity!!.textSize)
@@ -63,12 +65,12 @@ class SettingTwoFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingTwoFragment.
+         * @return A new instance of fragment SettingThreeFragment.
          */
         //Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SettingTwoFragment().apply {
+            SettingThreeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -78,27 +80,18 @@ class SettingTwoFragment : Fragment() {
 
     //글씨 크기 변경
     private fun setTextSize(textSize :Int) {
-        val size18 :Float = 14.0f + textSize*2
-        val size30 :Float = 26.0f + textSize*2
+        val size20 :Float = 16.0f + textSize*2
 
-        binding.textView14.textSize = size18
-        binding.textView15.textSize = size30
+        binding.textView16.textSize = size20
     }
 
     //버튼이벤트
     private fun setButton() {
-        //라이선스 보기
-        binding.textView15.setOnClickListener {
-            val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame, SettingThreeFragment())
-            transaction.commit()
-        }
-
         //뒤로가기
         binding.toolbar.btnBack.setOnClickListener {
             //프래그먼트 이동
             val transaction = mainActivity!!.supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame, SettingFragment())
+            transaction.replace(R.id.frame, SettingTwoFragment())
             transaction.commit()
         }
     }
